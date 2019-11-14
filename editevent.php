@@ -22,7 +22,7 @@ $stmt -> execute(array(
 
 $row = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-if ($contact_id != $row['user_id'] && $row['acct_type'] != 2)
+if ($contact_id != $row['user_id'] || $row['acct_type'] != 2)
 {
   header("Location: index.php");
 }
