@@ -34,10 +34,11 @@ require("layout/header.php");
         }
 
     ?>
-		</div>
     </ul>
 
     <br />
+
+		</div>
 		<div class="card">
     <h2>Update Your Profile:</h2>
     <ul>
