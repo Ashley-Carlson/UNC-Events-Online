@@ -13,7 +13,7 @@ $stmt -> execute(array(
 
 $event = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-$contact_id = $row['event_contact'];
+$contact_id = $event['event_contact'];
 
 $stmt = $db -> prepare('SELECT user_id, acct_type FROM user WHERE username = :username');
 $stmt -> execute(array(
