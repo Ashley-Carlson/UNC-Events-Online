@@ -53,6 +53,8 @@ if (isset($_POST['id']))
   header("Location: event.php?id=".$_POST['id']);
 }
 
+require('layout/header.php');
+
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
