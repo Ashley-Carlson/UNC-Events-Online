@@ -20,9 +20,6 @@ if ($userInfo['acct_type'] == 2) {
 $title = $currentUser;
 require("layout/header.php");
 ?>
-
-<body style="background-image:url('media/addeventbkg.jpg');">
-
     <h1>Your Profile</h1>
     <br />
     <h2>Your Events</h2>
