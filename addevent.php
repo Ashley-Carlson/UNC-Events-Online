@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function()
 
 <body style="background-image:url('media/addeventbkg.jpg');">
 
+
+
 <form action="addevent.php" method=POST>
 	<h1 style="text-align:center;">Add an Event</h1>
 	<div class="card">
