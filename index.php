@@ -28,7 +28,7 @@
 			echo '<div class="card">
           <h3 style="color: #eacc1f; text-align:center;"><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
           <p>'.$time.'</p>
-        <p>'.$item['event_desc'].'</p>
+        <p style="word-wrap:break-word;">'.$item['event_desc'].'</p>
       </div><br><br>';
 		}
 require('layout/footer.php') ?>
