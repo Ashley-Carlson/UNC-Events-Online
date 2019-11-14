@@ -25,20 +25,21 @@ require("layout/header.php");
     <br />
     <h2>Your Events</h2>
     <br />
-    <ul>
     <?php
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $item = array('id'=>$row['event_id'], 'title'=>$row['event_name']);
-            echo '<li><a href="event.php?id=' . $item['id'] . '">' . $item['title'] . '</a></li><br />';
+            echo '<a href="event.php?id=' . $item['id'] . '">' . $item['title'] . '</a><br />';
         }
 
     ?>
-    </ul>
 
     <br />
 
 		</div>
+		<br>
+		<br>
+		<br>
 		<div class="card">
     <h2>Update Your Profile:</h2>
     <ul>
