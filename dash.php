@@ -26,7 +26,6 @@ require("layout/header.php");
     <h2>Your Events</h2>
     <br />
     <ul>
-		</div>
     <?php
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -35,6 +34,7 @@ require("layout/header.php");
         }
 
     ?>
+		</div>
     </ul>
 
     <br />
@@ -43,9 +43,9 @@ require("layout/header.php");
     <ul>
       <li><a href="addevent.php">Add New Event</a></li>
       <li><a href="updateuser.php">Change Information</a></li>
-				</div>
 			<?php if ($admin) { echo '<li><a href="tools.php">Admin Tools</a></li>'; } ?>
     </ul>
+		</div>
 
 <?php
 
