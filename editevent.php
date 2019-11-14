@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function()
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
 <form action="editevent.php" method="POST">
-	<h1 style="text-align:center;">Edit Event Event</h1>
-		<div class="card">
+	<div class="card">
+	<h1 style="text-align:center;">Edit Event</h1>
 	<!-- takes text input for title, description, reserve -->
 		<font color="#ffffff">
 		<h3>Event Name<br>
