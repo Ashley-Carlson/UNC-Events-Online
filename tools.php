@@ -55,7 +55,7 @@ while($row=$stmt->fetch(PDO::FETCH_ASSOC)) {
           <input type="hidden" name="id2" value="' . $item['id'] . '">
           <input type="submit" value="Edit">
           </form>
-          <form action="deleteitem.php" method="post">
+          <form action="deleteevent.php" method="post">
           <input type="hidden" name="id3" value="' . $item['id'] . '">
           <input type="submit" value="Delete">
           </form>

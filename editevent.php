@@ -36,9 +36,9 @@ if (isset($_POST['id']))
             external_url = :external_url, has_food = :has_food
       WHERE event_id = :id"
   );
-  $has_food = (isset($_POST['has_food'])) ? 1 : 0;
-  $phptime = strtotime(_POST['event_time']);
-  $time = date("m/d/y g:i A", $phptime);
+  $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
+
+  $time = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
 
   $stmt -> execute(array(
     ':name'         => $_POST['name'],
@@ -47,50 +47,68 @@ if (isset($_POST['id']))
     ':location'     => $_POST['location'],
     ':external_url' => $_POST['external_url'],
     ':has_food'     => $has_food,
+		':id'						=> $_POST['id'],
   ));
-
-  header("Location: event.php?id=".$id);
+// ADD AUTO-EMAIL HERE
+  header("Location: event.php?id=".$_POST['id']);
 }
 
 ?>
 
-<form action="editevent.php" method=POST>
-	<body style="background-image:url('media/addeventbkg.jpg');">
-	<h1 style="text-align:center;">Add an Event</h1>
-	<div class="card">
-	<body style="background-color: #333;">
-<!-- takes text input for title, description, reserve -->
-	<font color="#ffffff">
-	<h3>Event Name<br>
-		<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
-	</h3>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function()
+{
+		flatpickr('input[type="datetime-local"]', {
+				enableTime: true,
+				altInput: true,
+				altFormat: 'm/d/Y h:i K',
+				dateFormat: 'Y-m-dTH:i:S',
+				locale: 'en',
+				time_24hr: false
+		});
+});
+</script>
 
-	<h3>Date and Time</h3><input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
+<body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
+
+<form action="editevent.php" method="POST">
+	<h1 style="text-align:center;">Edit Event Event</h1>
+		<div class="card">
+	<!-- takes text input for title, description, reserve -->
+		<font color="#ffffff">
+		<h3>Event Name<br>
+			<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
+		</h3>
+
+		<h3>Date and Time</h3><input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
 
 
-	<h3>Description</h3>
-	<textarea id="subject" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
+		<h3>Description</h3>
+		<textarea id="subject" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
 
-	<!-- TO BE IMPLEMENTED -->
-	<!-- <h3>Club:<br>
-	<input type="text" name="description" placeholder="Description">
-	</h3> -->
+		<!-- TO BE IMPLEMENTED -->
+		<!-- <h3>Club:<br>
+		<input type="text" name="description" placeholder="Description">
+		</h3> -->
 
-	<h3>Address<br>
-	<input type="text" name="location" value="<?php echo $event['location'] ?>">
-	</h3>
+		<h3>Address<br>
+		<input type="text" name="location" value="<?php echo $event['location'] ?>">
+		</h3>
 
-	<h3>External URL<br>
-	<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
-</h3><br>
-	<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked'; } ?>>
-	</p><br>
-	<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
-	</p>
-	</font>
-	<!-- submits the data entered to the server -->
-	 <input type="submit" value="Submit" id="popUpYes">
-   <input type="hidden" value=<?php echo $id ?> name="id">
+		<h3>External URL<br>
+		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
+		</h3><br>
+		<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked'; } ?>>
+		</p><br>
+		<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
+		</p>
+		</font>
+		<!-- submits the data entered to the server -->
+		 <input type="submit" value="Submit" id="popUpYes">
+	   <input type="hidden" value=<?php echo $id ?> name="id">
 	</div>
 </form>
 

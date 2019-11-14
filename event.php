@@ -4,8 +4,9 @@
 	$stmt = $db->prepare("
    SELECT event.event_name as event_name, event.event_desc as event_desc,
           event.has_food as has_food, event.event_time as event_time,
-          event.location as location, user.first_name as first_name,
-          user.last_name as last_name, user.email as email
+          event.location as location, user.user_id as user_id,
+          user.first_name as first_name, user.last_name as last_name,
+          user.email as email
      FROM event
 LEFT JOIN user ON user.user_id = event.event_contact
     WHERE event_id = :id
@@ -21,6 +22,7 @@ LEFT JOIN user ON user.user_id = event.event_contact
     'first_name'  => $row['first_name'],
     'last_name'   => $row['last_name'],
     'email'       => $row['email'],
+    'user_id'     => $row['user_id'],
   );
 
   $stmt = $db -> prepare("
@@ -30,7 +32,7 @@ LEFT JOIN user ON user.user_id = event.event_contact
   ");
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
-  
+  $userID = $row['user_id'];
 
   $phptime = strtotime($item['event_time']);
   $time = date("m/d/y g:i A", $phptime);
@@ -55,6 +57,19 @@ LEFT JOIN user ON user.user_id = event.event_contact
      </div>
      <div class="card" style="color: White;">
        <p><?php echo $item['location'] ?></p>
-       </div>
+     </div>
+     <?php
+     if ($userID == $item['user_id'])
+     {
+      echo '
+     <form action="editevent.php" method="post">
+     <input type="hidden" name="id2" value="' . $currentID . '">
+     <input type="submit" value="Edit">
+     </form>
+     <form action="deleteevent.php" method="post">
+     <input type="hidden" name="id3" value="' . $currentID . '">
+     <input type="submit" value="Delete">
+     </form>';
+   } ?>
 
 <?php require('layout/footer.php') ?>

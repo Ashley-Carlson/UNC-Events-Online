@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
 
-  $has_food = (isset($_POST['has_food'])) ? 1 : 0;
+  $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
   $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :location, :has_food, :external_url, :event_contact)');
   $stmt -> execute(array(
@@ -58,9 +58,7 @@ document.addEventListener('DOMContentLoaded', function()
 
 <body style="background-image:url('media/addeventbkg.jpg');">
 
-
-
-<form action="addevent.php" method=POST>
+<form action="addevent.php" method="POST">
 	<h1 style="text-align:center;">Add an Event</h1>
 	<div class="card">
 <!-- takes text input for title, description, reserve -->
