@@ -1,0 +1,366 @@
+body {
+	background-image: url('../media/unc_back.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100hv;
+}
+
+header {
+	position:relative;
+	height:12em;
+	width:100%;
+	/* background-color:#333; */
+}
+header form {
+	position:absolute;
+	right:1em;
+	top:0;
+	width:25%;
+}
+header form * {
+  color:#333 !important;
+	height:1.5em;
+	padding:0 5%;
+	margin:0.25em;
+	width:90%;
+}
+header form p {
+	color:#eee !important;
+}
+#submitButton {
+	width:100%;
+	height:1.5em;
+	padding:0;
+	top:5.3333em;
+	background:none;
+	float:right;
+}
+#submitButton * {
+	background-color:#ddd;
+	text-decoration:none;
+	width:47.5%;
+	padding:0;
+	margin:0;
+	height:100%;
+}
+#submitButton button {
+	position:absolute;
+	right:0 !important;
+	float:right;
+	margin:auto;
+}
+
+header div {
+	top:8em;
+	position:absolute;
+	height:4em;
+	width:100%;
+	/* background-image:url("../media/hero.png"); */
+	background-position:center;
+	background-size:100%;
+}
+header div nav {
+	top:25%;
+	position:absolute;
+	width:50%;
+	height:2em;
+	line-height:2em;
+	padding:0 0.5em;
+	background-color:#333;
+}
+header div #r {
+	right:0;
+	top:1em;
+	width:50vw;
+	background-color:#333;
+	height:2em;
+	text-align:center;
+}
+header div #r input {
+	height:1em;
+	top:12.5%;
+	right:0.5em;
+	position:absolute;
+	background-color:#eee;
+	color:#333;
+	width:20vw;
+	padding:0.25em;
+	border:0;
+}
+header div #r #sub {
+	height:1.5em !important;
+}
+
+header div img {
+	position:absolute;
+	left:50%;
+	margin:-1em -3.5em;
+	border-radius:100%;
+	height:6em;
+}
+
+/*Style for nav_menu*/
+#nav_menu ul li{
+	list-style-type: none;
+	padding: 0;
+	position: relative;
+}
+
+#nav_menu ul li ul li a{
+	text-align: center;
+	display: block;
+	padding: 1em 0;
+	text-decoration: none;
+	color: White;
+	font-weight: bold;
+}
+
+#nav_menu ul li ul{
+	display: none;
+}
+
+#nav_menu ul li:hover> ul{
+	display: block;
+	background-color: #333;
+	width: 50%;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
+	max-width: 1000px;
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+	background:rgba(30, 30, 30, 0.7) ;
+}
+.card input[type=submit] {
+	background-color: #000000;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+.card #popUpYes:hover
+{
+	background-color: white;
+	color: black; /* SET COLOR IN BLACK */
+}
+
+/* THis comment is purely to fix the index */
+
+@media screen and (min-width:550) {
+	header div img {
+		height:4em;
+		margin:0em -2.5em;
+	}
+	header form {
+		width:50%;
+	}
+}
+
+/* BEGIN LAYOUT/INDEX.CSS */
+* {
+	margin:0;
+	border:0;
+	padding:0;
+	color:#eee;
+	font-family:sans-serif;
+}
+/* Error code font */
+.error {
+	color: red;
+}
+
+.success {
+  color: green;
+}
+
+@keyframes xfade {
+	0% {
+		opacity:1;
+	}
+	28% {
+		opacity:1;
+	}
+	33.33% {
+		opacity:0;
+	}
+	95% {
+		opacity:0;
+	}
+  100% {
+    opacity:1;
+  }
+}
+
+#slideshow {
+	position:relative;
+	height:32em;
+	margin-top:-2.75em;
+	z-index:-1;
+}
+/* Slideshow fade option queries */
+#slideshow :nth-child(6) {
+  animation: xfade 30s 0s infinite;
+}
+#slideshow :nth-child(5) {
+  animation: xfade 30s 0s infinite;
+}
+#slideshow :nth-child(4) {
+  animation: xfade 30s 10s infinite;
+}
+#slideshow :nth-child(3) {
+  animation: xfade 30s 10s infinite;
+}
+#slideshow :nth-child(2) {
+  animation: xfade 30s 20s infinite;
+}
+#slideshow :nth-child(1) {
+  animation: xfade 30s 20s infinite;
+}
+
+/* Slide position on page */
+.slide {
+	position:absolute;
+	width:100%;
+	height:32em;
+	object-fit:cover;
+}
+.info {
+	animation-fill-mode:forwards;
+	font-size:16pt;
+	position:absolute;
+	background-color:#333;
+	color:#eee;
+	padding:32px;
+	right:15%;
+	top:25%;
+	width:25%;
+	height:256px;
+}
+
+#copy {
+	width:100%;
+	background-color:#333;
+	color:#eee;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 15%;
+}
+#copy * {
+	/* padding:1em; */
+	text-indent:0;
+}
+
+/* Product CSS */
+.product{
+	background-color: #333333;
+	background-position: center;
+	background-size: 100%;
+	height: 32em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.product form {
+	background-color: #333333 !important;
+}
+
+.product p, .product h2{
+	color: #eeeeee;
+}
+
+.product div{
+	background-color: #333;
+	width: 30%;
+	height: 16em;
+	float: right;
+	margin-right: 2em;
+	margin-top: 8em;
+	margin-bottom: 2em;
+	text-overflow: ellipsis;
+}
+
+.product div h2{
+	font-size: 300%;
+	padding: 1%;
+}
+
+.product div h3{
+	font-size: 190%;
+	padding: 1%;
+}
+
+.product div p{
+	font-size: 110%;
+	padding: 1%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+body {
+	background-color: #333 !important;
+}
+body form input{
+	color: #333 !important;
+}
+/* media query for screens of 1024px */
+@media only screen and (max-width:1024px) {
+
+	.product {
+		height:20em;
+	}
+	.product div {
+		width:50%;
+		margin-top:4em;
+	}
+	.product div h2 {
+		font-size:190%;
+	}
+	.product div h3 {
+		font-size:110%;
+	}
+	.product div p {
+		font-size:75%;
+	}
+
+	p{
+		size: .9em;
+	}
+	.slide {
+		height: 40em;
+	}
+
+	.product {
+		height:10em;
+	}
+	.product div {
+		height:8em !important;
+		margin-top:1em;
+		width:50%;
+	}
+	.product div h2 {
+		font-size:110%;
+	}
+	.product div h3 {
+		font-size:90%;
+	}
+
+/* Tablet Portrait layout (768 to 959px)*/
+@media only screen and (max-width: 959px){
+
+}
+
+/* mobile landscape layout (480px to 800px) */
+@media only screen and (max-width: 800px) {
+
+}
+
+/* mobile portrait to mobile landscape  */
+@media only screen and (max-width: 479px) {
+
+}
