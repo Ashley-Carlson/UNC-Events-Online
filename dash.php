@@ -38,10 +38,12 @@ require("layout/header.php");
     </ul>
 
     <br />
+		<div class="card">
     <h2>Update Your Profile:</h2>
     <ul>
       <li><a href="addevent.php">Add New Event</a></li>
       <li><a href="updateuser.php">Change Information</a></li>
+				</div>
 			<?php if ($admin) { echo '<li><a href="tools.php">Admin Tools</a></li>'; } ?>
     </ul>
 
