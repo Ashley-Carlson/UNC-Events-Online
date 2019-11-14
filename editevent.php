@@ -22,7 +22,7 @@ $stmt -> execute(array(
 
 $row = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-if ($contact_id != $row['user_id'] || $row['acct_type'] != 2)
+if ($contact_id != $row['user_id'] && $row['acct_type'] != 2)
 {
   header("Location: index.php");
 }
@@ -52,7 +52,6 @@ if (isset($_POST['id']))
 // ADD AUTO-EMAIL HERE
   header("Location: event.php?id=".$_POST['id']);
 }
-require('layout/header.php');
 
 ?>
 
@@ -76,23 +75,29 @@ document.addEventListener('DOMContentLoaded', function()
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
 <form action="editevent.php" method="POST">
-	<h1 style="text-align:center;">Edit Event</h1>
+	<h1 style="text-align:center;">Edit Event Event</h1>
 		<div class="card">
 	<!-- takes text input for title, description, reserve -->
 		<font color="#ffffff">
 		<h3>Event Name<br>
 			<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
 		</h3>
+
 		<h3>Date and Time</h3><input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
+
+
 		<h3>Description</h3>
 		<textarea id="subject" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
+
 		<!-- TO BE IMPLEMENTED -->
 		<!-- <h3>Club:<br>
 		<input type="text" name="description" placeholder="Description">
 		</h3> -->
+
 		<h3>Address<br>
 		<input type="text" name="location" value="<?php echo $event['location'] ?>">
 		</h3>
+
 		<h3>External URL<br>
 		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
 		</h3><br>
