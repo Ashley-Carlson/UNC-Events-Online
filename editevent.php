@@ -50,6 +50,31 @@ if (isset($_POST['id']))
 		':id'						=> $_POST['id'],
   ));
 // ADD AUTO-EMAIL HERE
+// ADD AUTO-EMAIL HERE
+	$stmt = $db -> prepare (
+	"SELECT user.email as email, event.event_name
+	 FROM user
+	LEFT JOIN event ON event.event_contact = user.user_id
+	WHERE event.event_id = :id"
+	);
+	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
+	$row = $stmt -> fetch(PDO::FETCH_ASSOC); // Get associative array
+	$email = $row['email'];
+	$event = $row['event_name'];
+	$message = 'An event has been updated';
+
+	function emailNotifaction($message, $event, $address)
+	{
+		$headers = "From: webmaster@uncoevents.dragonfirecomputing.com";
+    // the message
+    $msg = $message;
+    // use wordwrap() if lines are longer than 70 characters
+    $msg = wordwrap($msg, 70);
+    // send email
+    mail($address, $event, $msg, $headers);
+	}
+
+	emailNotifaction($message, $event, $email);
   header("Location: event.php?id=".$_POST['id']);
 }
 
