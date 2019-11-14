@@ -66,7 +66,9 @@ if(isset($_POST['submit'])){
 			?>
 			</form>
 
-		<!-- <div title="hero image, navbar">
-			<img alt="site logo" src="media/logo.png"></img>
-		</div> -->
+			<div class="topnav">
+					<a href="/">Home</a>
+					<a href="/dash.php">Dashboard</a>
+					<a href="https://www.unco.edu/research/office-of-sponsored-programs/policies-procedures-and-forms/">Policies</a>
+			</div>
 	</header>
