@@ -20,11 +20,13 @@ if ($userInfo['acct_type'] == 2) {
 $title = $currentUser;
 require("layout/header.php");
 ?>
+<div class="card">
     <h1>Your Profile</h1>
     <br />
     <h2>Your Events</h2>
     <br />
     <ul>
+		</div>
     <?php
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
