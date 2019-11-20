@@ -39,8 +39,9 @@ CREATE TABLE `event` (
 
 CREATE TABLE `club` (
   `club_id` int PRIMARY KEY AUTO_INCREMENT,
+  `photo_path` varchar(255),
   `club_name` varchar(255),
-  `club_desc` varchar(2048),
+  `club_desc` varchar(1024),
   `fac_sponsor_id` int,
   `photo_url` varchar(512),
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -68,6 +69,15 @@ CREATE TABLE `clubevent` (
 
 CREATE TABLE `eventtag` (
   `event_id` int,
+  `tag_id` int
+);
+
+CREATE TABLE `clubtag` (
+  `club_id` int,
+  `tag_id` int
+);
+CREATE TABLE `usertag` (
+  `club_id` int,
   `tag_id` int
 );
 
