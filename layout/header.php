@@ -31,44 +31,41 @@ if(isset($_POST['submit'])){
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<meta name="viewport" content="width-device-width, initial-scale=1"/>
 	<link rel="stylesheet" href="layout/index.css">
-	<!-- <link rel="stylesheet" href="index.css"> -->
 	<title><?php if(isset($title)){ echo $title; }?></title>
 </head>
 <body>
 	<header>
 		<?php
-			if(isset($error)){
-				foreach($error as $error){
+			if(isset($error))
+			{
+				foreach($error as $error)
+				{
 					echo '<p class="error">'.$error.'</p>';
 				}
+			} 
+			if ($user->is_logged_in())
+			{
+				$first_name = $_SESSION['first_name'];
+				echo '<p>Hello, ' . $first_name . '</p>
+				<div id="submitButton">
+					<button type="button"><a href="dash.php">Dashboard</a></button>
+					<button type="button"><a href="logout.php">Logout</a></button>
+				</div>';
+			}
+			else 
+			{
+				echo '<p>Hello, Anon</p>
+				<div id="submitButton">
+					<button type="button"><a href="login.php">Login</a></button>
+					<button type="button"><a href="register.php">Register</a></button>
+				</div>';
 			}
 		?>
-		<form role="form" id="login" action="" method="post">
-			<?php if ($user->is_logged_in()){
-				$first_name = $_SESSION['first_name'];
-				echo '<p>Hello, ' . $first_name . '</p><br>
-				<div id="submitButton">
-				<a href="dash.php"><button type="button">Dashboard</button></a>
-				<a href="logout.php"><button type="button">Logout</button></a>
-				</div>';
 
-			}
-			else {
-				echo '<p>Hello, Anon</p>
-				<input type="text" name="username" id="name" placeholder="username"><br>
-				<input type="password" name="password" id="password" placeholder="password"><br>
-				<div id="submitButton">
-				<input type="submit" name="submit" value="Login">
-				<button type="button"><a href="register.php">Register</a></button>
-				</div>';
-
-			}
-			?>
-			</form>
-
-			<div class="topnav">
-					<a href="/">Home</a>
-					<a href="/dash.php">Dashboard</a>
-					<a href="https://www.unco.edu/research/office-of-sponsored-programs/policies-procedures-and-forms/">Policies</a>
-			</div>
+		<div class="topnav">
+			<a href="/">Home</a>
+			<a href="/dash.php">Dashboard</a>
+			<a href="https://www.unco.edu/research/office-of-sponsored-programs/policies-procedures-and-forms/">Policies</a>
+		</div>
 	</header>
+</body>

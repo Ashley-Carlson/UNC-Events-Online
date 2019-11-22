@@ -9,13 +9,13 @@
 
   //include header template
   require('layout/header.php');
-?>
+  echo '
    <div class="card">
      <h1 style="color:White; text-align:center;">Events</h1>
    </div>
    <br><br>
+   ';
 
-<?php
 		while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
 			$item = array(
         'event_id'   => $row['event_id'],
@@ -31,4 +31,5 @@
         <p style="word-wrap:break-word;">'.$item['event_desc'].'</p>
       </div><br><br>';
 		}
-require('layout/footer.php') ?>
+require('layout/footer.php') 
+?>
