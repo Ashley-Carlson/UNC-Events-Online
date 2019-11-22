@@ -40,7 +40,7 @@ if(isset($_POST['submit'])){
 		<!-- Navigation -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
 			<div class="container">
-				<!-- <a class="navbar-brand" href="#">Start Bootstrap</a> -->
+				<a class="navbar-brand" href="/">UNC Events</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -57,24 +57,19 @@ if(isset($_POST['submit'])){
 							if ($user->is_logged_in())
 							{
 								$first_name = $_SESSION['first_name'];
-								echo '<li class="nav-item"><p class="nav-text">Hello, ' . $first_name . '</p></li>
+								echo '<li class="nav-item"><p>Hello, ' . $first_name . '</p></li>
 								<li class="nav-item"><a class="nav-link" href="dash.php">Dashboard</a></li>
 								<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
 							}
 							else 
 							{
-								echo '<li class="nav-item"><p class="nav-text">Hello, Anon</p></li>
+								echo '<li class="nav-item"><p class="nav-link">Hello, Anon</p></li>
 								<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
 								<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>';
 							}
 						?>
 					</ul>
 					<ul class="navbar-nav ml-auto">
-					<!-- <li class="nav-item active">
-						<a class="nav-link" href="/">Home
-						<span class="sr-only">(current)</span>
-						</a>
-					</li> -->
 						<li class="nav-item">
 							<a class="nav-link" href="/">Home</a>
 						</li>
@@ -90,7 +85,7 @@ if(isset($_POST['submit'])){
 		</nav>
 
 		<!-- Bootstrap core JavaScript -->
-		<script src="vendor/jquery/jquery.slim.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="layout/jquery/jquery.slim.min.js"></script>
+		<script src="layout/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</header>
 </body>

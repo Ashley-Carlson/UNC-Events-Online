@@ -36,11 +36,11 @@
       );
       $phptime = strtotime($item['event_time']);
       $time = date("m/d/y g:i A", $phptime);
-			echo '<div class="row">
+			echo '<div class="row"><div class="col-lg-12 text-center">
           <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
           <p>'.$time.'</p>
         <p>'.$item['event_desc'].'</p>
-      </div><br><br>';
+      </div></div><br><br>';
     }
   ?>
 <!-- require('layout/footer.php') -->
