@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS `userclub`;
 DROP TABLE IF EXISTS `eventuser`;
 DROP TABLE IF EXISTS `clubevent`;
 DROP TABLE IF EXISTS `eventtag`;
+DROP TABLE IF EXISTS `usertag`;
+DROP TABLE IF EXISTS `clubtag`;
 DROP TABLE IF EXISTS `tag`;
 
 
@@ -78,7 +80,7 @@ CREATE TABLE `clubtag` (
   `tag_id` int
 );
 CREATE TABLE `usertag` (
-  `club_id` int,
+  `user_id` int,
   `tag_id` int
 );
 
