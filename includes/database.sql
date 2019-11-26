@@ -33,7 +33,9 @@ CREATE TABLE `event` (
   `latitude` float,
   `longitude` float,
   `location` varchar(512),
-  `external_url` varchar(512),
+  `external_url1` varchar(512),
+  `external_url2` varchar(512)
+  `external_url3` varchar(512)
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updt_timestmp` datetime ON UPDATE CURRENT_TIMESTAMP,
   `is_inactive` bit(1) DEFAULT 0,
