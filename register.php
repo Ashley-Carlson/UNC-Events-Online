@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 ?>
 <form action="register.php" method="POST">
  <div class="container">
-   <body style="background-color: #333;">
+   <body style="background-color: #eee;">
    <h1 style="text-align:center;">Register</h1>
    <p>Please fill in this form to create an account.</p>
    <hr>
