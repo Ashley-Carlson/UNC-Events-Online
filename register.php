@@ -58,27 +58,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
    <h1 style="text-align:center;">Register</h1>
    <p>Please fill in this form to create an account.</p>
    <hr>
-   <b>First Name: </b>
-   <input type="text" placeholder="First Name" name="first_name" required>
+   <b>First Name: </b><br>
+   <input type="text" placeholder="First Name" name="first_name" required><br>
 
-   <b>Last Name: </b>
-   <input type="text" placeholder="Last Name" name="last_name" required>
-   <br>
+   <b>Last Name: </b><br>
+   <input type="text" placeholder="Last Name" name="last_name" required><br>
 
-   <b>Username: </b>
-   <input type="text" placeholder="Username" name="username" required>
+   <b>Username: </b><br>
+   <input type="text" placeholder="Username" name="username" required><br>
 
-   <b>Email: </b>
-   <input type="email" placeholder="Email" name="email" required>
-   <br>
+   <b>Email: </b><br>
+   <input type="email" placeholder="Email" name="email" required><br>
 
-   <b>Password: </b>
-   <input type="password" placeholder="Password" name="passwd" minlength="8" required>
+   <b>Password: </b><br>
+   <input type="password" placeholder="Password" name="passwd" minlength="8" required><br>
 
-   <b>Repeat Password: </b>
-   <input type="password" placeholder="Repeat Password" name="verify" required>
+   <b>Repeat Password: </b><br>
+   <input type="password" placeholder="Repeat Password" name="verify" required><br>
    <hr>
-   <br>
    <input type="checkbox" name="is_faculty"> I am Faculty <br>
    <button type="submit">Register</button>
  </div>
