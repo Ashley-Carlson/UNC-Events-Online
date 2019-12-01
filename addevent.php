@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function()
 </h3><br>
 	<p>There is food <input type="checkbox" name="has_food">
 	</p><br>
-	<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
+	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
 	</font>
 	<!-- submits the data entered to the server -->
