@@ -66,7 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	</h3>
 
 	<h3>External URL<br>
-	<input type="text" name="external_url" placeholder="Link">
+	<input type="text" name="external_url1" placeholder="Link">
+</h3><br>
+<input type="text" name="external_url2" placeholder="Link">
+</h3><br>
+<input type="text" name="external_url3" placeholder="Link">
 </h3><br>
 	<p>Does this event have food? <input type="checkbox" name="has_food">
 	</p><br>
