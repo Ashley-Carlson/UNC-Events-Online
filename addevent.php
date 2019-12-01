@@ -68,8 +68,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<h3>External URL<br>
 	<input type="text" name="external_url" placeholder="Link">
 </h3><br>
-	<p>There is food <input type="checkbox" name="has_food">
+	<p>Does this event have food? <input type="checkbox" name="has_food">
 	</p><br>
+	<!-- dropdown menu to assign it a tag (for searching) -->
+	  Tag:<br>
+		<select>
+			<option value="biology">Biology</option>
+			<option value="mathematics">Mathematics</option>
+			<option value="technology">Furry</option>
+			<option value="art">Art</option>
+			<option value="science">Science</option>
+			<option value="performance">Performance</option>
+			<option value="theater">Theater</option>
+			<option value="chemistry">Chemistry</option>
+			<option value="culture">Culture</option>
+			<option value="cuisine">Cuisine</option>
+			<option value="animals">Animals</option>
+			<option value="21">21+</option>
+			<option value="offical">Official</option>
+			<option value="party">Party</option>
+			<option value="greek">Greek</option>
+			<option value="mechanics">Mechanics</option>
+			<option value="engineering">Engineering</option>
+			<option value="ai">AI</option>
+			<option value="buisness">Buisness</option>
+			<option value="networking">Networking</option>
+			<option value="food">Food</option>
+			<option value="sports">Sports</option>
+			<option value="football">Football</option>
+			<option value="volleyball">Volleyball</option>
+			<option value="soccer">Soccer</option>
+		</select>
+	  <br><br>
+
+<!-- actual file upload for the item itself -->
+
+	  Upload Image:
+	  <input type="file" name="image" id="image">
+		<br>
 	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
 	</font>
