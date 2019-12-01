@@ -47,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
         $subject = "Email Verification (uncevents.online)";
         $headers .= "MIME-Version: 1.0"."\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
-        $headers .= 'From: no_reply@uncevents.online'."\r\n";
-
+				$headers .= $noreply_email_addr;
         $ms.="<html></body><div><div>Dear " .  $_POST['first_name'] . ",</div></br></br>";
         $ms.="<div style='padding-top:8px;'>Please click the following link to verify and activate your account.</div>
         <div style='padding-top:10px;'><a href='https://uncoevents.online/verify.php?verify=$verify_string'>Click Here</a></div>
         </body></html>";
-        mail($to,$subject,$ms,$headers);
+				emailNotifaction($ms, $subject, $to, $noreply_email_addr);
+        // mail($to,$subject,$ms,$headers); // DEPRECATED
 
 		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account.</p>';
 		header("Location: dash.php");

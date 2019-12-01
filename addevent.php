@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
 
-  $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
+  $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
   $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :location, :has_food, :external_url, :event_contact)');
   $stmt -> execute(array(
@@ -38,23 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function()
-{
-		flatpickr('input[type="datetime-local"]', {
-				enableTime: true,
-				altInput: true,
-				altFormat: 'm/d/Y h:i K',
-				dateFormat: 'Y-m-dTH:i:S',
-				locale: 'en',
-				time_24hr: false
-		});
-});
-</script>
 
 <body style="background-image:url('media/addeventbkg.jpg');">
 
