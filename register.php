@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
         $subject = "Email Verification (uncevents.online)";
         $headers .= "MIME-Version: 1.0"."\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
-        $headers .= 'From:UNC Events Online | Programing Blog <info@unceventsonline.com>'."\r\n";
+        $headers .= 'From: no_reply@uncevents.online'."\r\n";
 
         $ms.="<html></body><div><div>Dear " .  $_POST['first_name'] . ",</div></br></br>";
         $ms.="<div style='padding-top:8px;'>Please click the following link to verify and activate your account.</div>
