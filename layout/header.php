@@ -57,13 +57,13 @@ if(isset($_POST['submit'])){
 							if ($user->is_logged_in())
 							{
 								$first_name = $_SESSION['first_name'];
-								echo '<li class="nav-item"><p>Hello, ' . $first_name . '</p></li>
+								echo '<li class="nav-item"><p class="nav-par">Hello, ' . $first_name . '</p></li>
 								<li class="nav-item"><a class="nav-link" href="dash.php">Dashboard</a></li>
 								<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
 							}
 							else 
 							{
-								echo '<li class="nav-item"><p class="nav-link">Hello, Anon</p></li>
+								echo '<li class="nav-item"><p class="nav-par">Hello, Anon</p></li>
 								<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
 								<li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>';
 							}
@@ -71,10 +71,10 @@ if(isset($_POST['submit'])){
 					</ul>
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="/">Home</a>
+							<a class="nav-link" href="addevent.php">New Event</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/dash.php">Dashboard</a>
+							<a class="nav-link" href="/">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="https://www.unco.edu/research/office-of-sponsored-programs/policies-procedures-and-forms/">Policies</a>
