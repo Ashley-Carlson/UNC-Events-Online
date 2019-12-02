@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		];
 		$hash = $user->password_hash($_POST['passwd'], PASSWORD_DEFAULT, $hash_options);
     $verify_string = md5((string)time());
-		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string)");
+		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify, is_inactive) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string, 1)");
 		$stmt->execute(array(
 			':username' => $_POST['username'],
 			':email' => $_POST['email'],
@@ -38,21 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			':acct_type' => $acct_type,
       ':verify_string' => $verify_string
 		));
-		$_SESSION['username'] = $_POST['username'];
-		$_SESSION['first_name'] = $_POST['first_name'];
-		$_SESSION['loggedin'] = true;
 
-        $to = $_POST['email'];
-        $msg = "Thank you for joining UNC Events Online.";
-        $subject = "Email Verification (uncevents.online)";
-        $ms.="Dear " .  $_POST['first_name'] . ",\n\n";
-        $ms.="Please click the following link to verify and activate your account.\n
-       https://uncoevents.online/verify.php?verify=$verify_string";
-				emailNotifaction($ms, $subject, $to, $noreply_email_addr);
-        // mail($to,$subject,$ms,$headers); // DEPRECATED
+		$email = $_POST['email'];
+		$subject = "Email Verification";
+		$message = "To verify your account, please click on the link below:
+			https://uncevents.online/veryify.php?verify=$verify_string";
 
-		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account.</p>';
-		header("Location: dash.php");
+		emailNotifaction($message, $subject, $email, $noreply_email_addr);
+
+		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account. You will be redirected to the homepage in 5 seconds.</p>';
+		echo '<meta http-equiv="refresh" content="5;url=https://uncevents.online/" />';
 	}
 	else
 	{

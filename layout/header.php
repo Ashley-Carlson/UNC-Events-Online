@@ -5,6 +5,15 @@ if(isset($_POST['submit'])){
 	if (!isset($_POST['username'])) $error[] = "Please fill out all fields";
 	if (!isset($_POST['password'])) $error[] = "Please fill out all fields";
 	$username = $_POST['username'];
+	$stmt = $db -> prepare('SELECT is_inactive FROM user WHERE username = :username');
+	$stmt -> execute(array(
+	  ':username' => $username,
+	));
+	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+	if ($row["is_inactive"] != 0)
+	{
+		$error[] = "Account must be activated before logging in."
+	}
 	if ( $user->isValidUsername($username)){
 		if (!isset($_POST['password'])){
 			$error[] = 'A password must be entered';
@@ -15,7 +24,7 @@ if(isset($_POST['submit'])){
 			header('Location: dash.php');
 			exit;
 		} else {
-			$error[] = 'Wrong username or password.';
+			$error[] = 'Invalid credentials';
 		}
 	}else{
 		$error[] = 'Usernames are required to be Alphanumeric, and between 3-16 characters long';
