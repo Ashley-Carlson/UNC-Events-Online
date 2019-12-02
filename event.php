@@ -58,6 +58,10 @@ LEFT JOIN user ON user.user_id = event.event_contact
      <div class="card" style="color: White;">
        <p><?php echo $item['location'] ?></p>
      </div>
+     <div>
+       <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
+       </p>
+     </div>
      <?php
      if ($userID == $item['user_id'])
      {

@@ -100,7 +100,7 @@ require('layout/header.php');
 		<h3>External URL<br>
 		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
 		</h3><br>
-		<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked'; } ?>>
+		<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
 		</p><br>
 		<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
 		</p>
