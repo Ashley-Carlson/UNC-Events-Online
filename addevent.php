@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
 
-  $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
+  $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
   $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :location, :has_food, :external_url, :event_contact)');
   $stmt -> execute(array(
@@ -38,23 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function()
-{
-		flatpickr('input[type="datetime-local"]', {
-				enableTime: true,
-				altInput: true,
-				altFormat: 'm/d/Y h:i K',
-				dateFormat: 'Y-m-dTH:i:S',
-				locale: 'en',
-				time_24hr: false
-		});
-});
-</script>
 
 <body style="background-image:url('media/addeventbkg.jpg');">
 
@@ -85,9 +68,45 @@ document.addEventListener('DOMContentLoaded', function()
 	<h3>External URL<br>
 	<input type="text" name="external_url" placeholder="Link">
 </h3><br>
-	<p>There is food <input type="checkbox" name="has_food">
+	<p>Does this event have food? <input type="checkbox" name="has_food">
 	</p><br>
-	<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
+	<!-- dropdown menu to assign it a tag (for searching) -->
+	  Tag:<br>
+		<select>
+			<option value="biology">Biology</option>
+			<option value="mathematics">Mathematics</option>
+			<option value="technology">Furry</option>
+			<option value="art">Art</option>
+			<option value="science">Science</option>
+			<option value="performance">Performance</option>
+			<option value="theater">Theater</option>
+			<option value="chemistry">Chemistry</option>
+			<option value="culture">Culture</option>
+			<option value="cuisine">Cuisine</option>
+			<option value="animals">Animals</option>
+			<option value="21">21+</option>
+			<option value="offical">Official</option>
+			<option value="party">Party</option>
+			<option value="greek">Greek</option>
+			<option value="mechanics">Mechanics</option>
+			<option value="engineering">Engineering</option>
+			<option value="ai">AI</option>
+			<option value="buisness">Buisness</option>
+			<option value="networking">Networking</option>
+			<option value="food">Food</option>
+			<option value="sports">Sports</option>
+			<option value="football">Football</option>
+			<option value="volleyball">Volleyball</option>
+			<option value="soccer">Soccer</option>
+		</select>
+	  <br><br>
+
+<!-- actual file upload for the item itself -->
+
+	  Upload Image:
+	  <input type="file" name="image" id="image">
+		<br>
+	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
 	</font>
 	<!-- submits the data entered to the server -->

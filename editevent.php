@@ -63,41 +63,13 @@ if (isset($_POST['id']))
 	$event = $row['event_name'];
 	$message = 'An event has been updated';
 
-	function emailNotifaction($message, $event, $address)
-	{
-		$headers = "From: webmaster@uncoevents.dragonfirecomputing.com";
-    // the message
-    $msg = $message;
-    // use wordwrap() if lines are longer than 70 characters
-    $msg = wordwrap($msg, 70);
-    // send email
-    mail($address, $event, $msg, $headers);
-	}
-
-	emailNotifaction($message, $event, $email);
+	emailNotifaction($message, $event, $email, $noreply_email_addr);
   header("Location: event.php?id=".$_POST['id']);
 }
 
 require('layout/header.php');
 
 ?>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function()
-{
-		flatpickr('input[type="datetime-local"]', {
-				enableTime: true,
-				altInput: true,
-				altFormat: 'm/d/Y h:i K',
-				dateFormat: 'Y-m-dTH:i:S',
-				locale: 'en',
-				time_24hr: false
-		});
-});
-</script>
 
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 

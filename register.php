@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		];
 		$hash = $user->password_hash($_POST['password'], PASSWORD_DEFAULT, $hash_options);
         $verify_string = md5((string)time());
-		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify_string) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string)");
+		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string)");
 		$stmt->execute(array(
 			':username' => $_POST['username'],
 			':email' => $_POST['email'],
@@ -41,19 +41,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		$_SESSION['username'] = $_POST['username'];
 		$_SESSION['first_name'] = $_POST['first_name'];
 		$_SESSION['loggedin'] = true;
-        
+
         $to = $_POST['email'];
         $msg = "Thank you for joining UNC Events Online.";
         $subject = "Email Verification (uncevents.online)";
         $headers .= "MIME-Version: 1.0"."\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
-        $headers .= 'From:UNC Events Online | Programing Blog <info@unceventsonline.com>'."\r\n";
-        
+				$headers .= $noreply_email_addr;
         $ms.="<html></body><div><div>Dear " .  $_POST['first_name'] . ",</div></br></br>";
         $ms.="<div style='padding-top:8px;'>Please click the following link to verify and activate your account.</div>
         <div style='padding-top:10px;'><a href='https://uncoevents.online/verify.php?verify=$verify_string'>Click Here</a></div>
         </body></html>";
-        mail($to,$subject,$ms,$headers);
+				emailNotifaction($ms, $subject, $to, $noreply_email_addr);
+        // mail($to,$subject,$ms,$headers); // DEPRECATED
 
 		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account.</p>';
 		header("Location: dash.php");
