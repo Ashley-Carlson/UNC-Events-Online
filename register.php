@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		$hash_options = [
 			'cost' => 12,
 		];
-		$hash = $user->password_hash($_POST['passwd'], PASSWORD_DEFAULT, $hash_options);
+		$hash = $user->password_hash($_POST['password'], PASSWORD_DEFAULT, $hash_options);
         $verify_string = md5((string)time());
 		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string)");
 		$stmt->execute(array(
