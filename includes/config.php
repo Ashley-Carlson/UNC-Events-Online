@@ -9,15 +9,13 @@ $config = parse_ini_file('config.ini');
 
 $noreply_email_addr .= 'no_reply@uncevents.online';
 
-function emailNotifaction($message, $subject, $address, $from)
+function emailNotifaction($message, $subject, $to, $from)
 {
   $headers = "From: ".$from;
-  // the message
-  $msg = $message;
   // use wordwrap() if lines are longer than 70 characters
-  $msg = wordwrap($msg, 70);
+  $msg = wordwrap($message, 70);
   // send email
-  mail($address, $subject, $msg, $headers);
+  mail($to, $subject, $msg, $headers);
 }
 
 //set timezone

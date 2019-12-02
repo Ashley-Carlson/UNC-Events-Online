@@ -42,7 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		$email = $_POST['email'];
 		$subject = "Email Verification";
 		$message = "To verify your account, please click on the link below:
-			https://uncevents.online/veryify.php?verify=$verify_string";
+
+https://uncevents.online/verify.php?verify=$verify_string";
 
 		emailNotifaction($message, $subject, $email, $noreply_email_addr);
 
