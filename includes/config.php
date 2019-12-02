@@ -6,15 +6,8 @@ if(session_status() != PHP_SESSION_ACTIVE)
 }
 
 $config = parse_ini_file('config.ini');
-$noreply_email_addr = "";
-if ($_SERVER['HTTP_HOST'] == "http://uncoevents.dragonfirecomputing.com")
-{
-  $noreply_email_addr .= 'no_reply@dragonfirecomputing.com';
-}
-else
-{
-  $noreply_email_addr .= 'no_reply@uncevents.online';
-}
+
+$noreply_email_addr .= 'no_reply@uncevents.online';
 
 function emailNotifaction($message, $subject, $address, $from)
 {
