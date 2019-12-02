@@ -49,6 +49,8 @@ LEFT JOIN user ON user.user_id = event.event_contact
      <body style="background-color: #333;">
      <h3 style="color: #ffffff; text-align:center;"><?php echo $item['description'] ?></h3>
      <h3 style="color: #ffffff; text-align:center;"><?php echo $time ?></h3>
+     <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
+     </p>
      </div>
      <div class="card" style="color: White;">
        <!--<h2>Faculty Sponsor: </h2>-->
@@ -57,10 +59,6 @@ LEFT JOIN user ON user.user_id = event.event_contact
      </div>
      <div class="card" style="color: White;">
        <p><?php echo $item['location'] ?></p>
-     </div>
-     <div>
-       <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
-       </p>
      </div>
      <?php
      if ($userID == $item['user_id'])
