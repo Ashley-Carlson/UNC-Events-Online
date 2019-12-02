@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<h1 style="text-align:center;">Add an Event</h1>
 	<div class="card">
 <!-- takes text input for title, description, reserve -->
-	<font color="#ffffff">
+	<font color="black">
 	<h3>Event Name<br>
 		<input type="text" name="name" placeholder="Event Name">
 	</h3>
