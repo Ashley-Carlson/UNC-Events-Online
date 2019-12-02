@@ -45,13 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
         $to = $_POST['email'];
         $msg = "Thank you for joining UNC Events Online.";
         $subject = "Email Verification (uncevents.online)";
-        $headers .= "MIME-Version: 1.0"."\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
-				$headers .= $noreply_email_addr;
-        $ms.="<html></body><div><div>Dear " .  $_POST['first_name'] . ",</div></br></br>";
-        $ms.="<div style='padding-top:8px;'>Please click the following link to verify and activate your account.</div>
-        <div style='padding-top:10px;'><a href='https://uncoevents.online/verify.php?verify=$verify_string'>Click Here</a></div>
-        </body></html>";
+        $ms.="Dear " .  $_POST['first_name'] . ",\n\n";
+        $ms.="Please click the following link to verify and activate your account.\n
+       https://uncoevents.online/verify.php?verify=$verify_string";
 				emailNotifaction($ms, $subject, $to, $noreply_email_addr);
         // mail($to,$subject,$ms,$headers); // DEPRECATED
 
