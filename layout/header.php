@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
 	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
 	if ($row["is_inactive"] != 0)
 	{
-		$error[] = "Account must be activated before logging in."
+		$error[] = "Account must be activated before logging in.";
 	}
 	if ( $user->isValidUsername($username)){
 		if (!isset($_POST['password'])){
