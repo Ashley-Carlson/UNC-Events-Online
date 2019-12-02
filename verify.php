@@ -13,7 +13,7 @@ if(!empty($_GET['verify']) && isset($_GET['verify']))
         $stmt -> execute(array(':verify_string' => $verify_string));
 
         echo('<p>Your account has been verified. Click below to log in and begin using uncevents.online.</p>
-        <a href="https://uncevents.online/login.php">Login Here</a>');
+        <a href="http://uncevents.online/login.php">Login Here</a>');
     }
     else
     {
