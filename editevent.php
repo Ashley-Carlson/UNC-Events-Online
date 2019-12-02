@@ -77,7 +77,7 @@ require('layout/header.php');
 	<div class="card">
 	<h1 style="text-align:center;">Edit Event</h1>
 	<!-- takes text input for title, description, reserve -->
-		<font color="#ffffff">
+		<font color="black">
 		<h3>Event Name<br>
 			<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
 		</h3>
