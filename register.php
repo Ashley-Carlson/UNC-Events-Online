@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		emailNotifaction($message, $subject, $email, $noreply_email_addr);
 
 		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account. You will be redirected to the homepage in 5 seconds.</p>';
-		echo '<meta http-equiv="refresh" content="5;url=https://uncevents.online/" />';
+		echo '<meta http-equiv="refresh" content="5;url=http://uncevents.online/" />';
 	}
 	else
 	{

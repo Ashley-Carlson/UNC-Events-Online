@@ -10,11 +10,15 @@ if(isset($_POST['submit'])){
 	  ':username' => $username,
 	));
 	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
-	if ($row["is_inactive"] != 0)
+	if (!$row)
+	{
+		$error[] = 'Invalid credentials';
+	}
+	else if ($row["is_inactive"] != 0)
 	{
 		$error[] = "Account must be activated before logging in.";
 	}
-	if ( $user->isValidUsername($username)){
+	else if ( $user->isValidUsername($username)){
 		if (!isset($_POST['password'])){
 			$error[] = 'A password must be entered';
 		}
