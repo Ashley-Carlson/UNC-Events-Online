@@ -1,5 +1,4 @@
 <?php require_once('includes/config.php');
-
   $currentID = $_GET["id"];
 	$stmt = $db->prepare("
    SELECT event.event_name as event_name, event.event_desc as event_desc,
@@ -24,7 +23,6 @@ LEFT JOIN user ON user.user_id = event.event_contact
     'email'       => $row['email'],
     'user_id'     => $row['user_id'],
   );
-
   $stmt = $db -> prepare("
   SELECT user_id
     FROM user
@@ -33,13 +31,10 @@ LEFT JOIN user ON user.user_id = event.event_contact
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
-
   $phptime = strtotime($item['event_time']);
   $time = date("m/d/y g:i A", $phptime);
 	$title = $item['name'];
 	require('layout/header.php');
-
-
 ?>
   <br><br>
    <div class="container">
@@ -47,18 +42,20 @@ LEFT JOIN user ON user.user_id = event.event_contact
     </div>
      <div class="card" style="color: White;">
      <body style="background-color: #333;">
-     <h3 style="color: #ffffff; text-align:center;"><?php echo $item['description'] ?></h3>
-     <h3 style="color: #ffffff; text-align:center;"><?php echo $time ?></h3>
-     <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
-     </p>
+     <h3 style="color: black; text-align:center;"><?php echo $item['description'] ?></h3>
+     <h3 style="color: black; text-align:center;"><?php echo $time ?></h3>
      </div>
      <div class="card" style="color: White;">
        <!--<h2>Faculty Sponsor: </h2>-->
-       <h2>Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></h2>
-       <p>Contact email: <?php echo $item['email'] ?></p>
+       <h2  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></h2>
+       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
      </div>
      <div class="card" style="color: White;">
-       <p><?php echo $item['location'] ?></p>
+       <p style="color: #000080;"><?php echo $item['location'] ?></p>
+     </div>
+     <div>
+       <p style="color: white;">There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
+       </p>
      </div>
      <?php
      if ($userID == $item['user_id'])
