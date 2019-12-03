@@ -7,19 +7,29 @@ if(session_status() != PHP_SESSION_ACTIVE)
 
 $config = parse_ini_file('config.ini');
 
+$noreply_email_addr .= 'no_reply@uncevents.online';
+
+function emailNotifaction($message, $subject, $to, $from)
+{
+  $headers = "From: ".$from;
+  // use wordwrap() if lines are longer than 70 characters
+  $msg = wordwrap($message, 70);
+  // send email
+  mail($to, $subject, $msg, $headers);
+}
 
 //set timezone
 date_default_timezone_set('America/Denver');
 
 //database credentials
-define('DBHOST', '192.185.17.37');
-define('DBUSER', 'eragon57_antiwp');
-define('DBPASS', 'GJNjKyXW66BhoVayVV');
-define('DBNAME', 'eragon57_antiwp');
+define('DBHOST', 'localhost');
+define('DBUSER', 'u800519350_gLpRH');
+define('DBPASS', 'cs350');
+define('DBNAME', 'u800519350_LBuOL');
 
-//application address
+//application address 
 define('DIR', 'http://localhost');
-define('SITEEMAIL', 'example@antiwp.dragonfirecomputing.com');
+define('SITEEMAIL', 'webmaster@uncevents.online');
 
 try {
   //create PDO connection

@@ -1,0 +1,21 @@
+.name {
+    text-align: left;
+    display: inline;
+}
+
+#description {
+    text-align: left;
+}
+
+.card {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#time {
+    display: inline;
+}
+
+.error {
+	color: red;
+}

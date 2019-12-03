@@ -6,7 +6,7 @@ if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
 
-$stmt = $db -> prepare('SELECT event_name, event_contact, event_desc, location, event_time, external_url1, external_url2, external_url3, has_food FROM event WHERE event_id = :id');
+$stmt = $db -> prepare('SELECT event_name, event_contact, event_desc, location, event_time, external_url, has_food FROM event WHERE event_id = :id');
 $stmt -> execute(array(
   ':id' => $id,
 ));
@@ -33,8 +33,7 @@ if (isset($_POST['id']))
     "UPDATE event
         SET event_name = :name, event_time = :event_time,
             event_desc = :description, location = :location,
-            external_url1 = :external_url1,external_url2 = :external_url2
-						external_url3 = :external_url3, has_food = :has_food
+            external_url = :external_url, has_food = :has_food
       WHERE event_id = :id"
   );
   $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
@@ -46,9 +45,7 @@ if (isset($_POST['id']))
     ':event_time'   => $time,
     ':description'  => $_POST['description'],
     ':location'     => $_POST['location'],
-    ':external_url1' => $_POST['external_url1'],
-		':external_url2' => $_POST['external_url2'],
-		':external_url3' => $_POST['external_url3'],
+    ':external_url' => $_POST['external_url'],
     ':has_food'     => $has_food,
 		':id'						=> $_POST['id'],
   ));
@@ -101,25 +98,17 @@ require('layout/header.php');
 		</h3>
 
 		<h3>External URL<br>
-		<input type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
+		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
 		</h3><br>
-		<h3>External URL<br>
-		<input type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
-		</h3><br>
-		<h3>External URL<br>
-		<input type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
-		</h3><br>
-
-		<p>Does this event have food? (Check if yes)<input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
+		<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
 		</p><br>
 		<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
 		</p>
 		</font>
-		<br><br><br>
-		<div>
 		<!-- submits the data entered to the server -->
 		 <input type="submit" value="Submit" id="popUpYes">
 	   <input type="hidden" value=<?php echo $id ?> name="id">
+	</div>
 </form>
 
 <?php require('layout/footer.php') ?>

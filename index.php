@@ -2,7 +2,7 @@
   require_once('includes/config.php');
 
   $search = $_GET["keyword"];
-	$stmt = $db->prepare('SELECT event_id, event_name, event_time, event_desc FROM event WHERE is_inactive = 0 ORDER BY event_time asc');
+	$stmt = $db->prepare('SELECT event_id, event_name, event_time, duration FROM event WHERE is_inactive = 0 ORDER BY event_time asc');
 	$stmt->execute();
 
   $title = 'UNC Events Online';
@@ -26,20 +26,20 @@
 </div>
 
   <?php
-    while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) 
+    while($row = $stmt -> fetch(PDO::FETCH_ASSOC))
     {
 			$item = array(
         'event_id'   => $row['event_id'],
         'event_name' => $row['event_name'],
-        'event_desc' => $row['event_desc'],
         'event_time' => $row['event_time'],
+        'duration' => $row['duration'],
       );
       $phptime = strtotime($item['event_time']);
       $time = date("m/d/y g:i A", $phptime);
 			echo '<div class="row"><div class="col-lg-12 text-center">
           <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
           <p>'.$time.'</p>
-        <p>'.$item['event_desc'].'</p>
+        <p>'.$item['duration'].'</p>
       </div></div><br><br>';
     }
   ?>
