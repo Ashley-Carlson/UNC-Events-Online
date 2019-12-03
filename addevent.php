@@ -98,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<!-- dropdown menu to assign it a tag (for searching) -->
 	  Tags:<br>
 		<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
+			<option value=""></option>
 			<option value="1">Biology</option>
 			<option value="2">Mathematics</option>
 			<option value="3">Technology</option>
