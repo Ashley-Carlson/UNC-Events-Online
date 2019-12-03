@@ -41,11 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
     ':event_contact' => $userID,
   ));
 
-  echo '<p class="success">Event created.</p>';
-
 	$stmt = $db->prepare('SELECT MAX(event_id) as m FROM event');
 	$stmt -> execute();
 	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+	if ($_POST['tags'])
+	{
+		$stmt = $db->prepare('INSERT INTO eventtag (event_id, tag_id) VALUES (:event_id, :tag_id)');
+		foreach($_POST['tags'] as $tag_id)
+		{
+			$stmt->execute(array(':event_id' => $row['m'], ':tag_id' => $tag_id));
+		}
+	}
+
+  echo '<p class="success">Event created.</p>';
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
@@ -88,32 +97,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	</p><br>
 	<!-- dropdown menu to assign it a tag (for searching) -->
 	  Tags:<br>
-		<select>
-			<option value="biology">Biology</option>
-			<option value="mathematics">Mathematics</option>
-			<option value="technology">Technology</option>
-			<option value="art">Art</option>
-			<option value="science">Science</option>
-			<option value="performance">Performance</option>
-			<option value="theater">Theater</option>
-			<option value="chemistry">Chemistry</option>
-			<option value="culture">Culture</option>
-			<option value="cuisine">Cuisine</option>
-			<option value="animals">Animals</option>
-			<option value="21">21+</option>
-			<option value="official">Official</option>
-			<option value="party">Party</option>
-			<option value="greek">Greek</option>
-			<option value="mechanics">Mechanics</option>
-			<option value="engineering">Engineering</option>
-			<option value="ai">AI</option>
-			<option value="business">Business</option>
-			<option value="networking">Networking</option>
-			<option value="food">Food</option>
-			<option value="sports">Sports</option>
-			<option value="football">Football</option>
-			<option value="volleyball">Volleyball</option>
-			<option value="soccer">Soccer</option>
+		<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
+			<option value="1">Biology</option>
+			<option value="2">Mathematics</option>
+			<option value="3">Technology</option>
+			<option value="4">Art</option>
+			<option value="5">Science</option>
+			<option value="6">Performance</option>
+			<option value="7">Theater</option>
+			<option value="8">Chemistry</option>
+			<option value="9">Culture</option>
+			<option value="10">Cuisine</option>
+			<option value="11">Animals</option>
+			<option value="12">21+</option>
+			<option value="13">Official</option>
+			<option value="14">Party</option>
+			<option value="15">Greek</option>
+			<option value="16">Mechanics</option>
+			<option value="17">Engineering</option>
+			<option value="18">AI</option>
+			<option value="19">Business</option>
+			<option value="20">Networking</option>
+			<option value="21">Food</option>
+			<option value="22">Sports</option>
+			<option value="23">Football</option>
+			<option value="24">Volleyball</option>
+			<option value="25">Soccer</option>
 		</select>
 	  <br><br>
 

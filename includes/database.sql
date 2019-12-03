@@ -64,8 +64,7 @@ CREATE TABLE `userclub` (
 
 CREATE TABLE `eventuser` (
   `event_id` int,
-  `user_id` int,
-  `is_following` bit(1) DEFAULT 0
+  `user_id` int
 );
 
 CREATE TABLE `clubevent` (
@@ -89,8 +88,7 @@ CREATE TABLE `usertag` (
 
 CREATE TABLE `tag` (
   `tag_id` int PRIMARY KEY AUTO_INCREMENT,
-  `tag` varchar(64) NOT NULL,
-  `is_inactive` bit(1) DEFAULT 0
+  `tag` varchar(64) NOT NULL
 );
 
 ALTER TABLE `userclub` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);

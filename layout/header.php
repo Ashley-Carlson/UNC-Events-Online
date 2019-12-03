@@ -50,7 +50,17 @@ if(isset($_POST['submit'])){
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 	<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
+	<!-- For tag filtering -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+	<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+	<!-- Custom JS for site -->
 	<script>
+	// Chosen filtering
+	$(".chosen-select").chosen({
+    no_results_text: "Tag not found!"
+  });
+	// Flat Picker for Datetimes
 	document.addEventListener('DOMContentLoaded', function()
 	{
 			flatpickr('input[type="datetime-local"]', {
