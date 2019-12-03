@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
 <br /><br /><br /><br /><br />
 	<!-- submits the data entered to the server -->
-	 <input type="submit" value="Submit" id="popUpYes" color: white >
+	 <button type="submit" value="Submit" id="popUpYes" color: white >
 
  </div>
 
