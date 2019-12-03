@@ -37,26 +37,26 @@ LEFT JOIN user ON user.user_id = event.event_contact
 	require('layout/header.php');
 ?>
   <br><br>
-   <div class="container">
-     <h1 style="color: #eacc1f; text-align:center;"><?php echo $item['name'] ?></h1>
+    <div class="card">
+      <h1 class="name"><?php echo $item['name'] ?></h1>
+      <p id="time"><?php echo $time ?></p>
     </div>
-     <div class="card" style="color: White;">
-     <body style="background-color: #333;">
-     <h3 style="color: black; text-align:center;"><?php echo $item['description'] ?></h3>
-     <h3 style="color: black; text-align:center;"><?php echo $time ?></h3>
-     </div>
-     <div class="card" style="color: White;">
-       <!--<h2>Faculty Sponsor: </h2>-->
-       <h2  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></h2>
-       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
-     </div>
-     <div class="card" style="color: White;">
-       <p style="color: #000080;"><?php echo $item['location'] ?></p>
-     </div>
-     <div>
-       <p style="color: white;">There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
-       </p>
-     </div>
+    <div class="card">
+        <body>
+        <h3 id="description"><?php echo $item['description'] ?></h3>
+    </div>
+    <div class="card">
+      <!--<h2>Faculty Sponsor: </h2>-->
+      <h2  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></h2>
+      <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
+    </div>
+    <div class="card">
+      <p><?php echo $item['location'] ?></p>
+    </div>
+    <div>
+      <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>
+      </p>
+    </div>
      <?php
      if ($userID == $item['user_id'])
      {
