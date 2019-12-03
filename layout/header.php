@@ -57,9 +57,11 @@ if(isset($_POST['submit'])){
 	<!-- Custom JS for site -->
 	<script>
 	// Chosen filtering
-	$(".chosen-select").chosen({
-    no_results_text: "Tag not found!"
-  });
+	$(function() {
+		$(".chosen-select").chosen({
+	    no_results_text: "Tag not found!"
+	  });
+	});
 	// Flat Picker for Datetimes
 	document.addEventListener('DOMContentLoaded', function()
 	{
