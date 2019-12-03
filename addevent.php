@@ -19,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
   $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-  $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :location, :has_food, :external_url, :event_contact)');
+  $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, duration, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :location, :has_food, :external_url, :event_contact)');
   $stmt -> execute(array(
     ':name' => $_POST['name'],
     ':description' => $_POST['description'],
     ':event_time' => $event_date,
+		':duration' => $duration
     ':location' => $_POST['location'],
     ':has_food' => $has_food,
     ':external_url1' => $_POST['external_url1'],
@@ -49,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		<input type="text" name="name" placeholder="Event Name">
 	</h3>
 
-	<h3>Date and Time</h3><input type="datetime-local" name="event_time">
-
+	<h3>Date and Time</h3><input type="datetime-local" name="event_time"><br>
+	<h3>Duration</h3><input type="text" name="duration"><br>
 
 	<h3>Description</h3>
 	<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000"></textarea>

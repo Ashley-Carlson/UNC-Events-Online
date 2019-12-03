@@ -22,14 +22,14 @@ function emailNotifaction($message, $subject, $to, $from)
 date_default_timezone_set('America/Denver');
 
 //database credentials
-define('DBHOST', '192.185.17.37');
-define('DBUSER', 'eragon57_antiwp');
-define('DBPASS', 'GJNjKyXW66BhoVayVV');
-define('DBNAME', 'eragon57_antiwp');
+define('DBHOST', 'localhost');
+define('DBUSER', 'u800519350_gLpRH');
+define('DBPASS', 'cs350');
+define('DBNAME', 'u800519350_LBuOL');
 
 //application address
 define('DIR', 'http://localhost');
-define('SITEEMAIL', 'example@antiwp.dragonfirecomputing.com');
+define('SITEEMAIL', 'webmaster@uncevents.online');
 
 try {
   //create PDO connection
