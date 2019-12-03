@@ -7,6 +7,16 @@ if(session_status() != PHP_SESSION_ACTIVE)
 
 $config = parse_ini_file('config.ini');
 
+$noreply_email_addr .= 'no_reply@uncevents.online';
+
+function emailNotifaction($message, $subject, $to, $from)
+{
+  $headers = "From: ".$from;
+  // use wordwrap() if lines are longer than 70 characters
+  $msg = wordwrap($message, 70);
+  // send email
+  mail($to, $subject, $msg, $headers);
+}
 
 //set timezone
 date_default_timezone_set('America/Denver');

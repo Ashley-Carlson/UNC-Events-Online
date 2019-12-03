@@ -5,7 +5,20 @@ if(isset($_POST['submit'])){
 	if (!isset($_POST['username'])) $error[] = "Please fill out all fields";
 	if (!isset($_POST['password'])) $error[] = "Please fill out all fields";
 	$username = $_POST['username'];
-	if ( $user->isValidUsername($username)){
+	$stmt = $db -> prepare('SELECT is_inactive FROM user WHERE username = :username');
+	$stmt -> execute(array(
+	  ':username' => $username,
+	));
+	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+	if (!$row)
+	{
+		$error[] = 'Invalid credentials';
+	}
+	else if ($row["is_inactive"] != 0)
+	{
+		$error[] = "Account must be activated before logging in.";
+	}
+	else if ( $user->isValidUsername($username)){
 		if (!isset($_POST['password'])){
 			$error[] = 'A password must be entered';
 		}
@@ -15,7 +28,7 @@ if(isset($_POST['submit'])){
 			header('Location: dash.php');
 			exit;
 		} else {
-			$error[] = 'Wrong username or password.';
+			$error[] = 'Invalid credentials';
 		}
 	}else{
 		$error[] = 'Usernames are required to be Alphanumeric, and between 3-16 characters long';
@@ -32,6 +45,23 @@ if(isset($_POST['submit'])){
 	<meta name="viewport" content="width-device-width, initial-scale=1"/>
 	<!-- Bootstrap core CSS -->
 	<link href="layout\bootstrap\css\bootstrap.min.css" rel="stylesheet">
+	<!-- Calendar mess for Firefox support -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+	<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
+	<script>
+	document.addEventListener('DOMContentLoaded', function()
+	{
+			flatpickr('input[type="datetime-local"]', {
+					enableTime: true,
+					altInput: true,
+					altFormat: 'm/d/Y h:i K',
+					dateFormat: 'Y-m-dTH:i:S',
+					locale: 'en',
+					time_24hr: false
+			});
+	});
+	</script>
 	<!-- <link rel="stylesheet" href="layout/index.css"> -->
 	<title><?php if(isset($title)){ echo $title; }?></title>
 </head>
@@ -53,7 +83,7 @@ if(isset($_POST['submit'])){
 								{
 									echo '<li class="nav-item">'.$error.'</p>';
 								}
-							} 
+							}
 							if ($user->is_logged_in())
 							{
 								$first_name = $_SESSION['first_name'];
@@ -61,7 +91,7 @@ if(isset($_POST['submit'])){
 								<li class="nav-item"><a class="nav-link" href="dash.php">Dashboard</a></li>
 								<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
 							}
-							else 
+							else
 							{
 								echo '<li class="nav-item"><p class="nav-par">Hello, Anon</p></li>
 								<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
