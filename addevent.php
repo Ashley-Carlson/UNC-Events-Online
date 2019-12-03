@@ -115,11 +115,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
 	</font>
-</div>
 
-<br /><br /><br />
+<br /><br /><br /><br /><br />
 	<!-- submits the data entered to the server -->
 	 <input type="submit" value="Submit" id="popUpYes" color: white >
+
+ </div>
 
 </form>
 
