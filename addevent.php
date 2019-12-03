@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
     ':event_time' => $event_date,
     ':location' => $_POST['location'],
     ':has_food' => $has_food,
-    ':external_url' => $_POST['external_url'],
+    ':external_url1' => $_POST['external_url1'],
     ':event_contact' => $userID,
   ));
 
@@ -66,12 +66,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	</h3>
 
 	<h3>External URL<br>
-	<input type="text" name="external_url" placeholder="Link">
-</h3><br>
+	<input type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
+	</h3><br>
+	<h3>External URL<br>
+	<input type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
+	</h3><br>
+	<h3>External URL<br>
+	<input type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
+	</h3><br>
 	<p>Does this event have food? <input type="checkbox" name="has_food">
 	</p><br>
 	<!-- dropdown menu to assign it a tag (for searching) -->
-	  Tag:<br>
+	  Tags:<br>
 		<select>
 			<option value="biology">Biology</option>
 			<option value="mathematics">Mathematics</option>
@@ -108,10 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		<br>
 	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
+	<br><br><br>
 	</font>
+</div>
 	<!-- submits the data entered to the server -->
 	 <input type="submit" value="Submit" id="popUpYes" color: white >
-	</div>
+
 </form>
 
 <?php require('layout/footer.php') ?>
