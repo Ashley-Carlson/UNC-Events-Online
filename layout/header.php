@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
 							{
 								$first_name = $_SESSION['first_name'];
 								echo '<li class="nav-item"><p class="nav-par">Hello, ' . $first_name . '</p></li>
-								<li class="nav-item"><a class="nav-link" href="dash.php">Dashboard</a></li>
+								<li class="nav-item"><a class="nav-link" href="dash.php">Profile</a></li>
 								<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
 							}
 							else

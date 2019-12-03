@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		<select>
 			<option value="biology">Biology</option>
 			<option value="mathematics">Mathematics</option>
-			<option value="technology">Furry</option>
+			<option value="technology">Technology</option>
 			<option value="art">Art</option>
 			<option value="science">Science</option>
 			<option value="performance">Performance</option>
@@ -85,13 +85,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			<option value="cuisine">Cuisine</option>
 			<option value="animals">Animals</option>
 			<option value="21">21+</option>
-			<option value="offical">Official</option>
+			<option value="official">Official</option>
 			<option value="party">Party</option>
 			<option value="greek">Greek</option>
 			<option value="mechanics">Mechanics</option>
 			<option value="engineering">Engineering</option>
 			<option value="ai">AI</option>
-			<option value="buisness">Buisness</option>
+			<option value="business">Business</option>
 			<option value="networking">Networking</option>
 			<option value="food">Food</option>
 			<option value="sports">Sports</option>
