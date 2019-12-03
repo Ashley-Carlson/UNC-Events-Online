@@ -3,7 +3,7 @@
 	$stmt->execute(array(':username' => $_SESSION['username']));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$user_id = $row['user_id'];
-	$stmt = $db->prepare("SELECT EXISTS(SELECT 1 FROM eventuser WHERE user_id = :user_id AND event_id = :event_id)");
+	$stmt = $db->prepare("SELECT * FROM eventuser WHERE user_id = :user_id AND event_id = :event_id)");
 	$stmt->execute(array(':user_id' => $user_id, ':event_id' => $_POST['event_id']));
 	if ($stmt->rowCount() > 0)
 	{
