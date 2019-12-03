@@ -101,13 +101,13 @@ require('layout/header.php');
 		</h3>
 
 		<h3>External URL<br>
-		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
+		<input type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
 		</h3><br>
 		<h3>External URL<br>
-		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
+		<input type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
 		</h3><br>
 		<h3>External URL<br>
-		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
+		<input type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
 		</h3><br>
 
 		<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
