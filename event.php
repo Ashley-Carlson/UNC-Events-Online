@@ -1,4 +1,5 @@
 <?php require_once('includes/config.php');
+	// Fetch event
   $currentID = $_GET["id"];
 	$stmt = $db->prepare("
    SELECT event.event_name as event_name, event.event_desc as event_desc,
@@ -29,11 +30,24 @@ LEFT JOIN user ON user.user_id = event.event_contact
     FROM user
    WHERE username = :username
   ");
+	// Check event ownership
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
   $phptime = strtotime($item['event_time']);
   $time = date("m/d/y g:i A", $phptime);
+	// Get notification status
+	$notif_button_text = "";
+	$stmt = $db->prepare("SELECT EXISTS(SELECT 1 FROM eventuser WHERE user_id = :user_id AND event_id = :event_id)");
+	$stmt->execute(array(':user_id' => $userID, ':event_id' => $_POST['event_id']));
+	if ($stmt->rowCount() > 0)
+	{
+		$notif_button_text = "Unfollow";
+	}
+	else
+	{
+		$notif_button_text = "Follow";
+	}
 	$title = $item['name'];
 	require('layout/header.php');
 ?>
@@ -56,9 +70,20 @@ LEFT JOIN user ON user.user_id = event.event_contact
       <p><?php echo $item['location'] ?></p>
     </div>
     <div>
-      <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>
+      <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?> disabled>
       </p>
+			<br /><br />
+			<?php
+			if ($user->is_logged_in())
+			{
+				echo '
+			<form action="follow.php" method="post">
+				<input type="hidden" name="event_id" value="' . $currentID . '">
+				<input type="submit" value="' . $notif_button_text . '">
+			</form>';
+		  } ?>
     </div>
+
      <?php
      if ($userID == $item['user_id'])
      {
