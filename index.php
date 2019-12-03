@@ -2,7 +2,7 @@
   require_once('includes/config.php');
 
   $search = $_GET["keyword"];
-	$stmt = $db->prepare('SELECT event_id, event_name, event_time, duration FROM event WHERE is_inactive = 0 ORDER BY event_time asc');
+	$stmt = $db->prepare('SELECT event_id, event_name, event_time, duration FROM event WHERE is_inactive = 0 AND event_time >= NOW() ORDER BY event_time asc');
 	$stmt->execute();
 
   $title = 'UNC Events Online';
