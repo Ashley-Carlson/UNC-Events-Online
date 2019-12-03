@@ -15,3 +15,7 @@
 #time {
     display: inline;
 }
+
+.error {
+	color: red;
+}
