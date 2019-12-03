@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
     ':name' => $_POST['name'],
     ':description' => $_POST['description'],
     ':event_time' => $event_date,
-		':duration' => $duration
+		':duration' => $_POST['duration'],
     ':location' => $_POST['location'],
     ':has_food' => $has_food,
     ':external_url1' => $_POST['external_url1'],
