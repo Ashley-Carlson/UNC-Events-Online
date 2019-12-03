@@ -58,6 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
+
+<script type="text/javascript">
+// Chosen filtering
+$(function() {
+	$(".chosen-select").chosen();
+});
+</script>
+
 <body style="background-image:url('media/addeventbkg.jpg');">
 
 <form action="addevent.php" method="POST">

@@ -56,12 +56,7 @@ if(isset($_POST['submit'])){
 	<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
 	<!-- Custom JS for site -->
 	<script>
-	// Chosen filtering
-	$(function() {
-		$(".chosen-select").chosen({
-	    no_results_text: "Tag not found!"
-	  });
-	});
+
 	// Flat Picker for Datetimes
 	document.addEventListener('DOMContentLoaded', function()
 	{
