@@ -66,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	</h3>
 
 	<h3>External URL<br>
-	<input type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
+	<input type="text" name="external_url1">
 	</h3><br>
 	<h3>External URL<br>
-	<input type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
+	<input type="text" name="external_url2">
 	</h3><br>
 	<h3>External URL<br>
-	<input type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
+	<input type="text" name="external_url3">
 	</h3><br>
 	<p>Does this event have food? <input type="checkbox" name="has_food">
 	</p><br>
@@ -114,9 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		<br>
 	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
-	<br><br><br>
 	</font>
 </div>
+
+<br /><br /><br />
 	<!-- submits the data entered to the server -->
 	 <input type="submit" value="Submit" id="popUpYes" color: white >
 
