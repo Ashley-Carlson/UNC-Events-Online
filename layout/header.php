@@ -66,7 +66,8 @@ if(isset($_POST['submit'])){
 					altFormat: 'm/d/Y h:i K',
 					dateFormat: 'Y-m-dTH:i:S',
 					locale: 'en',
-					time_24hr: false
+					time_24hr: false,
+					minDate: "today",
 			});
 	});
 	</script>
