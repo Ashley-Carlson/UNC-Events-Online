@@ -82,7 +82,7 @@ if(isset($_POST['submit'])){
 							{
 								foreach($error as $error)
 								{
-									echo '<li class="nav-item">'.$error.'</p>';
+									echo '<li class="error">'.$error.'</p>';
 								}
 							}
 							if ($user->is_logged_in())
