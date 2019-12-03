@@ -5,7 +5,7 @@
           event.has_food as has_food, event.event_time as event_time,
           event.location as location, user.user_id as user_id,
           user.first_name as first_name, user.last_name as last_name,
-          user.email as email
+          user.email as email, event.duration as duration
      FROM event
 LEFT JOIN user ON user.user_id = event.event_contact
     WHERE event_id = :id
@@ -16,8 +16,9 @@ LEFT JOIN user ON user.user_id = event.event_contact
     'name'        => $row['event_name'],
     'description' => $row['event_desc'],
     'has_food'    => $row['has_food'],
-    'event_time'  => $row['event_time'],
     'location'    => $row['location'],
+    'event_time'  => $row['event_time'],
+    'duration'    => $row['duration'],
     'first_name'  => $row['first_name'],
     'last_name'   => $row['last_name'],
     'email'       => $row['email'],
@@ -40,6 +41,7 @@ LEFT JOIN user ON user.user_id = event.event_contact
     <div class="card">
       <h1 class="name"><?php echo $item['name'] ?></h1>
       <p id="time"><?php echo $time ?></p>
+      <p><?php echo $item['duration'] ?></p>
     </div>
     <div class="card">
         <body>

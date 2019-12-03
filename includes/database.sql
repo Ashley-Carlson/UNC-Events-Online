@@ -21,7 +21,7 @@ CREATE TABLE `user` (
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updt_timestmp` datetime ON UPDATE CURRENT_TIMESTAMP,
   `verify` char(32),
-  `is_inactive` bit(1) DEFAULT 0
+  `is_inactive` bit(1) DEFAULT 1
 );
 
 CREATE TABLE `event` (
@@ -39,7 +39,7 @@ CREATE TABLE `event` (
   `external_url3` varchar(512),
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updt_timestmp` datetime ON UPDATE CURRENT_TIMESTAMP,
-  `is_inactive` bit(1) DEFAULT 1,
+  `is_inactive` bit(1) DEFAULT 0,
   `event_contact` int NOT NULL
 );
 
