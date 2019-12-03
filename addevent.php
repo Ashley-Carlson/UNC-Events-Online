@@ -152,4 +152,9 @@ $(function() {
 
 </form>
 
+<!-- For tag filtering -->
+<script src="jquery/jquery.min.js"></script>
+<script src="chosen/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
 <?php require('layout/footer.php') ?>
