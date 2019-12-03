@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
    <input type="password" placeholder="Password" name="passwd" minlength="8" required><br>
 
    <b>Repeat Password: </b><br>
-   <input type="password" placeholder="Repeat Password" name="verify" required><br>
+   <input type="password" placeholder="Confirm Password" name="verify" required><br>
    <hr>
    <input type="checkbox" name="is_faculty"> I am Faculty <br>
    <button type="submit">Register</button>
