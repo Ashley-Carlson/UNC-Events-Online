@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	</h3>
 
 	<h3>Photo URL<br>
-	<input type="text" name="external_url" placeholder="Link">
+	<input type="text" name="external_url" placeholder="URL">
 
     <!-- actual file upload for the item itself -->
     <!-- Upload Image:
