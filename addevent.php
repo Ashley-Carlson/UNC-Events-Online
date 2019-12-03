@@ -38,8 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
-
-<body style="background-image:url('media/addeventbkg.jpg');">
+<!--<body style="background-image:url('media/addeventbkg.jpg');">-->
 
 <form action="addevent.php" method="POST">
 	<h1 style="text-align:center;">Add an Event</h1>
@@ -108,19 +107,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	  <br><br>
 
 <!-- actual file upload for the item itself -->
-
 	  Upload Image:
 	  <input type="file" name="image" id="image">
 		<br>
 	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
-	</font>
 
 <br /><br /><br /><br /><br />
+</font>
 </div>
 
 	<!-- submits the data entered to the server -->
-	 <input type="submit" value="Submit" id="popUpYes" style = "color:white" >
+	 <input type="submit" value="Submit" id="popUpYes" >
 
 
 </form>
