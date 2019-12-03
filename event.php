@@ -39,7 +39,7 @@ LEFT JOIN user ON user.user_id = event.event_contact
 	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM eventuser WHERE user_id = :user_id AND event_id = :event_id");
-	$stmt->execute(array(':user_id' => $userID, ':event_id' => $_GET['event_id']));
+	$stmt->execute(array(':user_id' => $userID, ':event_id' => $_GET['id']));
 	if ($stmt->rowCount() > 0)
 	{
 		$notif_button_text = "Unfollow";
