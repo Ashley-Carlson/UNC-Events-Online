@@ -78,13 +78,6 @@ if(isset($_POST['submit'])){
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto2">
 						<?php
-							if(isset($error))
-							{
-								foreach($error as $error)
-								{
-									echo '<li class="error">'.$error.'</p>';
-								}
-							}
 							if ($user->is_logged_in())
 							{
 								$first_name = $_SESSION['first_name'];
@@ -120,3 +113,12 @@ if(isset($_POST['submit'])){
 		<script src="layout/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</header>
 </body>
+<?php
+if(isset($error))
+{
+	foreach($error as $error)
+	{
+		echo '<li class="error">'.$error.'</p>';
+	}
+}
+?>
