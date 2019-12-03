@@ -19,7 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
   $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-  $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, duration, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :duration, :location, :has_food, :external_url, :event_contact)');
+	
+  $stmt = $db->prepare('
+	INSERT INTO event (event_name, event_desc, event_time,
+	                   duration, location, has_food, external_url1,
+										 external_url2, external_url3, event_contact)
+	     VALUES (:name, :description, :event_time, :duration,
+			         :location, :has_food, :external_url1,
+							 :external_url2, :external_url3, :event_contact)');
+
   $stmt -> execute(array(
     ':name' => $_POST['name'],
     ':description' => $_POST['description'],
@@ -28,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
     ':location' => $_POST['location'],
     ':has_food' => $has_food,
     ':external_url1' => $_POST['external_url1'],
+		':external_url2' => $_POST['external_url2'],
+		':external_url3' => $_POST['external_url3'],
     ':event_contact' => $userID,
   ));
 
