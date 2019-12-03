@@ -64,13 +64,16 @@
         'event_time' => $row['event_time'],
         'duration' => $row['duration'],
       );
-			$stmt = $db->prepare("SELECT eventtag.tag_id as tag_id, tag.tag AS tag FROM eventtag WHERE eventtag.event_id = :event_id LEFT JOIN tag ON tag.tag_id = eventtag.tag_id");
+			$stmt = $db->prepare("
+			SELECT eventtag.tag_id as tag_id, tag.tag AS tag
+			  FROM eventtag
+			 WHERE eventtag.event_id = :event_id
+	 LEFT JOIN tag ON tag.tag_id = eventtag.tag_id");
 			$stmt->execute(array(":event_id" => $item["event_id"]));
-			$tags = $stmt->fetch(PDO::FETCH_ASSOC);
       $phptime = strtotime($item['event_time']);
       $time = date("m/d/y g:i A", $phptime);
 			$tagstring = "";
-			foreach ($tags as $tag)
+			while ($tag = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$tagstring .= $tag['tag'] . " ";
 			}
