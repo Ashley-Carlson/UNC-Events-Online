@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
   $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-	
+
   $stmt = $db->prepare('
 	INSERT INTO event (event_name, event_desc, event_time,
 	                   duration, location, has_food, external_url1,
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<h3>External URL<br>
 	<input type="text" name="external_url3">
 	</h3><br>
-	<p>Does this event have food? <input type="checkbox" name="has_food">
+	<p>Does this event have food? (Check if yes) <input type="checkbox" name="has_food">
 	</p><br>
 	<!-- dropdown menu to assign it a tag (for searching) -->
 	  Tags:<br>
