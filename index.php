@@ -86,9 +86,9 @@
 				<p>'.$tagstring.'</p>
       </div></div><br><br>';
 */
-      echo '<div class = "card">
+      echo '<div class = "card_">
           <img src="media/logo.png" alt="UNC" style="width:15%">
-            <div class="container">
+            <div class="container_">
               <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
               <p>'.$time.'</p>
               <p>'.$item['duration'].'</p>
