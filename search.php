@@ -11,21 +11,15 @@
     user.email,
     user.first_name,
     user.last_name,
-    group_concat(tagget.tag) as tags
-  FROM event
-  INNER JOIN
-    (
-      SELECT
-        eventtag.event_id,
-        tag.tag
-      FROM tag
-      LEFT JOIN eventtag ON eventtag.tag_id = tag.tag_id
-    ) as tagget ON event.event_id = tagget.id
-  LEFT JOIN user
-  ON
-    user.user_id = event.event_contact
-  WHERE
-    CONCAT(event.event_name, tags, event.event_desc, user.username, user.email, user.first_name, user.last_name) LIKE :search;
+    coalesce(group_concat(tag.tag), "") as tags
+  FROM
+    event
+  LEFT JOIN user ON user.user_id = event.event_contact
+  LEFT JOIN eventtag on eventtag.event_id = event.event_id
+  LEFT JOIN tag ON eventtag.tag_id = tag.tag_id
+  GROUP BY event_id
+  HAVING
+    CONCAT(event_name, tags, event_desc, username, email, first_name, last_name) LIKE :search
   ');
   $stmt->bindValue('search', '%' . $search . '%');
   echo "Executing big query...";
