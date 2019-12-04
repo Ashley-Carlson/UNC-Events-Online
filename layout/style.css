@@ -24,7 +24,12 @@
 	color: red;
 }
 
-.register {
+.register, .login {
     background-color: #eee;
     text-align: left;
+}
+
+#submitButton {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
