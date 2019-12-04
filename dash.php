@@ -33,8 +33,12 @@ require("layout/header.php");
         }
 
     ?>
-
     <br />
+    <h2>Your Clubs</h2>
+    <br />
+    <?php
+    
+    ?>
 
 		</div>
 		<br>
