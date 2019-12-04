@@ -21,7 +21,7 @@
 			 user.email
 		 FROM club
 		 LEFT JOIN clubmember ON club.club_id = clubmember.club_id
-		 LEFT JOIN user ON user.user_id = clubmember.club_id
+		 LEFT JOIN user ON user.user_id = clubmember.user_id
 		 WHERE club.club_id = :club_id
 		   AND clubmember.is_contact = 1
 		"
