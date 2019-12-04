@@ -25,7 +25,7 @@
   $userID = $row['user_id'];
 	// Get notification status
 	$notif_button_text = "";
-	$stmt = $db->prepare("SELECT * FROM usertag WHERE user_id = :user_id AND tag_id = :tag_id");
+	$stmt = $db->prepare("SELECT * FROM tagfollower WHERE user_id = :user_id AND tag_id = :tag_id");
 	$stmt->execute(array(':user_id' => $userID, ':tag_id' => $_GET['id']));
 	if ($stmt->rowCount() > 0)
 	{

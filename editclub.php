@@ -42,10 +42,10 @@ if (isset($_POST['id']))
 // ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
 	"SELECT user.email as email, event.event_name
-	 FROM eventuser
-	LEFT JOIN event ON event.event_id = eventuser.event_id
-	LEFT JOIN user ON user.user_id = eventuser.user_id
-	WHERE eventuser.event_id = :id"
+	 FROM eventfollower
+	LEFT JOIN event ON event.event_id = eventfollower.event_id
+	LEFT JOIN user ON user.user_id = eventfollower.user_id
+	WHERE eventfollower.event_id = :id"
 	);
 	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
 	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array

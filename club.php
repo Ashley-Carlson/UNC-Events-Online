@@ -1,20 +1,26 @@
 <?php require_once('includes/config.php');
   $currentID = $_GET["id"];
 	$stmt = $db->prepare("
-   SELECT club.club_name as club_name, club.club_desc as club_desc,
-          user.user_id as user_id, user.first_name as first_name, 
-          user.last_name as last_name, user.email as email
+    SELECT
+	    club.club_name,
+		  club.club_desc,
+			club.photo_path,
+			user.user_id,
+      user.email,
+		  CONCAT(user.first_name, ' ', user.last_name) as name
      FROM club
-LEFT JOIN user ON user.user_id = event.event_contact
-    WHERE event_id = :id
+LEFT JOIN user ON user.user_id = club.fac_sponsor_id
+    WHERE club_id = :id
   ");
 	$stmt->execute(array(':id' => $currentID));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$item = array(
-    'name'        => $row['club_name'],
+    'name' => $row['club_name'],
     'description' => $row['club_desc'],
-    'sponsor'     => $row['fac_sponsor_id'],
-    'photo'       => $row['photo_url']
+    'sponsor' => $row['name'],
+		'sponsor_id' => $row['user_id'],
+		'email' => $row['email'],
+    'photo' => $row['photo_path']
   );
   $stmt = $db -> prepare("
   SELECT user_id
@@ -24,8 +30,18 @@ LEFT JOIN user ON user.user_id = event.event_contact
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
-  $phptime = strtotime($item['event_time']);
-  $time = date("m/d/y g:i A", $phptime);
+	// Get notification status
+	$notif_button_text = "";
+	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
+	$stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
+	if ($stmt->rowCount() > 0)
+	{
+		$notif_button_text = "Unfollow";
+	}
+	else
+	{
+		$notif_button_text = "Follow";
+	}
 	$title = $item['name'];
 	require('layout/header.php');
 ?>
@@ -49,6 +65,16 @@ LEFT JOIN user ON user.user_id = event.event_contact
      <div>
        <p style="color: white;">There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
        </p>
+			 <br /><br />
+			 <?php
+ 			if ($user->is_logged_in())
+ 			{
+ 				echo '
+ 			<form action="follow.php" method="post">
+ 				<input type="hidden" name="club_id" value="' . $currentID . '">
+ 				<input type="submit" value="' . $notif_button_text . '">
+ 			</form>';
+ 		  } ?>
      </div>
      <?php
      if ($userID == $item['user_id'])

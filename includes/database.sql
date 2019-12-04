@@ -1,6 +1,7 @@
-DROP TABLE IF EXISTS `usertag`;
-DROP TABLE IF EXISTS `userclub`;
-DROP TABLE IF EXISTS `eventuser`;
+DROP TABLE IF EXISTS `tagfollower`;
+DROP TABLE IF EXISTS `clubmember`;
+DROP TABLE IF EXISTS `clubfollower`;
+DROP TABLE IF EXISTS `eventfollower`;
 DROP TABLE IF EXISTS `clubevent`;
 DROP TABLE IF EXISTS `eventtag`;
 DROP TABLE IF EXISTS `clubtag`;
@@ -54,14 +55,21 @@ CREATE TABLE `club` (
   `is_inactive` bit(1) DEFAULT 0
 );
 
-CREATE TABLE `userclub` (
+
+
+CREATE TABLE `clubmember` (
   `user_id` int,
   `club_id` int,
   `is_contact` bit(1) DEFAULT 0,
   `can_edit` bit(1) DEFAULT 0
 );
 
-CREATE TABLE `eventuser` (
+CREATE TABLE `clubfollower` (
+	`user_id` int,
+	`club_id` int
+);
+
+CREATE TABLE `eventfollower` (
   `event_id` int,
   `user_id` int
 );
@@ -80,7 +88,7 @@ CREATE TABLE `clubtag` (
   `club_id` int,
   `tag_id` int
 );
-CREATE TABLE `usertag` (
+CREATE TABLE `tagfollower` (
   `user_id` int,
   `tag_id` int
 );
@@ -90,17 +98,17 @@ CREATE TABLE `tag` (
   `tag` varchar(64) NOT NULL
 );
 
-ALTER TABLE `userclub` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `clubmember` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
-ALTER TABLE `userclub` ADD FOREIGN KEY (`club_id`) REFERENCES `club` (`club_id`);
+ALTER TABLE `clubmember` ADD FOREIGN KEY (`club_id`) REFERENCES `club` (`club_id`);
 
 ALTER TABLE `clubevent` ADD FOREIGN KEY (`club_id`) REFERENCES `club` (`club_id`);
 
 ALTER TABLE `clubevent` ADD FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
 
-ALTER TABLE `eventuser` ADD FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
+ALTER TABLE `eventfollower` ADD FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
 
-ALTER TABLE `eventuser` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `eventfollower` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 ALTER TABLE `eventtag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
 
@@ -112,17 +120,22 @@ ALTER TABLE `clubtag` ADD FOREIGN KEY (`club_id`) REFERENCES `club` (`club_id`);
 
 ALTER TABLE `clubtag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
 
-ALTER TABLE `usertag` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `tagfollower` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
-ALTER TABLE `usertag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
+ALTER TABLE `tagfollower` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
+
+ALTER TABLE `clubfollower` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+ALTER TABLE `clubfollower` ADD FOREIGN KEY (`club_id`) REFERENCES `club` (`club_id`);
 
 CREATE INDEX idx_event ON `event`(event_id);
 CREATE INDEX idx_user ON `user`(user_id);
 CREATE INDEX idx_user ON `club`(club_id);
 CREATE INDEX idx_tag ON `tag`(id);
-CREATE INDEX idx_userclub on `userclub` (club_id, user_id);
+CREATE INDEX idx_clubmember on `clubmember` (club_id, user_id);
 CREATE INDEX idx_clubtag on `clubtag` (club_id, tag_id);
 CREATE INDEX idx_eventtag on `eventtag` (event_id, tag_id);
-CREATE INDEX idx_usertag on `usertag` (user_id, tag_id);
+CREATE INDEX idx_usertag on `tagfollower` (user_id, tag_id);
 CREATE INDEX idx_clubevent on `clubevent` (club_id, event_id);
-CREATE INDEX idx_eventuser on `eventuser` (event_id, user_id);
+CREATE INDEX idx_eventfollower on `eventfollower` (event_id, user_id);
+CREATE INDEX idx_clubfollower on `clubfollower` (club_id, user_id);
