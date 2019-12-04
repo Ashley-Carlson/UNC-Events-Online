@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 					echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
 				}
 				?>
-			</select>
+			</select><br>
 
 			<b>Photo:</b><br>
 			<input type="file" name="image" id="image"><br>
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			<b>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations? </b><input type="checkbox" required><br>
 
 			<!-- submits the data entered to the server -->
-			<input type="submit" value="Submit" id="popUpYes" color: white >
+			<br><input type="submit" value="Submit" id="popUpYes" color: white >
 		</body>
 	</div>
 </form>
