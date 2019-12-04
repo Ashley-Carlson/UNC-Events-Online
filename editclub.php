@@ -29,25 +29,14 @@ if ($contact_id != $row['user_id'] && $row['acct_type'] != 2)
 
 if (isset($_POST['id']))
 {
-  $stmt = $db -> prepare(
-    "UPDATE event
-        SET event_name = :name, event_time = :event_time,
-            event_desc = :description, location = :location,
-            external_url = :external_url, has_food = :has_food
-      WHERE event_id = :id"
-  );
-  $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
-
-  $time = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-
+  $stmt = $db ->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,
+  photo_path) VALUES (:name, :description,
+  :sponsor_id, :photo_url)');
   $stmt -> execute(array(
-    ':name'         => $_POST['name'],
-    ':event_time'   => $time,
-    ':description'  => $_POST['description'],
-    ':location'     => $_POST['location'],
-    ':external_url' => $_POST['external_url'],
-    ':has_food'     => $has_food,
-		':id'						=> $_POST['id'],
+  ':name' => $_POST['name'],
+	':description' => $_POST['description'],
+	':sponsor_id' => $sponsor_id,
+	':photo_url' => $_POST['photo_url'],
   ));
 // ADD AUTO-EMAIL HERE
 // ADD AUTO-EMAIL HERE
@@ -77,41 +66,32 @@ require('layout/header.php');
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
 <form action="editevent.php" method="POST">
-	<div class="card">
-	<h1 style="text-align:center;">Edit Event</h1>
+		<h1 style="text-align:center;">Add a Club</h1>
+		<div class="card">
 	<!-- takes text input for title, description, reserve -->
 		<font color="black">
-		<h3>Event Name<br>
-			<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
+		<h3>Club Name<br>
+			<input type="text" name="name" placeholder="Event Name">
 		</h3>
-
-		<h3>Date and Time</h3><input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
-
 
 		<h3>Description</h3>
-		<textarea id="subject" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
+		<textarea id="subject" name="description" placeholder="Write something..." style="width:30%;height:20%;color:#000000"></textarea>
 
-		<!-- TO BE IMPLEMENTED -->
-		<!-- <h3>Club:<br>
-		<input type="text" name="description" placeholder="Description">
-		</h3> -->
-
-		<h3>Address<br>
-		<input type="text" name="location" value="<?php echo $event['location'] ?>">
+		<h3>Sponsor ID<br>
+		<input type="text" name="sponsor_id" placeholder="Sponsor">
 		</h3>
 
-		<h3>External URL<br>
-		<input type="text" name="external_url" value="<?php echo $event['external_url'] ?>">
-		</h3><br>
-		<p>There is food <input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
-		</p><br>
-		<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
+		<h3>Photo:<br>
+		<input type="file" name="image" id="image">
+ 		<br>
+
+		<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 		</p>
 		</font>
 		<!-- submits the data entered to the server -->
-		 <input type="submit" value="Submit" id="popUpYes">
-	   <input type="hidden" value=<?php echo $id ?> name="id">
-	</div>
-</form>
+		 <input type="submit" value="Submit" id="popUpYes" color: white >
+		</div>
+	</form>
 
-<?php require('layout/footer.php') ?>
+
+	<?php require('layout/footer.php') ?>

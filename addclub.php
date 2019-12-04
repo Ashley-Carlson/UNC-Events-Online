@@ -18,16 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $userID = $row['user_id'];
 
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-  $stmt = $db->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id, 
-  photo_url, create_timestmp, updt_timestmp, is_inactive) VALUES (:name, :description, 
-  :sponsor_id, :photo_url, :create_timestmp, :updt_timestmp, 0)');
+  $stmt = $db->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,
+  photo_path) VALUES (:name, :description,
+  :sponsor_id, :photo_url)');
   $stmt -> execute(array(
-    ':name' => $_POST['name'],
+  ':name' => $_POST['name'],
 	':description' => $_POST['description'],
 	':sponsor_id' => $sponsor_id,
 	':photo_url' => $_POST['photo_url'],
-	':create_timestmp' => date('Y-m-d'),
-	':updt_timestmp' => date('Y-m-d'),
   ));
 
   echo '<p class="success">Club created.</p>';
@@ -55,8 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<input type="text" name="sponsor_id" placeholder="Sponsor">
 	</h3>
 
-	<h3>Photo URL<br>
-	<input type="text" name="external_url" placeholder="URL">
+	<h3>Photo<br>
+	<input type="file" name="image" id="image">
+ 	<br>
 
     <!-- actual file upload for the item itself -->
     <!-- Upload Image:
@@ -69,5 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	 <input type="submit" value="Submit" id="popUpYes" color: white >
 	</div>
 </form>
+
 
 <?php require('layout/footer.php') ?>
