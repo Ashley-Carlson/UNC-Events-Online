@@ -68,7 +68,7 @@
 			SELECT eventtag.tag_id as tag_id, tag.tag AS tag
 			  FROM eventtag
  	 LEFT JOIN tag ON tag.tag_id = eventtag.tag_id
-			 WHERE eventtag.event_id = :event_id
+			 WHERE eventtag.event_id = :event_idIm
 	 ");
 			$stmt->execute(array(":event_id" => $item["event_id"]));
       $phptime = strtotime($item['event_time']);
@@ -78,12 +78,22 @@
 			{
 				$tagstring .= '<a href="search.php?type=event&keyword=' . $tag['tag']. '">' . $tag['tag'] . "</a> ";
 			}
+/* This is the previous code for the events page
 			echo '<div class="row"><div class="col-lg-12 text-left">
           <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
           <p>'.$time.'</p>
         <p>'.$item['duration'].'</p>
 				<p>'.$tagstring.'</p>
       </div></div><br><br>';
+*/
+      echo '<div class = "card">
+          <img src="media/logo.png" alt="UNC" style="width:100%">
+          <div class="container">
+            <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
+          </div>
+          </div>'
+
+
     }
 // require('layout/footer.php')
 ?>
