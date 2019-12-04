@@ -31,23 +31,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
   echo '<p class="success">Club created.</p>';
 
-	$stmt = $db->prepare('SELECT MAX(club_id) as m FROM club');
-	$stmt -> execute();
-	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+	$clubID = $stmt->lastInsertId();
 
 	if ($_POST['tags'])
 	{
 		$stmt = $db->prepare('INSERT INTO clubtag (club_id, tag_id) VALUES (:club_id, :tag_id)');
 		foreach($_POST['tags'] as $tag_id)
 		{
-			$stmt->execute(array(':club_id' => $row['m'], ':tag_id' => $tag_id));
+			$stmt->execute(array(':club_id' => $clubID, ':tag_id' => $tag_id));
 		}
 	}
+	echo '<p class="success">Tags attached.</p>';
 
 	$stmt = $db->prepare('INSERT INTO clubmember (user_id, club_id, is_contact, can_edit) VALUES (:user_id, :club_id, 1, 1)');
-	$stmt->execute(array(":user_id" => $userID, ":club_id" => row['m']));
+	$stmt->execute(array(":user_id" => $userID, ":club_id" => $clubID));
 
-	header("Location: club.php?id=".$row['m']);
+	header("Location: club.php?id=".$clubID]);
 }
 ?>
 
