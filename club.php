@@ -4,12 +4,8 @@
     SELECT
 	    club.club_name,
 		  club.club_desc,
-			club.photo_path,
-			user.user_id,
-      user.email,
-		  CONCAT(user.first_name, ' ', user.last_name) as name
+			club.photo_path
      FROM club
-LEFT JOIN user ON user.user_id = club.fac_sponsor_id
     WHERE club_id = :id
   ");
 	$stmt->execute(array(':id' => $currentID));
@@ -17,11 +13,21 @@ LEFT JOIN user ON user.user_id = club.fac_sponsor_id
 	$item = array(
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
-    'sponsor' => $row['name'],
-		'sponsor_id' => $row['user_id'],
-		'email' => $row['email'],
     'photo' => $row['photo_path']
   );
+	$stmt = $db->prepare(
+		"SELECT
+		   CONCAT(user.first_name, ' ', user.last_name) as name,
+			 user.email
+		 FROM club
+		 LEFT JOIN clubmember ON club.club_id = clubmember.club_id
+		 LEFT JOIN user ON user.user_id = clubmember.club_id
+		 WHERE club.club_id = :club_id
+		   AND clubmember.is_contact = 1
+		"
+	);
+	$stmt->execute(array(':club_id'=>$currentID));
+	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt = $db -> prepare("
   SELECT user_id
     FROM user
@@ -53,8 +59,8 @@ LEFT JOIN user ON user.user_id = club.fac_sponsor_id
      </div>
      <div class="card">
        <!--<h2>Faculty Sponsor: </h2>-->
-       <h2>Contact Name: <?php echo $item['sponsor'] ?></h2>
-       <p>Contact email: <?php echo $item['email'] ?></p>
+       <h2>Contact Name: <?php echo $contact_info['name'] ?></h2>
+       <p>Contact email: <?php echo $contact_info['email'] ?></p>
      </div>
 		 <br /><br />
      <div>

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $stmt -> execute(array(
   ':name' => $_POST['name'],
 	':description' => $_POST['description'],
-	':sponsor_id' => $sponsor_id,
+	':sponsor_id' => $_POST['sponsor_id'],
 	':photo_url' => $_POST['photo_url'],
   ));
 
