@@ -91,16 +91,16 @@ $(function() {
 			<!-- <div class="card"> -->
 			<!-- takes text input for title, description, reserve -->
 			<b>Event Name: </b>
-			<input type="text" name="name" placeholder="Event Name" required><br>
+			<input id="event_name_box" type="text" name="name" placeholder="Event Name" required><br>
 
 			<b>Date and Time:</b>
-			<input type="datetime-local" name="event_time" required><br>
+			<input id="datetime_box" type="datetime-local" name="event_time" required><br>
 
 			<b>Duration:</b>
 			<input type="text" name="duration" placeholder="e.g. 2 hours" required><br>
 
 			<b>Description:</b><br>
-			<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea><br>
+			<textarea id="description_box" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea><br>
 
 			<!-- TO BE IMPLEMENTED -->
 			<!-- <h3>Club:<br>
@@ -108,12 +108,12 @@ $(function() {
 			</h3> -->
 
 			<b>Address:</b>
-			<input type="text" name="location" placeholder="Location" required><br>
+			<input id="address_box" type="text" name="location" placeholder="Location" required><br>
 
 			<b>External URL(s):</b><br>
-			<input type="text" name="external_url1" placeholder="Link"><br>
-			<input type="text" name="external_url2" placeholder="Link"><br>
-			<input type="text" name="external_url3" placeholder="Link"><br>
+			<input id="url_box" type="text" name="external_url1" placeholder="Link"><br>
+			<input id="url_box" type="text" name="external_url2" placeholder="Link"><br>
+			<input id="url_box" type="text" name="external_url3" placeholder="Link"><br>
 
 			<input type="checkbox" name="has_food"><b> Does this event have food?</b><br>
 
@@ -133,13 +133,13 @@ $(function() {
 			<br><br>
 
 			<!-- actual file upload for the item itself -->
-			Upload Image:
+			<b>Upload Image:</b><br>
 			<input type="file" name="image" id="image">
 			<br>
 			<input type="checkbox" required><b> Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations?</b><br>
 
 			<!-- submits the data entered to the server -->
-			<br><input type="submit" value="Submit" id="popUpYes" >
+			<input type="submit" value="Submit" id="popUpYes" >
 		</body>
 	</div>
 </form>

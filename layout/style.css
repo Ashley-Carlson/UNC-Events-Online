@@ -46,3 +46,16 @@
 #notif-button {
     margin-left: 20px;
 }
+
+/* Event form inputs */
+#event_name_box, #description_box, #url_box {
+    size: 40%;
+}
+
+#datetime_box {
+    size: 20%;
+}
+
+#address_box {
+    size: 50%;
+}
