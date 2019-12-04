@@ -16,6 +16,7 @@ SELECT
 	event.external_url2,
 	event.external_url3,
 	event.has_food,
+	event.event_contact,
 	CONCAT(user.first_name, ' ', user.last_name)
 FROM event
 LEFT JOIN user ON event.event_contact = user.user_id
