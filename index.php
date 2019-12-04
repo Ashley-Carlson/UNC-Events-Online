@@ -92,7 +92,7 @@
               <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
               <p>'.$time.'</p>
               <p>'.$item['duration'].'</p>
-    			    <p>'.$tagstring.'</p>
+    			    <p>Tags: '.$tagstring.'</p>
             </div>
           </div>
           <br>';
