@@ -115,7 +115,7 @@ $(function() {
 			<input type="text" name="external_url2" placeholder="Link"><br>
 			<input type="text" name="external_url3" placeholder="Link"><br>
 
-			<b>Does this event have food? </b><input type="checkbox" name="has_food"><br>
+			<input type="checkbox" name="has_food"><b> Does this event have food?</b><br>
 
 			<!-- dropdown menu to assign it a tag (for searching) -->
 			<b>Tags:</b><br>
@@ -136,7 +136,7 @@ $(function() {
 			Upload Image:
 			<input type="file" name="image" id="image">
 			<br>
-			<input type="checkbox" required><b> Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations?</b>><br>
+			<input type="checkbox" required><b> Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations?</b><br>
 
 			<!-- submits the data entered to the server -->
 			<br><input type="submit" value="Submit" id="popUpYes" >
