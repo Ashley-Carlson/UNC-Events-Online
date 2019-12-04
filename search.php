@@ -23,6 +23,9 @@
   ');
   $event_stmt->bindValue('search', '%' . $search . '%');
   $event_stmt->execute();
+  $title = "Search: ".$search;
+  echo '<body>';
+  require('layout/header.php');
 ?>
 
 <!-- Page Content -->
