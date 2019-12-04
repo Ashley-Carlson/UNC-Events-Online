@@ -41,16 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
     ':event_contact' => $userID,
   ));
 
-	$stmt = $db->prepare('SELECT MAX(event_id) as m FROM event');
-	$stmt -> execute();
-	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+	$eventID = $db->lastInsertId();
 
 	if ($_POST['tags'])
 	{
 		$stmt = $db->prepare('INSERT INTO eventtag (event_id, tag_id) VALUES (:event_id, :tag_id)');
 		foreach($_POST['tags'] as $tag_id)
 		{
-			$stmt->execute(array(':event_id' => $row['m'], ':tag_id' => $tag_id));
+			$stmt->execute(array(':event_id' => $eventID, ':tag_id' => $tag_id));
 		}
 	}
 	// ADD AUTO-EMAIL HERE
@@ -70,6 +68,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		emailNotifaction($message, $event, $email, $noreply_email_addr);
 	}
   echo '<p class="success">Event created.</p>';
+	if (isset($_FILES['image']))
+	{
+		mkdir("media/events/" . $eventID, 0777, true);
+		$directory = "media/events/" . $eventID . "/";
+		$target = $directory . $_FILES['image']['name'];
+		$filename = $_FILES['image']['name'];
+		move_uploaded_file($_FILES['image']['name'], $target);
+
+		$stmt = $db->prepare("UPDATE event SET photo_path = :photo WHERE club_id = :club_id");
+		$stmt->execute(array(':photo' => $target, ':club_id' => $clubID));
+
+		echo '<p class="success">File uploaded.</p>';
+	}
+
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
