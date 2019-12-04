@@ -97,7 +97,7 @@ $(function() {
 			<input type="datetime-local" name="event_time" required><br>
 
 			<b>Duration:</b>
-			<input type="text" name="duration" required><br>
+			<input type="text" name="duration" placeholder="e.g. 2 hours" required><br>
 
 			<b>Description:</b><br>
 			<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea><br>
