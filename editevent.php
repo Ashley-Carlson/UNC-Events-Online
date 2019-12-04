@@ -18,7 +18,7 @@ SELECT
 	event.has_food,
 	CONCAT(user.first_name, ' ', user.last_name)
 FROM event
-LEFT JOIN user ON event.contact_id = user.user_id
+LEFT JOIN user ON event.event_contact = user.user_id
 WHERE event_id = :id"
 );
 $stmt -> execute(array(
