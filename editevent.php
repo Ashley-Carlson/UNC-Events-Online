@@ -103,12 +103,14 @@ require('layout/header.php');
 		<h3>External URL<br>
 		<input type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
 		</h3><br>
-		<h3>External URL<br>
 		<input type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
 		</h3><br>
-		<h3>External URL<br>
 		<input type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
 		</h3><br>
+		<!-- actual file upload for the item itself -->
+			  Upload Image:
+			  <input type="file" name="image" id="image">
+				<br>
 
 		<p>Does this event have food? (Check if yes)<input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
 		</p><br>
