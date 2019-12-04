@@ -18,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $userID = $row['user_id'];
 
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-  $stmt = $db->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,
-  photo_path) VALUES (:name, :description,
-  :sponsor_id, :photo_url)');
+  $stmt = $db->prepare(
+	'INSERT INTO
+		club (club_name, club_desc, fac_sponsor_id, photo_path)
+	 VALUES (:name, :description, :sponsor_id, :photo_url)');
   $stmt -> execute(array(
   ':name' => $_POST['name'],
 	':description' => $_POST['description'],
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
   echo '<p class="success">Club created.</p>';
 
-	$clubID = $stmt->lastInsertId();
+	$clubID = $db->lastInsertId();
 
 	if ($_POST['tags'])
 	{
