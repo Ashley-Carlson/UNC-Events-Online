@@ -85,7 +85,8 @@ http://uncevents.online/verify.php?verify=$verify_string";
 			<input type="password" placeholder="Confirm Password" name="verify" required><br>
 			<hr>
 			<input type="checkbox" name="is_faculty"> I am Faculty <br>
-			<button type="submit">Register</button><br>
+			<br>
+			<button type="submit">Register</button>
     	</body>
  	</div>
 </form>
