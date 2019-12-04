@@ -48,57 +48,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 }
 ?>
 
-<form action="addclub.php" method="POST">
-	<h1 style="text-align:center;">Add a Club</h1>
-	<div class="card">
-<!-- takes text input for title, description, reserve -->
-	<font color="black">
-	<h3>Club Name<br>
-		<input type="text" name="name" placeholder="Event Name">
-	</h3>
+<form role="form" action="addclub.php" method="POST">
+	<div class="container">
+		<body class="addclub">
+			<h1 class="title">Add a Club</h1>
+			<hr>
+			<!-- takes text input for title, description, reserve -->
+			<b>Club Name: </b>
+			<input type="text" name="name" placeholder="Event Name"></b><br>
 
-	<h3>Description</h3>
-	<textarea id="subject" name="description" placeholder="Write something..." style="width:30%;height:20%;color:#000000"></textarea>
+			<b>Description:</b><br>
+			<textarea id="subject" name="description" placeholder="Write something..." style="width:30%;height:20%;color:#000000"></textarea><br>
 
-	<h3>Sponsor ID<br>
-		<select name="sponsor_id">
-			<?php
-			$stmt = $db->prepare("SELECT CONCAT(first_name, ' ', last_name) as name, user_id FROM user WHERE acct_type = 2 ORDER BY user_id");
-			$stmt->execute();
-			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-			{
-				echo '<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>';
-			}
-			?>
-		</select>
-	</h3>
+			<b>Faculty Sponsor:</b><br>
+				<select name="sponsor_id">
+					<?php
+					$stmt = $db->prepare("SELECT CONCAT(first_name, ' ', last_name) as name, user_id FROM user WHERE acct_type = 2 ORDER BY user_id");
+					$stmt->execute();
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+					{
+						echo '<option value="' . $row['user_id'] . '">' . $row['name'] . '</option>';
+					}
+					?>
+				</select><br>
 
-	Tags:<br>
-	<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
-		<option value=""></option>
-		<?php
-		$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
-		$stmt->execute();
-		while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-		{
-			echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
-		}
-		?>
-	</select>
+			<b>Tags:</b><br>
+			<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
+				<option value=""></option>
+				<?php
+				$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
+				$stmt->execute();
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+				{
+					echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
+				}
+				?>
+			</select>
 
-	<h3>Photo<br>
-	<input type="file" name="image" id="image">
- 	<br>
+			<b>Photo:</b><br>
+			<input type="file" name="image" id="image"><br>
 
-    <!-- actual file upload for the item itself -->
-    <!-- Upload Image:
-	  <input type="file" name="image" id="image"> -->
+			<!-- actual file upload for the item itself -->
+			<!-- Upload Image:
+			<input type="file" name="image" id="image"> -->
 
-	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
-	</p>
-	</font>
-	<!-- submits the data entered to the server -->
-	 <input type="submit" value="Submit" id="popUpYes" color: white >
+			<b>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations? </b><input type="checkbox" required><br>
+
+			<!-- submits the data entered to the server -->
+			<input type="submit" value="Submit" id="popUpYes" color: white >
+		</body>
 	</div>
 </form>
 

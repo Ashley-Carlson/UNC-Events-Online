@@ -25,7 +25,7 @@
 	color: red;
 }
 
-.register, .login, .addevent {
+.register, .login, .addevent, .addclub{
     background-color: #eee;
     text-align: left;
 }
