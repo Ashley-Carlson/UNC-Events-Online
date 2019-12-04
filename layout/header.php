@@ -107,6 +107,12 @@ if(isset($_POST['submit'])){
 						<li class="nav-item">
 							<a class="nav-link" href="https://www.unco.edu/research/office-of-sponsored-programs/policies-procedures-and-forms/">Policies</a>
 						</li>
+						<li class="nav-item">
+							<form action="search.php" method="get">
+								<input type="text" name="keyword" placeholder="Keyword">
+								<input type="submit" value="Search">
+							</form>
+						</li>
 					</ul>
 				</div>
 			</div>
