@@ -113,33 +113,6 @@ $(function() {
 				echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
 			}
 			?>
-			<!--
-			<option value="1">Biology</option>
-			<option value="2">Mathematics</option>
-			<option value="3">Technology</option>
-			<option value="4">Art</option>
-			<option value="5">Science</option>
-			<option value="6">Performance</option>
-			<option value="7">Theater</option>
-			<option value="8">Chemistry</option>
-			<option value="9">Culture</option>
-			<option value="10">Cuisine</option>
-			<option value="11">Animals</option>
-			<option value="12">21+</option>
-			<option value="13">Official</option>
-			<option value="14">Party</option>
-			<option value="15">Greek</option>
-			<option value="16">Mechanics</option>
-			<option value="17">Engineering</option>
-			<option value="18">AI</option>
-			<option value="19">Business</option>
-			<option value="20">Networking</option>
-			<option value="21">Food</option>
-			<option value="22">Sports</option>
-			<option value="23">Football</option>
-			<option value="24">Volleyball</option>
-			<option value="25">Soccer</option>
-		-->
 		</select>
 	  <br><br>
 
