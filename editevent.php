@@ -16,7 +16,7 @@ SELECT
 	event.external_url2,
 	event.external_url3,
 	event.has_food,
-	CONCAT(user.first_name, ' ', user.last_name)
+	CONCAT(user.first_name, ' ', user.last_name),
 	club.club_id,
 	club.club_name
 FROM event
