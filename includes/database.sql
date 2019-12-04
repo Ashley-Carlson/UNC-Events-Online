@@ -49,7 +49,6 @@ CREATE TABLE `club` (
   `club_name` varchar(255),
   `club_desc` varchar(1024),
   `fac_sponsor_id` int,
-  `photo_url` varchar(512),
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updt_timestmp` datetime ON UPDATE CURRENT_TIMESTAMP,
   `is_inactive` bit(1) DEFAULT 0
