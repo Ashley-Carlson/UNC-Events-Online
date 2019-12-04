@@ -16,7 +16,10 @@ if ($userInfo['acct_type'] != 2 && $userInfo['user_id'] != $itemInfo['event_cont
     header("Location: index.php");
 }
 
-
+$stmt = $db->prepare('DELETE FROM eventfollower where event_id = :id');
+$stmt->execute(array(':id' => $id));
+$stmt = $db->prepare('DELETE FROM eventtag where event_id = :id');
+$stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM event where event_id = :id');
 $stmt->execute(array(':id' => $id));
 
