@@ -110,6 +110,10 @@ if(isset($_POST['submit'])){
 						<li class="nav-item">
 							<form action="search.php" method="get">
 								<input type="text" name="keyword" placeholder="Keyword">
+								<select name="type">
+									<option value="event">Event</option>
+									<option value="club">Club</option>
+								</select>
 								<input type="submit" value="Search">
 							</form>
 						</li>

@@ -105,6 +105,15 @@ $(function() {
 	  Tags:<br>
 		<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
 			<option value=""></option>
+			<?php
+			$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
+			$stmt->execute();
+			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+			{
+				echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
+			}
+			?>
+			<!--
 			<option value="1">Biology</option>
 			<option value="2">Mathematics</option>
 			<option value="3">Technology</option>
@@ -130,6 +139,7 @@ $(function() {
 			<option value="23">Football</option>
 			<option value="24">Volleyball</option>
 			<option value="25">Soccer</option>
+		-->
 		</select>
 	  <br><br>
 
