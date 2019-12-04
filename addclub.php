@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			<!-- Upload Image:
 			<input type="file" name="image" id="image"> -->
 
-			<b>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations? </b><input type="checkbox" required><br>
+			<input type="checkbox" required><b> Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations?</b><br>
 
 			<!-- submits the data entered to the server -->
 			<br><input type="submit" value="Submit" id="popUpYes" color: white >

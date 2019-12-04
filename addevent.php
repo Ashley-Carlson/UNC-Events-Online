@@ -135,11 +135,11 @@ $(function() {
 			<!-- actual file upload for the item itself -->
 			Upload Image:
 			<input type="file" name="image" id="image">
-				<br>
-			<b>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations? </b><input type="checkbox" required><br>
+			<br>
+			<input type="checkbox" required><b> Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations?</b>><br>
 
 			<!-- submits the data entered to the server -->
-			<input type="submit" value="Submit" id="popUpYes" >
+			<br><input type="submit" value="Submit" id="popUpYes" >
 		</body>
 	</div>
 </form>
