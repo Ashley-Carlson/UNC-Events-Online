@@ -41,7 +41,7 @@ require("layout/header.php");
 		<br>
 		<br>
 		<div class="card">
-    <h2>Update Your Profile:</h2>
+    <h2>Add Clubs and Events:</h2>
     <ul>
       <li><a href="addclub.php">Add New Club</a></li>
       <li><a href="addevent.php">Add New Event</a></li>
