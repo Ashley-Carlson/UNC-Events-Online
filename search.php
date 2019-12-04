@@ -28,6 +28,7 @@
     CONCAT(event.event_name, tags, event.event_desc, user.username, user.email, user.first_name, user.last_name) LIKE :search;
   ');
   $stmt->bindValue('search', '%' . $search . '%');
+  echo "Executing big query...";
   $stmt->execute();
 ?>
 

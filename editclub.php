@@ -53,17 +53,20 @@ if (isset($_POST['id']))
 // ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
 	"SELECT user.email as email, event.event_name
-	 FROM user
-	LEFT JOIN event ON event.event_contact = user.user_id
-	WHERE event.event_id = :id"
+	 FROM eventuser
+	LEFT JOIN event ON event.event_id = eventuser.event_id
+	LEFT JOIN user ON user.user_id = eventuser.user_id
+	WHERE eventuser.event_id = :id"
 	);
 	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
-	$row = $stmt -> fetch(PDO::FETCH_ASSOC); // Get associative array
-	$email = $row['email'];
-	$event = $row['event_name'];
-	$message = 'An event has been updated';
+	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
+	{
+		$email = $row['email'];
+		$event = $row['event_name'];
+		$message = 'An event has been updated';
 
-	emailNotifaction($message, $event, $email, $noreply_email_addr);
+		emailNotifaction($message, $event, $email, $noreply_email_addr);
+	}
   header("Location: event.php?id=".$_POST['id']);
 }
 
