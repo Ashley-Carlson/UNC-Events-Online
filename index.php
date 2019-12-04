@@ -78,7 +78,7 @@
 			{
 				$tagstring .= $tag['tag'] . " ";
 			}
-			echo '<div class="row"><div class="col-lg-12 text-center">
+			echo '<div class="row"><div class="col-lg-12 text-left">
           <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
           <p>'.$time.'</p>
         <p>'.$item['duration'].'</p>
