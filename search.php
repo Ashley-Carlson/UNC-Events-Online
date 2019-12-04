@@ -1,6 +1,6 @@
 <?php require_once('includes/config.php');
   $search = $_GET["keyword"];
-  $stmt = $db->prepare('
+  $event_stmt = $db->prepare('
   SELECT
     event.event_id,
     event.event_name,
@@ -21,8 +21,8 @@
   HAVING
     CONCAT(event_name, tags, event_desc, username, email, first_name, last_name) LIKE :search
   ');
-  $stmt->bindValue('search', '%' . $search . '%');
-  $stmt->execute();
+  $event_stmt->bindValue('search', '%' . $search . '%');
+  $event_stmt->execute();
 ?>
 
 <!-- Page Content -->
