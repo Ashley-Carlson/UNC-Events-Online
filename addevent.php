@@ -74,14 +74,14 @@ $(function() {
 <!-- takes text input for title, description, reserve -->
 	<font color="black">
 	<h3>Event Name<br>
-		<input type="text" name="name" placeholder="Event Name">
+		<input type="text" name="name" placeholder="Event Name" required>
 	</h3>
 
-	<h3>Date and Time</h3><input type="datetime-local" name="event_time"><br>
-	<h3>Duration</h3><input type="text" name="duration"><br>
+	<h3>Date and Time</h3><input type="datetime-local" name="event_time" required><br>
+	<h3>Duration</h3><input type="text" name="duration" required><br>
 
 	<h3>Description</h3>
-	<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000"></textarea>
+	<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea>
 
 	<!-- TO BE IMPLEMENTED -->
 	<!-- <h3>Club:<br>
@@ -89,7 +89,7 @@ $(function() {
 	</h3> -->
 
 	<h3>Address<br>
-	<input type="text" name="location" placeholder="Location">
+	<input type="text" name="location" placeholder="Location" required>
 	</h3>
 
 	<h3>External URL<br>
