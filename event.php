@@ -98,4 +98,5 @@ LEFT JOIN user ON user.user_id = event.event_contact
      </form>';
    } ?>
 
+<?php include 'maps.html';?>
 <?php require('layout/footer.php') ?>
