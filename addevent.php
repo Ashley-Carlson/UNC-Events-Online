@@ -51,23 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			$stmt->execute(array(':event_id' => $eventID, ':tag_id' => $tag_id));
 		}
 	}
-	// ADD AUTO-EMAIL HERE
-	$stmt = $db -> prepare (
-	"SELECT user.email as email, event.event_name
-	 FROM user
-	LEFT JOIN eventfollower ON eventfollower.user_id = user.user_id
-	WHERE event.event_id = :id"
-	);
-	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
-	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
-	{
-		$email = $row['email'];
-		$event = $row['event_name'];
-		$message = 'An event has been updated
-		Chech out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
-		emailNotifaction($message, $event, $email, $noreply_email_addr);
-	}
-  echo '<p class="success">Event created.</p>';
 	if (isset($_FILES['image']))
 	{
 		mkdir("media/events/" . $eventID, 0777, true);
@@ -81,6 +64,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
 		echo '<p class="success">File uploaded.</p>';
 	}
+	// ADD AUTO-EMAIL HERE
+	$stmt = $db -> prepare (
+	"SELECT user.email as email, event.event_name
+	 FROM user
+	LEFT JOIN eventfollower ON eventfollower.user_id = user.user_id
+	LEFT JOIN event ON event.event_id = eventfollower.event_id
+	WHERE event.event_id = :id"
+	);
+	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
+	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
+	{
+		$email = $row['email'];
+		$event = $row['event_name'];
+		$message = 'An event has been updated
+		Chech out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
+		emailNotifaction($message, $event, $email, $noreply_email_addr);
+	}
+  echo '<p class="success">Event created.</p>';
 
 	header("Location: event.php?id=".$row['m']);
 }
