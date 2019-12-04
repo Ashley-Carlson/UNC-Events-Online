@@ -85,5 +85,5 @@
 				<p>'.$tagstring.'</p>
       </div></div><br><br>';
     }
-  ?>
-<!-- require('layout/footer.php') -->
+// require('layout/footer.php')
+?>

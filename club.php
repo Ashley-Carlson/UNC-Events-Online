@@ -46,17 +46,15 @@ LEFT JOIN user ON user.user_id = club.fac_sponsor_id
 	require('layout/header.php');
 ?>
   <br><br>
-   <div class="container">
-     <h1 style="color: #eacc1f; text-align:center;"><?php echo $item['name'] ?></h1>
-    </div>
-     <div class="card" style="color: White;">
-     <body style="background-color: #333;">
-     <h3 style="color: black; text-align:center;"><?php echo $item['description'] ?></h3>
+   <div class="card">
+     <h1 class="name"><?php echo $item['name'] ?></h1>
+     <body>
+     <h3 id="description"><?php echo $item['description'] ?></h3>
      </div>
-     <div class="card" style="color: White;">
+     <div class="card">
        <!--<h2>Faculty Sponsor: </h2>-->
-       <h2  style="color: #000080;">Contact Name: <?php echo $item['sponsor'] ?></h2>
-       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
+       <h2>Contact Name: <?php echo $item['sponsor'] ?></h2>
+       <p>Contact email: <?php echo $item['email'] ?></p>
      </div>
 		 <br /><br />
      <div>
@@ -66,7 +64,7 @@ LEFT JOIN user ON user.user_id = club.fac_sponsor_id
  				echo '
  			<form action="follow.php" method="post">
  				<input type="hidden" name="club_id" value="' . $currentID . '">
- 				<input type="submit" value="' . $notif_button_text . '">
+ 				<input id="notif-button" type="submit" value="' . $notif_button_text . '">
  			</form>';
  		  } ?>
      </div>
@@ -74,11 +72,11 @@ LEFT JOIN user ON user.user_id = club.fac_sponsor_id
      if ($userID == $item['user_id'])
      {
       echo '
-     <form action="editevent.php" method="post">
+     <form action="editclub.php" method="post">
      <input type="hidden" name="id2" value="' . $currentID . '">
      <input type="submit" value="Edit">
      </form>
-     <form action="deleteevent.php" method="post">
+     <form action="deleteclub.php" method="post">
      <input type="hidden" name="id3" value="' . $currentID . '">
      <input type="submit" value="Delete">
      </form>';
