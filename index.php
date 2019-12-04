@@ -68,7 +68,7 @@
 			SELECT eventtag.tag_id as tag_id, tag.tag AS tag
 			  FROM eventtag
  	 LEFT JOIN tag ON tag.tag_id = eventtag.tag_id
-			 WHERE eventtag.event_id = :event_idIm
+			 WHERE eventtag.event_id = :event_id
 	 ");
 			$stmt->execute(array(":event_id" => $item["event_id"]));
       $phptime = strtotime($item['event_time']);
