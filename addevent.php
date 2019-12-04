@@ -59,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		$filename = $_FILES['image']['name'];
 		move_uploaded_file($_FILES['image']['name'], $target);
 
-		$stmt = $db->prepare("UPDATE event SET photo_path = :photo WHERE club_id = :club_id");
-		$stmt->execute(array(':photo' => $target, ':club_id' => $clubID));
+		$stmt = $db->prepare("UPDATE event SET photo_path = :photo WHERE event_id = :event_id");
+		$stmt->execute(array(':photo' => $target, ':event_id' => $eventID));
 
 		echo '<p class="success">File uploaded.</p>';
 	}
