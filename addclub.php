@@ -44,6 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 		}
 	}
 
+	$stmt = $db->prepare('INSERT INTO clubmember (user_id, club_id, is_contact, can_edit) VALUES (:user_id, :club_id, 1, 1)');
+	$stmt->execute(array(":user_id" => $userID, ":club_id" => row['m']));
+
 	header("Location: club.php?id=".$row['m']);
 }
 ?>
