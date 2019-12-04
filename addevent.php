@@ -96,7 +96,7 @@ $(function() {
 
 <!-- <body style="background-image:url('media/addeventbkg.jpg');"> -->
 
-<form role="form" id="addevent" action="addevent.php" method="POST">
+<form enctype="multipart/form-data" role="form" id="addevent" action="addevent.php" method="POST">
 	<div class="container">
 		<body class="addevent">
 			<h1 class="title">Add an Event</h1>

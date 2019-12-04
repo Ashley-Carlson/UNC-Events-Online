@@ -65,7 +65,7 @@ require('layout/header.php');
 
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
-<form action="editevent.php" method="POST">
+<form enctype="multipart/form-data" action="editevent.php" method="POST">
 		<h1 style="text-align:center;">Add a Club</h1>
 		<div class="card">
 	<!-- takes text input for title, description, reserve -->

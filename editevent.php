@@ -117,7 +117,7 @@ $(function() {
 
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
-<form action="editevent.php" method="POST">
+<form enctype="multipart/form-data" action="editevent.php" method="POST">
 	<div class="card">
 	<h1 style="text-align:center;">Edit Event</h1>
 	<!-- takes text input for title, description, reserve -->

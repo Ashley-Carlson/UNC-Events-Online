@@ -58,7 +58,7 @@ $(function() {
 });
 </script>
 
-<form role="form" action="addclub.php" method="POST">
+<form enctype="multipart/form-data" role="form" action="addclub.php" method="POST">
 	<div class="container">
 		<body class="addclub">
 			<h1 class="title">Add a Club</h1>
