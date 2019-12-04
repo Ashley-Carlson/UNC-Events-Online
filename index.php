@@ -88,12 +88,12 @@
 */
       echo '<div class = "card">
           <img src="media/logo.png" alt="UNC" style="width:15%">
-          <div class="container">
-            <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
-            <p>'.$time.'</p>
-          <p>'.$item['duration'].'</p>
-  				<p>'.$tagstring.'</p>
-          </div>
+            <div class="container">
+              <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
+              <p>'.$time.'</p>
+              <p>'.$item['duration'].'</p>
+    			    <p>'.$tagstring.'</p>
+            </div>
           </div>
           <br>';
 
