@@ -60,31 +60,33 @@ http://uncevents.online/verify.php?verify=$verify_string";
 }
 ?>
 <form action="register.php" method="POST">
- <div class="container">
-   <body style="background-color: #eee;">
-   <h1 style="text-align:center;">Register</h1>
-   <p>Please fill in this form to create an account.</p>
-   <hr>
-   <b>First Name: </b><br>
-   <input type="text" placeholder="First Name" name="first_name" required><br>
+	<div class="container">
+		<body class="register">
+			<h1 class="title">Register</h1>
+			<hr>
+			<p>Please fill in this form to create an account.</p>
+			<hr>
+			<b>First Name: </b><br>
+			<input type="text" placeholder="First Name" name="first_name" required><br>
 
-   <b>Last Name: </b><br>
-   <input type="text" placeholder="Last Name" name="last_name" required><br>
+			<b>Last Name: </b><br>
+			<input type="text" placeholder="Last Name" name="last_name" required><br>
 
-   <b>Username: </b><br>
-   <input type="text" placeholder="Username" name="username" required><br>
+			<b>Username: </b><br>
+			<input type="text" placeholder="Username" name="username" required><br>
 
-   <b>Email: </b><br>
-   <input type="email" placeholder="Email" name="email" required><br>
+			<b>Email: </b><br>
+			<input type="email" placeholder="Email" name="email" required><br>
 
-   <b>Password: </b><br>
-   <input type="password" placeholder="Password" name="passwd" minlength="8" required><br>
+			<b>Password: </b><br>
+			<input type="password" placeholder="Password" name="passwd" minlength="8" required><br>
 
-   <b>Repeat Password: </b><br>
-   <input type="password" placeholder="Confirm Password" name="verify" required><br>
-   <hr>
-   <input type="checkbox" name="is_faculty"> I am Faculty <br>
-   <button type="submit">Register</button>
- </div>
+			<b>Repeat Password: </b><br>
+			<input type="password" placeholder="Confirm Password" name="verify" required><br>
+			<hr>
+			<input type="checkbox" name="is_faculty"> I am Faculty <br>
+			<button type="submit">Register</button>
+    	</body>
+ 	</div>
 </form>
 <?php require('layout/footer.php') ?>

@@ -1,6 +1,10 @@
-.name {
+.name, .title {
     text-align: left;
     display: inline;
+}
+
+.container {
+    margin: 15px;
 }
 
 #description {
@@ -18,4 +22,9 @@
 
 .error {
 	color: red;
+}
+
+.register {
+    background-color: #eee;
+    text-align: left;
 }
