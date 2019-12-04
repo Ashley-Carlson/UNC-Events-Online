@@ -65,7 +65,7 @@
   <div class="row">
     <div class="col-lg-12 text-center">
       <h1 class="mt-5">Search Results</h1>
-			<?php echo '<h3>Searched '. $type . 's for ' . $search . '</h3>' ?>
+			<?php echo '<h3>Results for "' . $search . '" in ' . $type . '</h3>' ?>
       <!-- <p class="lead">Complete with pre-defined file paths and responsive navigation!</p> -->
       <!-- <ul class="list-unstyled"> -->
         <!-- <li>Bootstrap 4.3.1</li>
