@@ -66,71 +66,67 @@ $(function() {
 });
 </script>
 
-<body style="background-image:url('media/addeventbkg.jpg');">
+<!-- <body style="background-image:url('media/addeventbkg.jpg');"> -->
 
-<form action="addevent.php" method="POST">
-	<h1 style="text-align:center;">Add an Event</h1>
-	<div class="card">
-<!-- takes text input for title, description, reserve -->
-	<font color="black">
-	<h3>Event Name<br>
-		<input type="text" name="name" placeholder="Event Name" required>
-	</h3>
+<form role="form" id="addevent" action="addevent.php" method="POST">
+	<div class="container">
+		<body class="addevent">
+			<h1 class="title">Add an Event</h1>
+			<hr>
+			<!-- <div class="card"> -->
+			<!-- takes text input for title, description, reserve -->
+			<b>Event Name: </b>
+			<input type="text" name="name" placeholder="Event Name" required><br>
 
-	<h3>Date and Time</h3><input type="datetime-local" name="event_time" required><br>
-	<h3>Duration</h3><input type="text" name="duration" required><br>
+			<b>Date and Time:</b>
+			<input type="datetime-local" name="event_time" required><br>
 
-	<h3>Description</h3>
-	<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea>
+			<b>Duration:</b>
+			<input type="text" name="duration" required><br>
 
-	<!-- TO BE IMPLEMENTED -->
-	<!-- <h3>Club:<br>
-	<input type="text" name="description" placeholder="Description">
-	</h3> -->
+			<b>Description:</b><br>
+			<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea><br>
 
-	<h3>Address<br>
-	<input type="text" name="location" placeholder="Location" required>
-	</h3>
+			<!-- TO BE IMPLEMENTED -->
+			<!-- <h3>Club:<br>
+			<input type="text" name="description" placeholder="Description">
+			</h3> -->
 
-	<h3>External URL<br>
-	<input type="text" name="external_url1" placeholder="Link">
-</h3><br>
-<input type="text" name="external_url2" placeholder="Link">
-</h3><br>
-<input type="text" name="external_url3" placeholder="Link">
-</h3><br>
-	<p>Does this event have food? <input type="checkbox" name="has_food">
-	</p><br>
-	<!-- dropdown menu to assign it a tag (for searching) -->
-	  Tags:<br>
-		<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
-			<option value=""></option>
-			<?php
-			$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
-			$stmt->execute();
-			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-			{
-				echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
-			}
-			?>
-		</select>
-	  <br><br>
+			<b>Address:</b>
+			<input type="text" name="location" placeholder="Location" required><br>
 
-<!-- actual file upload for the item itself -->
-	  Upload Image:
-	  <input type="file" name="image" id="image">
-		<br>
-	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
-	</p>
+			<b>External URL(s):</b><br>
+			<input type="text" name="external_url1" placeholder="Link"><br>
+			<input type="text" name="external_url2" placeholder="Link"><br>
+			<input type="text" name="external_url3" placeholder="Link"><br>
 
-<br /><br /><br /><br /><br />
-</font>
-</div>
+			<b>Does this event have food? </b><input type="checkbox" name="has_food"><br>
 
-	<!-- submits the data entered to the server -->
-	 <input type="submit" value="Submit" id="popUpYes" >
+			<!-- dropdown menu to assign it a tag (for searching) -->
+			<b>Tags:</b><br>
+				<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
+					<option value=""></option>
+					<?php
+					$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
+					$stmt->execute();
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+					{
+						echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
+					}
+					?>
+				</select>
+			<br><br>
 
+			<!-- actual file upload for the item itself -->
+			Upload Image:
+			<input type="file" name="image" id="image">
+				<br>
+			<b>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations? </b><input type="checkbox" required><br>
 
+			<!-- submits the data entered to the server -->
+			<input type="submit" value="Submit" id="popUpYes" >
+		</body>
+	</div>
 </form>
 
 <!-- For tag filtering -->

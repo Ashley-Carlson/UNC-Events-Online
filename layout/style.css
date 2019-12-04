@@ -25,7 +25,7 @@
 	color: red;
 }
 
-.register, .login {
+.register, .login, .addevent {
     background-color: #eee;
     text-align: left;
 }
