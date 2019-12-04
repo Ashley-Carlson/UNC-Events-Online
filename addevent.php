@@ -94,7 +94,7 @@ $(function() {
 			<input id="event_name_box" type="text" name="name" placeholder="Event Name" required><br>
 
 			<b>Date and Time:</b>
-			<input id="datetime_box" type="datetime-local" name="event_time" required><br>
+			<input type="datetime-local" name="event_time" required><br>
 
 			<b>Duration:</b>
 			<input type="text" name="duration" placeholder="e.g. 2 hours" required><br>
@@ -130,7 +130,7 @@ $(function() {
 					}
 					?>
 				</select>
-			<br><br>
+			<br>
 
 			<!-- actual file upload for the item itself -->
 			<b>Upload Image:</b><br>
