@@ -76,7 +76,7 @@
 			$tagstring = "";
 			while ($tag = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$tagstring .= '<a href="search?type=event&keyword="' . $tag['tag']. '">' . $tag['tag'] . "</a> ";
+				$tagstring .= '<a href="search.php?type=event&keyword=' . $tag['tag']. '">' . $tag['tag'] . "</a> ";
 			}
 			echo '<div class="row"><div class="col-lg-12 text-left">
           <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
