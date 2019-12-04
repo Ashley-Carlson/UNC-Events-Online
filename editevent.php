@@ -16,11 +16,9 @@ SELECT
 	event.external_url2,
 	event.external_url3,
 	event.has_food,
-	CONCAT(user.first_name, ' ', user.last_name),
-	club.club_id,
-	club.club_name
+	CONCAT(user.first_name, ' ', user.last_name)
 FROM event
-LEFT JOIN user ON event.contact_id = user.user_id
+LEFT JOIN user ON event.event_contact = user.user_id
 WHERE event_id = :id"
 );
 $stmt -> execute(array(
@@ -108,6 +106,13 @@ if (isset($_POST['id']))
 require('layout/header.php');
 
 ?>
+
+<script type="text/javascript">
+// Chosen filtering
+$(function() {
+	$(".chosen-select").chosen();
+});
+</script>
 
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
