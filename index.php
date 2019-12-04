@@ -87,7 +87,7 @@
       </div></div><br><br>';
 */
       echo '<div class = "card">
-          <img src="media/logo.png" alt="UNC" style="width:100%">
+          <img src="media/logo.png" alt="UNC" style="width:25%">
           <div class="container">
             <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
             <br>
