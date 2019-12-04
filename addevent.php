@@ -19,25 +19,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
   $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
-  $stmt = $db->prepare('INSERT INTO event (event_name, event_desc, event_time, location, has_food, external_url, event_contact) VALUES (:name, :description, :event_time, :location, :has_food, :external_url, :event_contact)');
+
+  $stmt = $db->prepare('
+	INSERT INTO event (event_name, event_desc, event_time,
+	                   duration, location, has_food, external_url1,
+										 external_url2, external_url3, event_contact)
+	     VALUES (:name, :description, :event_time, :duration,
+			         :location, :has_food, :external_url1,
+							 :external_url2, :external_url3, :event_contact)');
+
   $stmt -> execute(array(
     ':name' => $_POST['name'],
     ':description' => $_POST['description'],
     ':event_time' => $event_date,
+		':duration' => $_POST['duration'],
     ':location' => $_POST['location'],
     ':has_food' => $has_food,
-    ':external_url' => $_POST['external_url'],
+    ':external_url1' => $_POST['external_url1'],
+		':external_url2' => $_POST['external_url2'],
+		':external_url3' => $_POST['external_url3'],
     ':event_contact' => $userID,
   ));
-
-  echo '<p class="success">Event created.</p>';
 
 	$stmt = $db->prepare('SELECT MAX(event_id) as m FROM event');
 	$stmt -> execute();
 	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+	if ($_POST['tags'])
+	{
+		$stmt = $db->prepare('INSERT INTO eventtag (event_id, tag_id) VALUES (:event_id, :tag_id)');
+		foreach($_POST['tags'] as $tag_id)
+		{
+			$stmt->execute(array(':event_id' => $row['m'], ':tag_id' => $tag_id));
+		}
+	}
+
+  echo '<p class="success">Event created.</p>';
 	header("Location: event.php?id=".$row['m']);
 }
 ?>
+
+<script type="text/javascript">
+// Chosen filtering
+$(function() {
+	$(".chosen-select").chosen();
+});
+</script>
 
 <body style="background-image:url('media/addeventbkg.jpg');">
 
@@ -45,13 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<h1 style="text-align:center;">Add an Event</h1>
 	<div class="card">
 <!-- takes text input for title, description, reserve -->
-	<font color="#ffffff">
+	<font color="black">
 	<h3>Event Name<br>
 		<input type="text" name="name" placeholder="Event Name">
 	</h3>
 
-	<h3>Date and Time</h3><input type="datetime-local" name="event_time">
-
+	<h3>Date and Time</h3><input type="datetime-local" name="event_time"><br>
+	<h3>Duration</h3><input type="text" name="duration"><br>
 
 	<h3>Description</h3>
 	<textarea id="subject" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000"></textarea>
@@ -75,47 +102,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	<p>Does this event have food? <input type="checkbox" name="has_food">
 	</p><br>
 	<!-- dropdown menu to assign it a tag (for searching) -->
-	  Tag:<br>
-		<select>
-			<option value="biology">Biology</option>
-			<option value="mathematics">Mathematics</option>
-			<option value="technology">Furry</option>
-			<option value="art">Art</option>
-			<option value="science">Science</option>
-			<option value="performance">Performance</option>
-			<option value="theater">Theater</option>
-			<option value="chemistry">Chemistry</option>
-			<option value="culture">Culture</option>
-			<option value="cuisine">Cuisine</option>
-			<option value="animals">Animals</option>
-			<option value="21">21+</option>
-			<option value="offical">Official</option>
-			<option value="party">Party</option>
-			<option value="greek">Greek</option>
-			<option value="mechanics">Mechanics</option>
-			<option value="engineering">Engineering</option>
-			<option value="ai">AI</option>
-			<option value="buisness">Buisness</option>
-			<option value="networking">Networking</option>
-			<option value="food">Food</option>
-			<option value="sports">Sports</option>
-			<option value="football">Football</option>
-			<option value="volleyball">Volleyball</option>
-			<option value="soccer">Soccer</option>
+	  Tags:<br>
+		<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
+			<option value=""></option>
+			<option value="1">Biology</option>
+			<option value="2">Mathematics</option>
+			<option value="3">Technology</option>
+			<option value="4">Art</option>
+			<option value="5">Science</option>
+			<option value="6">Performance</option>
+			<option value="7">Theater</option>
+			<option value="8">Chemistry</option>
+			<option value="9">Culture</option>
+			<option value="10">Cuisine</option>
+			<option value="11">Animals</option>
+			<option value="12">21+</option>
+			<option value="13">Official</option>
+			<option value="14">Party</option>
+			<option value="15">Greek</option>
+			<option value="16">Mechanics</option>
+			<option value="17">Engineering</option>
+			<option value="18">AI</option>
+			<option value="19">Business</option>
+			<option value="20">Networking</option>
+			<option value="21">Food</option>
+			<option value="22">Sports</option>
+			<option value="23">Football</option>
+			<option value="24">Volleyball</option>
+			<option value="25">Soccer</option>
 		</select>
 	  <br><br>
 
 <!-- actual file upload for the item itself -->
-
 	  Upload Image:
 	  <input type="file" name="image" id="image">
 		<br>
 	<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
 	</p>
-	</font>
+
+<br /><br /><br /><br /><br />
+</font>
+</div>
+
 	<!-- submits the data entered to the server -->
-	 <input type="submit" value="Submit" id="popUpYes" color: white >
-	</div>
+	 <input type="submit" value="Submit" id="popUpYes" >
+
+
 </form>
+
+<!-- For tag filtering -->
+<script src="layout/jquery/jquery.min.js"></script>
+<script src="layout/chosen/chosen.jquery.min.js"></script>
+<link href="layout/chosen/chosen.min.css" rel="stylesheet"/>
 
 <?php require('layout/footer.php') ?>

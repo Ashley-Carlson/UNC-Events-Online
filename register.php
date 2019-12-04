@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			'cost' => 12,
 		];
 		$hash = $user->password_hash($_POST['passwd'], PASSWORD_DEFAULT, $hash_options);
-        $verify_string = md5((string)time());
-		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string)");
+    $verify_string = md5((string)time());
+		$stmt = $db->prepare("INSERT INTO user (username, email, hash, first_name, last_name, acct_type, verify, is_inactive) VALUES (:username, :email, :hash, :first_name, :last_name, :acct_type, :verify_string, 1)");
 		$stmt->execute(array(
 			':username' => $_POST['username'],
 			':email' => $_POST['email'],
@@ -36,27 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			':first_name' => $_POST['first_name'],
 			':last_name' => $_POST['last_name'],
 			':acct_type' => $acct_type,
-            ':verify_string' => $verify_string
+      ':verify_string' => $verify_string
 		));
-		$_SESSION['username'] = $_POST['username'];
-		$_SESSION['first_name'] = $_POST['first_name'];
-		$_SESSION['loggedin'] = true;
 
-        $to = $_POST['email'];
-        $msg = "Thank you for joining UNC Events Online.";
-        $subject = "Email Verification (uncevents.online)";
-        $headers .= "MIME-Version: 1.0"."\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1'."\r\n";
-				$headers .= $noreply_email_addr;
-        $ms.="<html></body><div><div>Dear " .  $_POST['first_name'] . ",</div></br></br>";
-        $ms.="<div style='padding-top:8px;'>Please click the following link to verify and activate your account.</div>
-        <div style='padding-top:10px;'><a href='https://uncoevents.online/verify.php?verify=$verify_string'>Click Here</a></div>
-        </body></html>";
-				emailNotifaction($ms, $subject, $to, $noreply_email_addr);
-        // mail($to,$subject,$ms,$headers); // DEPRECATED
+		$email = $_POST['email'];
+		$subject = "Email Verification";
+		$message = "To verify your account, please click on the link below:
 
-		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account.</p>';
-		header("Location: dash.php");
+http://uncevents.online/verify.php?verify=$verify_string";
+
+		emailNotifaction($message, $subject, $email, $noreply_email_addr);
+
+		echo '<p class="success">An email has been sent to ' . $_POST['email'] . '. Please click the link in the email to finish registering your account. You will be redirected to the homepage in 5 seconds.</p>';
+		echo '<meta http-equiv="refresh" content="5;url=http://uncevents.online/" />';
 	}
 	else
 	{
@@ -89,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
    <input type="password" placeholder="Password" name="passwd" minlength="8" required><br>
 
    <b>Repeat Password: </b><br>
-   <input type="password" placeholder="Repeat Password" name="verify" required><br>
+   <input type="password" placeholder="Confirm Password" name="verify" required><br>
    <hr>
    <input type="checkbox" name="is_faculty"> I am Faculty <br>
    <button type="submit">Register</button>

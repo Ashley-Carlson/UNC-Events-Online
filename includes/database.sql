@@ -1,12 +1,12 @@
-DROP TABLE IF EXISTS `user`;
-DROP TABLE IF EXISTS `event`;
-DROP TABLE IF EXISTS `club`;
+DROP TABLE IF EXISTS `usertag`;
 DROP TABLE IF EXISTS `userclub`;
 DROP TABLE IF EXISTS `eventuser`;
 DROP TABLE IF EXISTS `clubevent`;
 DROP TABLE IF EXISTS `eventtag`;
-DROP TABLE IF EXISTS `usertag`;
 DROP TABLE IF EXISTS `clubtag`;
+DROP TABLE IF EXISTS `event`;
+DROP TABLE IF EXISTS `club`;
+DROP TABLE IF EXISTS `user`;
 DROP TABLE IF EXISTS `tag`;
 
 
@@ -21,7 +21,7 @@ CREATE TABLE `user` (
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updt_timestmp` datetime ON UPDATE CURRENT_TIMESTAMP,
   `verify` char(32),
-  `is_inactive` bit(1) DEFAULT 0
+  `is_inactive` bit(1) DEFAULT 1
 );
 
 CREATE TABLE `event` (
@@ -33,9 +33,10 @@ CREATE TABLE `event` (
   `latitude` float,
   `longitude` float,
   `location` varchar(512),
+  `duration` varchar(28),
   `external_url1` varchar(512),
-  `external_url2` varchar(512)
-  `external_url3` varchar(512)
+  `external_url2` varchar(512),
+  `external_url3` varchar(512),
   `create_timestmp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updt_timestmp` datetime ON UPDATE CURRENT_TIMESTAMP,
   `is_inactive` bit(1) DEFAULT 0,
@@ -63,8 +64,7 @@ CREATE TABLE `userclub` (
 
 CREATE TABLE `eventuser` (
   `event_id` int,
-  `user_id` int,
-  `is_following` bit(1) DEFAULT 0
+  `user_id` int
 );
 
 CREATE TABLE `clubevent` (
@@ -87,9 +87,8 @@ CREATE TABLE `usertag` (
 );
 
 CREATE TABLE `tag` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `tag` varchar(64) NOT NULL,
-  `is_inactive` bit(1) DEFAULT 0
+  `tag_id` int PRIMARY KEY AUTO_INCREMENT,
+  `tag` varchar(64) NOT NULL
 );
 
 ALTER TABLE `userclub` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
@@ -104,7 +103,7 @@ ALTER TABLE `eventuser` ADD FOREIGN KEY (`event_id`) REFERENCES `event` (`event_
 
 ALTER TABLE `eventuser` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
-ALTER TABLE `eventtag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
+ALTER TABLE `eventtag` ADD FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
 
 ALTER TABLE `eventtag` ADD FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`);
 
