@@ -90,9 +90,10 @@
           <img src="media/logo.png" alt="UNC" style="width:5%">
           <div class="container">
             <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
-            <br>
+
           </div>
-          </div>';
+          </div>
+          <br>';
 
 
     }
