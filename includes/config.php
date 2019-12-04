@@ -27,9 +27,11 @@ define('DBUSER', 'u800519350_gLpRH');
 define('DBPASS', 'cs350');
 define('DBNAME', 'u800519350_LBuOL');
 
-//application address 
+//application address
 define('DIR', 'http://localhost');
 define('SITEEMAIL', 'webmaster@uncevents.online');
+ini_set('display_errors', 1);
+error_reporting(E_ERROR);
 
 try {
   //create PDO connection
