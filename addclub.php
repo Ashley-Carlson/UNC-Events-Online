@@ -51,6 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 }
 ?>
 
+<script type="text/javascript">
+// Chosen filtering
+$(function() {
+	$(".chosen-select").chosen();
+});
+</script>
+
 <form role="form" action="addclub.php" method="POST">
 	<div class="container">
 		<body class="addclub">
@@ -103,5 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	</div>
 </form>
 
+<!-- For tag filtering -->
+<script src="layout/jquery/jquery.min.js"></script>
+<script src="layout/chosen/chosen.jquery.min.js"></script>
+<link href="layout/chosen/chosen.min.css" rel="stylesheet"/>
 
 <?php require('layout/footer.php') ?>
