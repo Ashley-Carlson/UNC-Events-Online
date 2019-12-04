@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	}
   echo '<p class="success">Event created.</p>';
 
-	header("Location: event.php?id=".$row['m']);
+	header("Location: event.php?id=".$clubID);
 }
 ?>
 
