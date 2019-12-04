@@ -52,20 +52,14 @@ LEFT JOIN user ON user.user_id = club.fac_sponsor_id
      <div class="card" style="color: White;">
      <body style="background-color: #333;">
      <h3 style="color: black; text-align:center;"><?php echo $item['description'] ?></h3>
-     <h3 style="color: black; text-align:center;"><?php echo $time ?></h3>
      </div>
      <div class="card" style="color: White;">
        <!--<h2>Faculty Sponsor: </h2>-->
-       <h2  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></h2>
+       <h2  style="color: #000080;">Contact Name: <?php echo $item['sponsor'] ?></h2>
        <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
      </div>
-     <div class="card" style="color: White;">
-       <p style="color: #000080;"><?php echo $item['location'] ?></p>
-     </div>
+		 <br /><br />
      <div>
-       <p style="color: white;">There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?>>
-       </p>
-			 <br /><br />
 			 <?php
  			if ($user->is_logged_in())
  			{
