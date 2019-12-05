@@ -21,6 +21,10 @@ if ($userInfo['acct_type'] != 2 && $canEdit != 1) {
     header("Location: index.php");
 }
 
+$stmt = $db->prepare("SELECT photo_path FROM club WHERE club_id = :club_id");
+$stmt->execute(array(':club_id' => $id));
+$itemInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
 $stmt = $db->prepare('DELETE FROM clubfollower WHERE club_id = :id');
 $stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM clubmember WHERE club_id = :id');
@@ -29,6 +33,12 @@ $stmt = $db->prepare('DELETE FROM clubtag WHERE club_id = :id');
 $stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM club where club_id = :id');
 $stmt->execute(array(':id' => $id));
+
+if (isset($itemInfo['photo_path']))
+{
+  unlink($itemInfo['photo_path']);
+  rmdir("media/clubs/" . $id);
+}
 
 header('Location: index.php');
 
