@@ -9,7 +9,6 @@
     WHERE club_id = :id
   ");
   //Get user
-  $stmt2 = $db->prepare('SELECT user.user_id FROM club WHERE WHERE username = :username);
 	$stmt->execute(array(':id' => $currentID));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$item = array(
@@ -18,6 +17,11 @@
     'photo' => $row['photo_path']
     'user_id'     => $row['user_id'],
   );
+  $stmt = $db -> prepare("
+  SELECT user_id
+  FROM user
+  WHERE username = :username
+  ");
 	$stmt = $db->prepare(
 		"SELECT
 		   CONCAT(user.first_name, ' ', user.last_name) as name,
@@ -31,11 +35,10 @@
 	);
 	$stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
-  $stmt = $db -> prepare('SELECT user_id FROM user WHERE username = :username');
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
-	// Get notification status
+  // Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
 	$stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
