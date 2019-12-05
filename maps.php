@@ -38,7 +38,7 @@ function fnGeocode($address)
 
 function renderMap($lat, $lon)
 {
-    return '<img src=\"https://maps.locationiq.com/v2/staticmap?key=d3cf11b0ab734a&center=' . $lat . ',' . $lon . '&zoom=16&size=600x350&markers=icon:small-red-cutout|' . $lat . ',' . $lon . '\" alt=\"map of location\">';
+    return '<img src="https://maps.locationiq.com/v2/staticmap?key=d3cf11b0ab734a&center=' . $lat . ',' . $lon . '&zoom=16&size=600x350&markers=icon:small-red-cutout|' . $lat . ',' . $lon . '" alt="map of location">';
     /*return '
     <div id="googleMap" style="width:100%;height:400px;"></div>
 
