@@ -105,7 +105,7 @@ if(isset($_POST['submit'])){
 							<a class="nav-link" href="/">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="https://www.unco.edu/clubs-organizations/forms.aspx">Policies</a>
+							<a class="nav-link" href="policies.php">Policies</a>
 						</li>
 						<li class="nav-item">
 							<form action="search.php" method="get">
