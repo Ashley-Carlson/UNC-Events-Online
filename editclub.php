@@ -5,8 +5,8 @@ $id = $_POST['id2'];
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
-
-$stmt = $db -> prepare('SELECT event_name, event_contact, event_desc, location, event_time, external_url, has_food FROM event WHERE event_id = :id');
+.
+$stmt = $db -> prepare('SELECT club_name, photo_path, club_desc, fac_sponsor_id, has_food FROM club WHERE club_id = :id');
 $stmt -> execute(array(
   ':id' => $id,
 ));
