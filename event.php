@@ -7,6 +7,7 @@
         event.event_desc as event_desc,
         event.has_food as has_food,
         event.event_time as event_time,
+        event.photo_path as photo_path,
         event.location as location,
         event.latitude as lat,
         event.longitude as lon,
@@ -34,6 +35,7 @@
         'last_name'   => $row['last_name'],
         'email'       => $row['email'],
         'user_id'     => $row['user_id'],
+        'photo_path' => $row['photo_path'],
     );
     $stmt = $db -> prepare("
     SELECT user_id
@@ -63,6 +65,10 @@
 ?>
   <br><br>
     <div class="card">
+      <?php
+      $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
+      echo '<div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>'
+      ?>
       <h1 class="name"><?php echo $item['name'] ?></h1>
       <p id="time"><?php echo $time ?></p>
       <p><?php echo $item['duration'] ?></p>
