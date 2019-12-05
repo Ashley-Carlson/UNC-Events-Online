@@ -79,6 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
 		echo '<p class="success">File uploaded.</p>';
 	}
+	if (isset($_POST['club_id']))
+	{
+		$stmt = $db->prepare("INSERT INTO clubevent (club_id, event_id) VALUES (:club_id, :event_id)");
+		$stmt->execute(array(':club_id' => $_POST['club_id'], ':event_id' => $eventID));
+	}
 	// ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
 	"SELECT user.email as email, event.event_name
