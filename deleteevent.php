@@ -20,7 +20,7 @@ $stmt = $db->prepare('DELETE FROM eventfollower where event_id = :id');
 $stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM eventtag where event_id = :id');
 $stmt->execute(array(':id' => $id));
-$stmt = $db->prepare('DELETE FROM event where event_id = :id');
+$stmt = $db->prepare('UPDATE event SET is_inactive = 1 WHERE event_id = :id');
 $stmt->execute(array(':id' => $id));
 
 if (isset($itemInfo['photo_path']))
