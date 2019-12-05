@@ -102,7 +102,7 @@
     			    <p><u>Tags:</u>              '.$tagstring.'</p>
             </div>
             </div>
-          &nbsp';
+          &nbsp&nbsp&nbsp';
     /*  if ($item['row_start'] == True) {
         echo '</div>';
       }
