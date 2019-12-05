@@ -94,14 +94,14 @@
         echo '<div class="row">';
       } <div class = "column"> */
       echo '<div class = "card">
-            <div class="card-image" style = background-image: url('. $filepath .') alt="UNC" id="card-image"></div>
+          <div class="card-image" style = background-image img src='. $filepath .' alt="UNC"></div>
             <div class="container">
               <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
               <p><u>Date and Time:</u>     '.$time.'</p>
               <p><u>Duration of Event:</u> '.$item['duration'].'</p>
     			    <p><u>Tags:</u>              '.$tagstring.'</p>
             </div>
-          </div>
+            </div>
           &nbsp';
     /*  if ($item['row_start'] == True) {
         echo '</div>';
