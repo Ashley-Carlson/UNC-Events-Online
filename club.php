@@ -8,6 +8,8 @@
      FROM club
     WHERE club_id = :id
   ");
+  $edit_stmt = $db->prepare('SELECT can_edit FROM clubmember WHERE user_id = :user_id AND club_id = :club_id');
+  $edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
 	$stmt->execute(array(':id' => $currentID));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$item = array(
@@ -79,7 +81,7 @@
  		  } ?>
      </div>
      <?php
-     if ($userID == $item['user_id'])
+     if ($edit_stmt->rowCount() > 0)
      {
       echo '
      <form action="editclub.php" method="post">
