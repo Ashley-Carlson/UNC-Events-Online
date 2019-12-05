@@ -56,6 +56,7 @@
        $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
        echo '<div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>'
        ?>
+       <br>
      <h1 class="name"><?php echo $item['name'] ?></h1>
      <body>
      <h3 id="description"><?php echo $item['description'] ?></h3>
