@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 
 		echo '<p class="success">File uploaded.</p>';
 	}
-	if (isset($_POST['club_id']))
+	if (isset($_POST['club_id']) && $_POST['club_id'] != "none")
 	{
 		$stmt = $db->prepare("INSERT INTO clubevent (club_id, event_id) VALUES (:club_id, :event_id)");
 		$stmt->execute(array(':club_id' => $_POST['club_id'], ':event_id' => $eventID));
@@ -137,8 +137,9 @@ $(function() {
 			<b>Event Name: </b>
 			<input id="event_name_box" type="text" name="name" placeholder="Event Name" required><br>
 
-			<b>Club: </b>
+			<br><b>Club: </b>
 			<select name="club_id">
+				<option value="none"></option>
 				<?php
 				$stmt = $db->prepare(
 				"SELECT

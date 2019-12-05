@@ -29,6 +29,18 @@ $stmt -> execute(array(
 
 $event = $stmt -> fetch(PDO::FETCH_ASSOC);
 
+$stmt = $db->prepare('
+SELECT
+  club.club_name,
+	club.club_id
+FROM club
+LEFT JOIN clubevent ON clubevent.club_id = club.club_id
+WHERE clubevent.event_id = :event_id
+');
+
+$stmt->execute(array(":event_id" => $id));
+$club = $stmt->fetch(PDO::FETCH_ASSOC);
+
 $contact_id = $event['event_contact'];
 
 $stmt = $db -> prepare('SELECT user_id, acct_type FROM user WHERE username = :username');
@@ -105,6 +117,13 @@ if (isset($_POST['id']))
 
 		echo '<p class="success">File uploaded.</p>';
 	}
+	$stmt = $db->prepare("DELETE FROM clubevent WHERE event_id = :event_id");
+	$stmt->execute(array(':event_id' => $eventID));
+	if (isset($_POST['club_id']) && $_POST['club_id'] != "none")
+	{
+		$stmt = $db->prepare("INSERT INTO clubevent (club_id, event_id) VALUES (:club_id, :event_id)");
+		$stmt->execute(array(':club_id' => $_POST['club_id'], ':event_id' => $eventID));
+	}
 // ADD AUTO-EMAIL HERE
 // ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
@@ -156,6 +175,27 @@ $(function() {
 			<b>Event Name: </b>
 			<input id="event_name_box" type="text" name="name" value="<?php echo $event['event_name'] ?>">
 
+			<br><b>Club: </b>
+			<select name="club_id">
+				<option value="none"></option>
+				<?php
+				$stmt = $db->prepare(
+				"SELECT
+					club.club_name,
+					club.club_id
+				  FROM club
+				  LEFT JOIN clubmember ON club.club_id = clubmember.club_id
+				 WHERE clubmember.user_id = :user_id
+				   AND clubmember.is_contact = 1;");
+				$stmt->execute(array(':user_id' => $userID));
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+				{
+					$selected = $row['club_id'] == $club['club_id'] ? " selected" : "";
+					echo '<option value="' . $row['club_id'] . '"' . $selected . '>' . $row['club_name'] . '</option>';
+				}
+				?>
+			</select><br>
+
 			<b>Date and Time:</b>
 			<input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
 
@@ -187,9 +227,13 @@ $(function() {
 			<?php
 			$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
 			$stmt->execute();
+			$tagfetch = $db->prepare("SELECT tag_id FROM eventtag WHERE event_id = :event_id");
+			$tagfetch->execute(array(':event_id' => $id));
+			$matchtags = $tagfetch->fetchAll(PDO::FETCH_COLUMN, 0);
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				echo '<option value="' . $row['tag_id'] . '">' . $row['tag'] . '</option>';
+				$selected = $in_array($row['tag_id'], $matchtags) ? " selected" : "";
+				echo '<option value="' . $row['tag_id'] . '"' . $selected . '>' . $row['tag'] . '</option>';
 			}
 			?>
 		</select>
@@ -210,27 +254,6 @@ $(function() {
 <!-- For tag filtering -->
 <script src="layout/jquery/jquery.min.js"></script>
 <script src="layout/chosen/chosen.jquery.min.js"></script>
-<script>
-
-$('#documents').val(<?php
-$stmt = $db->prepare(
-	"SELECT tag.tag_id
-FROM tag
-LEFT JOIN eventtag ON eventtag.tag_id = tag.tag_id
-LEFT JOIN event ON event.event_id = eventtag.event_id
-WHERE event.event_id = :id"
-);
-$stmt->execute(array(":id" => $id));
-$tagstring = "[";
-while ($stmt->fetch(PDO::FETCH_ASSOC))
-{
-	$tagstring .= '"'.$row['tag_id'].'", ';
-}
-$tagstring .= "]";
-echo $tagstring;
-?>).trigger('chosen:updated');
-
-</script>
 <link href="layout/chosen/chosen.min.css" rel="stylesheet"/>
 
 <?php require('layout/footer.php') ?>
