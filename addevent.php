@@ -53,14 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	}
 	if (isset($_FILES['image']))
 	{
-		echo $_FILES['image']['name'] . '<br />';
-		echo $_FILES['image']['tmp_name'] . '<br />';
-		echo $_FILES['image']['size'] . '<br />';
-		echo file_exists($_FILES['image']['tmp_name']) . '<br />';
 		if ($_FILES['image']['size'] > 1000000)
 		{
 			throw new RuntimeException('Exceeded filesize limit.');
 		}
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
 		if (false === $ext = array_search(
 			 $finfo->file($_FILES['image']['tmp_name']),
 			 array(
