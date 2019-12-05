@@ -5,7 +5,19 @@ function fnGeocode($address)
 	$url = "https://api.locationiq.com/v1/autocomplete.php?key=d3cf11b0ab734a&q={$address}";		// geocode api url
 	$resp_json = file_get_contents($url);		// get the json response
 	$resp = json_decode($resp_json, true);		// decode the json
-	if($resp['status'] == 'OK')	  // response status will be 'OK', if able to geocode given address 
+    
+    $lat = $resp[0]['lat'];
+    $lon = $resp[0]['lon'];
+
+    if ($lat && $lon)	// is complete
+    {
+        // put the results in an array
+        $coodinates = array($lat, $lon);
+        return $coodinates;
+    }
+    
+    return false;
+	/* if($resp['status'] == 'OK')	  // response status will be 'OK', if able to geocode given address 
 	{
 	        // get the geocode results
 		$lat = $resp[0]['lat'];
@@ -21,7 +33,7 @@ function fnGeocode($address)
 		}
 	} else {
 		return false;
-	}
+	} */
 }
 
 function renderMap($lat, $lon)
