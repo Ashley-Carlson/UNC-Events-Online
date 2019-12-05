@@ -37,6 +37,9 @@
     FROM user
    WHERE username = :username
   ");
+	$stmt -> execute(array(':username' => $_SESSION['username']));
+	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+	$userID = $row['user_id'];
 	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
