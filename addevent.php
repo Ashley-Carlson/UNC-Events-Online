@@ -4,6 +4,7 @@ require_once("includes/config.php");
 $title = 'Add New Event';
 // put the header into the page
 require("layout/header.php");
+require("maps.php");
 // if the user is logged in, put their name in the header
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
@@ -20,11 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
   $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
 
+  $latLong = fnGeocode($_POST['location']);
   $stmt = $db->prepare('
 	INSERT INTO event (event_name, event_desc, event_time,
-	                   duration, location, has_food, external_url1,
+	                   duration, latitude, longitude, location, has_food, external_url1,
 										 external_url2, external_url3, event_contact)
-	     VALUES (:name, :description, :event_time, :duration,
+	     VALUES (:name, :description, :event_time, :duration, :latitude, :longitude,
 			         :location, :has_food, :external_url1,
 							 :external_url2, :external_url3, :event_contact)');
 
@@ -32,7 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
     ':name' => $_POST['name'],
     ':description' => $_POST['description'],
     ':event_time' => $event_date,
-		':duration' => $_POST['duration'],
+    ':duration' => $_POST['duration'],
+    ':latitude' => $latLong[0],
+    ':longitude' => $latLong[1],
     ':location' => $_POST['location'],
     ':has_food' => $has_food,
     ':external_url1' => $_POST['external_url1'],
