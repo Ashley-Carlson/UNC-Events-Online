@@ -53,11 +53,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	}
 	if (isset($_FILES['image']))
 	{
+		if ($_FILES['image']['size'] > 1000000)
+		{
+			throw new RuntimeException('Exceeded filesize limit.');
+		}
+		if (false === $ext = array_search(
+			 $finfo->file($_FILES['image']['tmp_name']),
+			 array(
+					 'jpg' => 'image/jpeg',
+					 'png' => 'image/png',
+					 'gif' => 'image/gif',
+			 ),
+			 true
+	 )) {
+			 throw new RuntimeException('Invalid file format.');
+	 }
 		mkdir("media/events/" . $eventID, 0777, true);
 		$directory = "media/events/" . $eventID . "/";
-		$target = $directory . $_FILES['image']['name'];
+		$target = $directory . sha1_file($_FILES['image']['tmp_name']) . '.' . $ext;
 		$filename = $_FILES['image']['name'];
-		move_uploaded_file($_FILES['image']['name'], $target);
+		move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
 		$stmt = $db->prepare("UPDATE event SET photo_path = :photo WHERE event_id = :event_id");
 		$stmt->execute(array(':photo' => $target, ':event_id' => $eventID));
