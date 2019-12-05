@@ -40,7 +40,7 @@ function renderMap($lat, $lon)
     }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCaQ2p38nzqkYGHHjN3G-6ZLYIdT2vw4k=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCr_VzmwNV3eQSrUjb7H3I09OfejwqSsgY=myMap"></script>
     ';
 }
 ?>
