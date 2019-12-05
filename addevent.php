@@ -125,14 +125,14 @@ $(function() {
 			<select name="club_id">
 				<?php
 				$stmt = $db->prepare(
-"SELECT
-	club.club_name,
-	club.club_id
-  FROM club
-  LEFT JOIN clubmember ON club.club_id = clubmember.club_id
- WHERE clubmember.user_id = :user_id
-   AND clubmember.is_contact = 1;");
-				$stmt->execute();
+				"SELECT
+					club.club_name,
+					club.club_id
+				  FROM club
+				  LEFT JOIN clubmember ON club.club_id = clubmember.club_id
+				 WHERE clubmember.user_id = :user_id
+				   AND clubmember.is_contact = 1;");
+				$stmt->execute(array(':user_id' => $userID));
 				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 				{
 					echo '<option value="' . $row['club_id'] . '">' . $row['club_name'] . '</option>';
