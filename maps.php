@@ -8,14 +8,13 @@ function fnGeocode($address)
 	if($resp['status'] == 'OK')	  // response status will be 'OK', if able to geocode given address 
 	{
 	        // get the geocode results
-		$lat = $resp['lat'];
-		$lon = $resp['lon'];
-		$formatted_address = $resp['results'][0]['formatted_address'];
+		$lat = $resp[0]['lat'];
+		$lon = $resp[0]['lon'];
        
-		if ($lat && $lon && $formatted_address)	// is complete
+		if ($lat && $lon)	// is complete
 		{
             // put the results in an array
-			$coodinates = array($lat, $lon, $formatted_address);
+			$coodinates = array($lat, $lon);
 			return $coodinates;
 		} else {
 			return false;
