@@ -31,8 +31,7 @@
 	);
   $stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
-  $stmt = $db -> prepare('SELECT user_id FROM user WHERE username = :username)
-  ");
+  $stmt = $db -> prepare('SELECT user_id FROM user WHERE username = :username');
 	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
@@ -72,7 +71,7 @@
  		  } ?>
      </div>
      <?php
-     if ($userID == $item['user_id'])
+     if ($edit_stmt->rowCount() > 0)
      {
       echo '
      <form action="editclub.php" method="post">
