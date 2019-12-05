@@ -13,9 +13,8 @@
 	$item = array(
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
-    'photo' => $row['photo_path']
-    'user_id'     => $row['user_id'],
-
+    'photo' => $row['photo_path'],
+    'user_id'     => $row['user_id']
   );
 	$stmt = $db->prepare(
 		"SELECT
@@ -31,7 +30,6 @@
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
-  
 	$stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt = $db -> prepare("
