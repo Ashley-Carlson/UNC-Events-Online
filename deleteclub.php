@@ -27,6 +27,8 @@ $itemInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $stmt = $db->prepare('DELETE FROM clubfollower WHERE club_id = :id');
 $stmt->execute(array(':id' => $id));
+$stmt = $db->prepare('DELETE FROM clubevent WHERE club_id = :id');
+$stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM clubmember WHERE club_id = :id');
 $stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM clubtag WHERE club_id = :id');
