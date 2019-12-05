@@ -90,24 +90,23 @@
 
 
       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
-      if ($item['row_start'] == True) {
+    /*  if ($item['row_start'] == True) {
         echo '<div class="row">';
-      }
-      echo '<div class = "column">
-          <div class = "card">
+      } <div class = "column"> */
+      echo '<div class = "card">
             <div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>
-              <div class="container">
-                <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
-                <p><u>Date and Time:</u>     '.$time.'</p>
-                <p><u>Duration of Event:</u> '.$item['duration'].'</p>
-    			       <p><u>Tags:</u>              '.$tagstring.'</p>
-              </div>
+            <div class="container">
+              <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
+              <p><u>Date and Time:</u>     '.$time.'</p>
+              <p><u>Duration of Event:</u> '.$item['duration'].'</p>
+    			    <p><u>Tags:</u>              '.$tagstring.'</p>
             </div>
-          </div>';
-      if ($item['row_start'] == True) {
+          </div>
+          &nbsp';
+    /*  if ($item['row_start'] == True) {
         echo '</div>';
       }
-      echo '&nbsp';
+      echo '&nbsp'; if you bring this line back, remove &nbsp from line 106 */
 
     }
 // require('layout/footer.php')
