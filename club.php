@@ -8,20 +8,13 @@
      FROM club
     WHERE club_id = :id
   ");
-  //Get user
 	$stmt->execute(array(':id' => $currentID));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$item = array(
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
     'photo' => $row['photo_path']
-    'user_id'     => $row['user_id'],
   );
-  $stmt = $db -> prepare("
-  SELECT user_id
-  FROM user
-  WHERE username = :username
-  ");
 	$stmt = $db->prepare(
 		"SELECT
 		   CONCAT(user.first_name, ' ', user.last_name) as name,
@@ -35,10 +28,15 @@
 	);
 	$stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
+  $stmt = $db -> prepare("
+  SELECT user_id
+    FROM user
+   WHERE username = :username
+  ");
   $stmt -> execute(array(':username' => $_SESSION['username']));
   $row = $stmt -> fetch(PDO::FETCH_ASSOC);
   $userID = $row['user_id'];
-  // Get notification status
+	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
 	$stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
@@ -58,12 +56,14 @@
      <h1 class="name"><?php echo $item['name'] ?></h1>
      <body>
      <h3 id="description"><?php echo $item['description'] ?></h3>
+     </div>
+     <div class="card">
        <!--<h2>Faculty Sponsor: </h2>-->
        <p>Contact Name: <?php echo $contact_info['name'] ?></p>
        <p>Contact email: <?php echo $contact_info['email'] ?></p>
      </div>
 		 <br /><br />
-   </div>
+     <div>
 			 <?php
  			if ($user->is_logged_in())
  			{
@@ -73,6 +73,7 @@
  				<input id="notif-button" type="submit" value="' . $notif_button_text . '">
  			</form>';
  		  } ?>
+     </div>
      <?php
      if ($userID == $item['user_id'])
      {
