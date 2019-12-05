@@ -31,13 +31,41 @@ if (isset($_POST['id']))
 {
   $stmt = $db ->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,
   photo_path) VALUES (:name, :description,
-  :sponsor_id, :photo_url)');
+  :sponsor_id)');
   $stmt -> execute(array(
   ':name' => $_POST['name'],
 	':description' => $_POST['description'],
-	':sponsor_id' => $sponsor_id,
-	':photo_url' => $_POST['photo_url'],
+	':sponsor_id' => $sponsor_id
   ));
+	if (isset($_FILES['image']))
+	{
+		if ($_FILES['image']['size'] > 1000000)
+		{
+			throw new RuntimeException('Exceeded filesize limit.');
+		}
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+		if (false === $ext = array_search(
+			 $finfo->file($_FILES['image']['tmp_name']),
+			 array(
+					 'jpg' => 'image/jpeg',
+					 'png' => 'image/png',
+					 'gif' => 'image/gif',
+			 ),
+			 true
+	 )) {
+			 throw new RuntimeException('Invalid file format.');
+	 }
+		mkdir("media/clubs/" . $id, 0777, true);
+		$directory = "media/clubs/" . $id . "/";
+		$target = $directory . sha1_file($_FILES['image']['tmp_name']) . '.' . $ext;
+		$filename = sha1_file($_FILES['image']['tmp_name']) . '.' . $ext;
+		move_uploaded_file($_FILES['image']['tmp_name'], $target);
+
+		$stmt = $db->prepare("UPDATE club SET photo_path = :photo WHERE club_id = :club_id");
+		$stmt->execute(array(':photo' => $target, ':club_id' => $id));
+
+		echo '<p class="success">File uploaded.</p>';
+	}
 // ADD AUTO-EMAIL HERE
 // ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
