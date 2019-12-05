@@ -74,7 +74,7 @@
       <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
-      <p><?php echo $item['location'] ?></p>
+      <p>Location: <?php echo $item['location'] ?></p>
     </div>
     <div>
       <br />
