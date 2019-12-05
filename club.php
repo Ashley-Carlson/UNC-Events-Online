@@ -14,8 +14,6 @@
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
     'photo' => $row['photo_path']
-    'user_id'     => $row['user_id'],
-
   );
 	$stmt = $db->prepare(
 		"SELECT
@@ -28,10 +26,7 @@
 		   AND clubmember.is_contact = 1
 		"
 	);
-  $stmt -> execute(array(':username' => $_SESSION['username']));
-  $row = $stmt -> fetch(PDO::FETCH_ASSOC);
-  $userID = $row['user_id'];
-  
+
 	$stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt = $db -> prepare("
@@ -39,6 +34,9 @@
     FROM user
    WHERE username = :username
   ");
+	$stmt -> execute(array(':username' => $_SESSION['username']));
+	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
+	$userID = $row['user_id'];
 	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
