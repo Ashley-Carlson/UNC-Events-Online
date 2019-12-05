@@ -15,7 +15,7 @@
 	$item = array(
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
-    'photo' => $row['photo_path']
+    'photo_path' => $row['photo_path']
   );
 	$stmt = $db->prepare(
 		"SELECT
@@ -53,8 +53,9 @@
 ?>
   <br><br>
        <?php
+       //Redocommit ignore me
        $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
-       echo <div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>
+       echo '<div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>'
        ?>
      <h1 class="name"><?php echo $item['name'] ?></h1>
      <body>
