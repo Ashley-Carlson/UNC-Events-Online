@@ -53,7 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	}
 	if (isset($_FILES['image']))
 	{
-		echo $_FILES['image'];
+		echo $_FILES['image']['name'];
+		echo $_FILES['image']['tmp_name'];
+		echo $_FILES['image']['size'];
 		if ($_FILES['image']['size'] > 1000000)
 		{
 			throw new RuntimeException('Exceeded filesize limit.');
