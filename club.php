@@ -1,3 +1,4 @@
+
 <?php require_once('includes/config.php');
   $currentID = $_GET["id"];
 	$stmt = $db->prepare("
@@ -8,13 +9,13 @@
      FROM club
     WHERE club_id = :id
   ");
-
+//open
 	$stmt->execute(array(':id' => $currentID));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$item = array(
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
-    'photo' => $row['photo_path']
+    'photo_path' => $row['photo_path']
   );
 	$stmt = $db->prepare(
 		"SELECT
@@ -50,10 +51,26 @@
 	$title = $item['name'];
 	require('layout/header.php');
 ?>
+<?php
+  while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+  {
+     $stmt = $db->prepare("
+    SELECT clubtag.tag_id as tag_id, tag.tag AS tag
+      FROM clubtag
+ LEFT JOIN tag ON tag.tag_id = clubtag.tag_id
+     WHERE clubtag.club_id = :club_id
+ ");
+ ?>
   <br><br>
    <div class="card">
      <h1 class="name"><?php echo $item['name'] ?></h1>
      <body>
+       <?php
+       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
+       echo
+       <img src="'. $filepath .'" alt="UNC" style="width:15%">
+       ?>
+
      <h3 id="description"><?php echo $item['description'] ?></h3>
      </div>
      <div class="card">
