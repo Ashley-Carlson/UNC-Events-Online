@@ -97,7 +97,7 @@
     			    <p><u>Tags:</u>              '.$tagstring.'</p>
             </div>
           </div>
-          &nbsp&nbsp';
+          &nbsp';
 
 
     }
