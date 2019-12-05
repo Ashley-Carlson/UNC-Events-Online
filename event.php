@@ -77,11 +77,9 @@
       <p>Location: <?php echo $item['location'] ?></p>
     </div>
     <div>
-      <br />
       <br>
 	    <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?> disabled>
       </p>
-			<br />
 			<?php
 			if ($user->is_logged_in())
 			{
