@@ -5,15 +5,6 @@ $id = $_POST['id2'];
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
-.
-$stmt = $db -> prepare('SELECT club_name, photo_path, club_desc, fac_sponsor_id, has_food FROM club WHERE club_id = :id');
-$stmt -> execute(array(
-  ':id' => $id,
-));
-
-$event = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-$contact_id = $event['event_contact'];
 
 $stmt = $db -> prepare('SELECT user_id, acct_type FROM user WHERE username = :username');
 $stmt -> execute(array(
@@ -21,16 +12,20 @@ $stmt -> execute(array(
 ));
 
 $row = $stmt -> fetch(PDO::FETCH_ASSOC);
+$userID = $row['user_id'];
 
-if ($contact_id != $row['user_id'] && $row['acct_type'] != 2)
+
+$edit_stmt = $db->prepare('SELECT can_edit FROM clubmember WHERE user_id = :user_id AND club_id = :club_id');
+$edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
+$can_edit = $edit_stmt->fetch(PDO::FETCH_ASSOC);
+if ($can_edit['can_edit'] != 1 && $row['acct_type'] != 1)
 {
   header("Location: index.php");
 }
 
 if (isset($_POST['id']))
 {
-  $stmt = $db ->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,
-  photo_path) VALUES (:name, :description,
+  $stmt = $db ->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,) VALUES (:name, :description,
   :sponsor_id)');
   $stmt -> execute(array(
   ':name' => $_POST['name'],
@@ -66,26 +61,25 @@ if (isset($_POST['id']))
 
 		echo '<p class="success">File uploaded.</p>';
 	}
-// ADD AUTO-EMAIL HERE
-// ADD AUTO-EMAIL HERE
-	$stmt = $db -> prepare (
-	"SELECT user.email as email, event.event_name
-	 FROM eventfollower
-	LEFT JOIN event ON event.event_id = eventfollower.event_id
-	LEFT JOIN user ON user.user_id = eventfollower.user_id
-	WHERE eventfollower.event_id = :id"
-	);
-	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
-	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
-	{
-		$email = $row['email'];
-		$event = $row['event_name'];
-		$message = 'An event has been updated';
 
-		emailNotifaction($message, $event, $email, $noreply_email_addr);
-	}
-  header("Location: event.php?id=".$_POST['id']);
+  header("Location: club.php?id=".$_POST['id']);
 }
+
+
+$stmt = $db -> prepare(
+	'SELECT
+	  club_name,
+		photo_path,
+		club_desc,
+		fac_sponsor_id
+	 FROM club
+	 WHERE club_id = :id'
+);
+$stmt -> execute(array(
+  ':id' => $id,
+));
+
+$club = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 require('layout/header.php');
 
@@ -93,36 +87,72 @@ require('layout/header.php');
 
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
-<form enctype="multipart/form-data" action="editevent.php" method="POST">
-		<h1 style="text-align:center;">Add a Club</h1>
-		<div class="card">
-	<!-- takes text input for title, description, reserve -->
-		<font color="black">
-		<h3>Club Name<br>
-			<input type="text" name="name" placeholder="Event Name">
-		</h3>
+	<form enctype="multipart/form-data" role="form" action="addclub.php" method="POST">
+		<div class="container">
+			<body class="addclub">
+				<h1 class="title">Add a Club</h1>
+				<hr>
+				<!-- takes text input for title, description, reserve -->
+				<b>Club Name: </b>
+				<input type="text" name="name"><?php echo $club['club_name'] ?><br>
 
-		<h3>Description</h3>
-		<textarea id="subject" name="description" placeholder="Write something..." style="width:30%;height:20%;color:#000000"></textarea>
+				<b>Description:</b><br>
+				<textarea id="subject" name="description"style="width:30%;height:20%;color:#000000"><?php echo $club['club_desc'] ?></textarea><br>
 
-		<h3>Sponsor ID<br>
-		<input type="text" name="sponsor_id" placeholder="Sponsor">
-		</h3>
+				<b>Faculty Sponsor:</b><br>
+					<select name="sponsor_id">
+						<?php
+						$stmt = $db->prepare("SELECT CONCAT(first_name, ' ', last_name) as name, user_id FROM user WHERE acct_type = 2 ORDER BY user_id");
+						$stmt->execute();
+						while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+						{
+							$selected = $row['user_id'] == $club['fac_sponsor_id'] ? " selected" : "";
+							echo '<option value="' . $row['user_id'] . '"'.$selected.'>' . $row['name'] . '</option>';
+						}
+						?>
+					</select><br>
 
-		<h3>Photo:<br>
-		<input type="file" name="image" id="image">
- 		<br>
+				<b>Tags:</b><br>
+				<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
+					<option value=""></option>
+					<?php
+					$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
+					$stmt->execute();
+					$tagfetch = $db->prepare("SELECT tag_id FROM clubtag WHERE club_id = :club_id");
+					$tagfetch->execute(array(':club_id' => $id));
+					$matchtags = $tagfetch->fetchAll(PDO::FETCH_COLUMN, 0);
+					$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
+					$stmt->execute();
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+					{
+						$selected = $in_array($row['tag_id'], $matchtags) ? " selected" : "";
+						echo '<option value="' . $row['tag_id'] . '"' . $selected . '>' . $row['tag'] . '</option>';
+					}
+					?>
+				</select><br>
 
-		<input type="checkbox" required><b> I agree that my event abides by the following the
-			<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
-			<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines </a>
-			and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
-</b><br>
-		</font>
-		<!-- submits the data entered to the server -->
-		 <input type="submit" value="Submit" id="popUpYes" color: white >
+				<b>Photo:</b><br>
+				<input type="file" name="image" id="image"><br>
+
+				<!-- actual file upload for the item itself -->
+				<!-- Upload Image:
+				<input type="file" name="image" id="image"> -->
+
+				<input type="checkbox" required><b> I agree that my event abides by the following the
+					<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
+					<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines </a>
+					and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
+		</b><br>
+				<!-- submits the data entered to the server -->
+				<input type="submit" value="Submit" id="popUpYes" color: white >
+			</body>
 		</div>
 	</form>
+
+	<!-- For tag filtering -->
+	<script src="layout/jquery/jquery.min.js"></script>
+	<script src="layout/chosen/chosen.jquery.min.js"></script>
+	<link href="layout/chosen/chosen.min.css" rel="stylesheet"/>
 
 
 	<?php require('layout/footer.php') ?>
