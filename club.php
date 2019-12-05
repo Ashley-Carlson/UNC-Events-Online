@@ -8,15 +8,13 @@
      FROM club
     WHERE club_id = :id
   ");
-  $edit_stmt = $db->prepare('SELECT can_edit FROM clubmember WHERE user_id = :user_id AND club_id = :club_id');
-  $edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
+
 	$stmt->execute(array(':id' => $currentID));
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
 	$item = array(
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
-    'photo' => $row['photo_path'],
-    'user_id'     => $row['user_id']
+    'photo' => $row['photo_path']
   );
 	$stmt = $db->prepare(
 		"SELECT
@@ -32,6 +30,9 @@
   $stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
   $stmt = $db -> prepare('SELECT user_id FROM user WHERE username = :username');
+	$stmt->execute(array(':username' => $_SESSION['username']));
+	$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	$userID = $row['user_id'];
 	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
@@ -44,6 +45,8 @@
 	{
 		$notif_button_text = "Follow";
 	}
+	$edit_stmt = $db->prepare('SELECT can_edit FROM clubmember WHERE user_id = :user_id AND club_id = :club_id');
+  $edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
 	$title = $item['name'];
 	require('layout/header.php');
 ?>
