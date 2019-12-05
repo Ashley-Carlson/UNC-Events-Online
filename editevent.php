@@ -17,6 +17,7 @@ SELECT
 	event.external_url3,
 	event.has_food,
 	event.event_contact,
+	event.duration,
 	CONCAT(user.first_name, ' ', user.last_name)
 FROM event
 LEFT JOIN user ON event.event_contact = user.user_id
@@ -152,15 +153,17 @@ $(function() {
 				<hr>
 	<!-- takes text input for title, description, reserve -->
 		<font color="black">
-			<h3>Event Name<br>
-				<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
-			</h3>
+			<b>Event Name: </b>
+			<input id="event_name_box" type="text" name="name" value="<?php echo $event['event_name'] ?>">
 
-			<h3>Date and Time</h3><input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
+			<b>Date and Time:</b>
+			<input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
 
+			<b>Duration:</b>
+			<input type="text" name="duration" value="<?php echo $event['duration'] ?>" required><br>
 
-			<h3>Description</h3>
-			<textarea id="subject" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
+			<b>Description:</b><br>
+			<textarea id="description_box" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
 
 			<!-- TO BE IMPLEMENTED -->
 			<!-- <h3>Club:<br>
