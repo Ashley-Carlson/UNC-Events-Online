@@ -53,6 +53,11 @@
 ?>
   <br><br>
    <div class="card">
+       <?php
+       <div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>
+       ?>
+     </div>
+
      <h1 class="name"><?php echo $item['name'] ?></h1>
      <body>
      <h3 id="description"><?php echo $item['description'] ?></h3>
