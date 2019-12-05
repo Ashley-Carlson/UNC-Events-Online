@@ -2,14 +2,14 @@
 function fnGeocode($address)
 {
 	$address = urlencode($address);    // url encode the address - can be an address or just a zip
-	$url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key=AIzaSyCr_VzmwNV3eQSrUjb7H3I09OfejwqSsgY";		// google map geocode api url
+	$url = "https://api.locationiq.com/v1/autocomplete.php?key=d3cf11b0ab734a&q={$address}";		// geocode api url
 	$resp_json = file_get_contents($url);		// get the json response
 	$resp = json_decode($resp_json, true);		// decode the json
 	if($resp['status'] == 'OK')	  // response status will be 'OK', if able to geocode given address 
 	{
 	        // get the geocode results
-		$lat = $resp['results'][0]['geometry']['location']['lat'];
-		$lon = $resp['results'][0]['geometry']['location']['lng'];
+		$lat = $resp['lat'];
+		$lon = $resp['lon'];
 		$formatted_address = $resp['results'][0]['formatted_address'];
        
 		if ($lat && $lon && $formatted_address)	// is complete
