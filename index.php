@@ -68,10 +68,10 @@
         'row_start' => ($row_start == 1)
       );
       if ($row_start == 1) {
-        $column_count = 0;
+        $row_start = 0;
       } 
       else {
-        $column_count = 1;
+        $row_start = 1;
       }
 			$stmt = $db->prepare("
 			SELECT eventtag.tag_id as tag_id, tag.tag AS tag
