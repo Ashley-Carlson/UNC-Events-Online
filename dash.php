@@ -37,9 +37,9 @@ require("layout/header.php");
     <h2>Your Clubs</h2>
     <br />
     <?php
-    
-    ?>
 
+    ?>
+		<br>
 		</div>
 		<br>
 		<br>
