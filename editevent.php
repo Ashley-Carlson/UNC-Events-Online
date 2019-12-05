@@ -145,43 +145,39 @@ $(function() {
 });
 </script>
 
-<body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
-
-<form enctype="multipart/form-data" action="editevent.php" method="POST">
-	<div class="card">
-	<h1 style="text-align:center;">Edit Event</h1>
+	<form enctype="multipart/form-data" role="form" id="addevent" action="addevent.php" method="POST">
+		<div class="container">
+			<body class="addevent">
+				<h1 class="title">Add an Event</h1>
+				<hr>
 	<!-- takes text input for title, description, reserve -->
 		<font color="black">
-		<h3>Event Name<br>
-			<input type="text" name="name" value="<?php echo $event['event_name'] ?>">
-		</h3>
+			<b>Event Name: </b>
+			<input id="event_name_box" type="text" name="name" placeholder="Event Name" required><br>
 
-		<h3>Date and Time</h3><input type="datetime-local" name="event_time" value="<?php echo date("Y-m-d\TH:i:s", strtotime($event['event_time'])) ?>">
+			<b>Date and Time:</b>
+			<input type="datetime-local" name="event_time" required><br>
 
+			<b>Duration:</b>
+			<input type="text" name="duration" placeholder="e.g. 2 hours" required><br>
 
-		<h3>Description</h3>
-		<textarea id="subject" name="description" style="width:30%;height:20%;color:#000000"><?php echo $event['event_desc'] ?></textarea>
+			<b>Description:</b><br>
+			<textarea id="description_box" name="description" placeholder="Write something.." style="width:30%;height:20%;color:#000000" required></textarea><br>
 
-		<!-- TO BE IMPLEMENTED -->
-		<!-- <h3>Club:<br>
-		<input type="text" name="description" placeholder="Description">
-		</h3> -->
+			<!-- TO BE IMPLEMENTED -->
+			<!-- <h3>Club:<br>
+			<input type="text" name="description" placeholder="Description">
+			</h3> -->
 
-		<h3>Address<br>
-		<input type="text" name="location" value="<?php echo $event['location'] ?>">
-		</h3>
+			<b>Address:</b>
+			<input id="address_box" type="text" name="location" placeholder="Location" required><br>
 
-		<h3>External URLs<br>
-		<input type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
-		</h3><br>
-		<input type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
-		</h3><br>
-		<input type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
-		</h3><br>
-		<!-- actual file upload for the item itself -->
-	  Upload Image:
-	  <input type="file" name="image" id="image">
-		<br>
+			<b>External URL(s):</b><br>
+			<input id="url_box" type="text" name="external_url1" placeholder="Link"><br>
+			<input id="url_box" type="text" name="external_url2" placeholder="Link"><br>
+			<input id="url_box" type="text" name="external_url3" placeholder="Link"><br>
+
+			<input type="checkbox" name="has_food"><b> Does this event have food?</b><br>
 
 		<p>Does this event have food? (Check if yes)<input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
 		</p><br>
@@ -198,12 +194,11 @@ $(function() {
 			?>
 		</select>
 	  <br><br>
-		<!-- actual file upload for the item itself -->
-		Upload Image:
-		<input type="file" name="image" id="image">
-		<br>
-		<p>Do you agree to follow the UNC code of conduct:<input type="checkbox" required>
-		</p>
+		<input type="checkbox" required><b> I agree that my event abides by the following the
+			<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
+			<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines </a>
+			and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
+</b><br>
 		</font>
 		<br><br><br>
 		<div>

@@ -113,8 +113,11 @@ require('layout/header.php');
 		<input type="file" name="image" id="image">
  		<br>
 
-		<p>Do you agree to follow all club and event policies as defined by the UNC Office of Student Organizations:<input type="checkbox" required>
-		</p>
+		<input type="checkbox" required><b> I agree that my event abides by the following the
+			<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
+			<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines </a>
+			and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
+</b><br>
 		</font>
 		<!-- submits the data entered to the server -->
 		 <input type="submit" value="Submit" id="popUpYes" color: white >
