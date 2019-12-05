@@ -2,7 +2,7 @@
   require_once('includes/config.php');
 
   $search = $_GET["keyword"];
-	$event_stmt = $db->prepare('SELECT event_id, event_name, event_time, duration FROM event WHERE is_inactive = 0 AND event_time >= NOW() ORDER BY event_time asc');
+	$event_stmt = $db->prepare('SELECT event_id, event_name, event_time, duration, photo_path FROM event WHERE is_inactive = 0 AND event_time >= NOW() ORDER BY event_time asc');
 	$event_stmt->execute();
 
   $title = 'UNC Events Online';
@@ -63,6 +63,7 @@
         'event_name' => $row['event_name'],
         'event_time' => $row['event_time'],
         'duration' => $row['duration'],
+        'photo_path' => $row['photo_path']
       );
 			$stmt = $db->prepare("
 			SELECT eventtag.tag_id as tag_id, tag.tag AS tag
@@ -86,8 +87,9 @@
 				<p>'.$tagstring.'</p>
       </div></div><br><br>';
 */
+      $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
       echo '<div class = "card">
-          <img src="media/logo.png" alt="UNC" style="width:15%">
+          <img src="'. $filepath .'" alt="UNC" style="width:15%">
             <div class="container">
               <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
               <p><u>Date and Time:</u>     '.$time.'</p>
