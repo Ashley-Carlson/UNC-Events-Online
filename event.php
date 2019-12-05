@@ -75,6 +75,7 @@
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
+      <?php echo renderMap($item['lat'], $item['lon']); ?>
     </div>
     <div>
       <br />
@@ -106,8 +107,6 @@
         <input type="submit" value="Delete">
         </form>';
     }
-
-    renderMap($item['lat'], $item['lon']);
 ?>
 
 
