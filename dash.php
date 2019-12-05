@@ -39,12 +39,10 @@ require("layout/header.php");
     <?php
 
     ?>
-		<br>
-		</div>
-		<br>
+
 		<br>
 		<br>
-		<div class="card">
+		<br>
     <h2>Add Clubs and Events:</h2>
     <ul>
       <li><a href="addclub.php">Add New Club</a></li>
