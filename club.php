@@ -59,7 +59,7 @@
      </div>
      <div class="card">
        <!--<h2>Faculty Sponsor: </h2>-->
-       <h2>Contact Name: <?php echo $contact_info['name'] ?></h2>
+       <p>Contact Name: <?php echo $contact_info['name'] ?></p>
        <p>Contact email: <?php echo $contact_info['email'] ?></p>
      </div>
 		 <br /><br />
