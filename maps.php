@@ -51,7 +51,7 @@ function renderMap($lat, $lon)
     }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCr_VzmwNV3eQSrUjb7H3I09OfejwqSsgY=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwaFDIhaEvg_Tvqd4ATrRfX82BRrfKiGs&callback=myMap"></script>
     ';
 }
 ?>
