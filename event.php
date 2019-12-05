@@ -61,44 +61,29 @@
 	$title = $item['name'];
 	require('layout/header.php');
 ?>
-<br><br>
-<div class="card">
-    <h1 class="name">
-        <?php echo $item['name'] ?>
-    </h1>
-    <p id="time">
-        <?php echo $time ?>
-    </p>
-    <p>
-        <?php echo $item['duration'] ?>
-    </p>
-</div>
-<div class="card">
-
-    <body>
-        <h3 id="description">
-            <?php echo $item['description'] ?>
-        </h3>
-</div>
-<div class="card">
-    <!--<h2>Faculty Sponsor: </h2>-->
-    <h2 style="color: #000080;">Contact Name:
-        <?php echo $item['first_name'].' '.$item['last_name'] ?>
-    </h2>
-    <p style="color: #000080;">Contact email:
-        <?php echo $item['email'] ?>
-    </p>
-</div>
-<div class="card">
-    <p>
-        <?php echo $item['location'] ?>
-    </p>
-</div>
-<div>
-    <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food']==1) { echo 'checked="checked"' ; } ?> disabled>
-    </p>
-    <br /><br />
-    <?php
+  <br><br>
+    <div class="card">
+      <h1 class="name"><?php echo $item['name'] ?></h1>
+      <p id="time"><?php echo $time ?></p>
+      <p><?php echo $item['duration'] ?></p>
+    </div>
+    <div class="card">
+        <body>
+        <h3 id="description"><?php echo $item['description'] ?></h3>
+    </div>
+    <div class="card">
+      <!--<h2>Faculty Sponsor: </h2>-->
+      <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
+      <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
+    </div>
+    <div class="card">
+      <p><?php echo $item['location'] ?></p>
+    </div>
+    <div>
+      <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?> disabled>
+      </p>
+			<br /><br />
+			<?php
 			if ($user->is_logged_in())
 			{
 				echo '
