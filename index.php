@@ -64,7 +64,7 @@
         'event_name' => $row['event_name'],
         'event_time' => $row['event_time'],
         'duration' => $row['duration'],
-        'photo_path' => $row['photo_path']
+        'photo_path' => $row['photo_path'],
         'row_start' => ($row_start == 1)
       );
       if ($row_start == 1) {
