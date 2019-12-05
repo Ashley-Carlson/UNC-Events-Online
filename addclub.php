@@ -131,7 +131,7 @@ $(function() {
 			<!-- Upload Image:
 			<input type="file" name="image" id="image"> -->
 
-			<input type="checkbox" required><b> I agree that my event abides by the following the
+			<input type="checkbox" required><b> I agree that my club abides by the following the
 				<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
 				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines </a>
 				and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
