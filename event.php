@@ -9,7 +9,7 @@
         event.event_time as event_time,
         event.location as location, 
         event.latitude as lat,
-        event.longitude as lon
+        event.longitude as lon,
         user.user_id as user_id,
         user.first_name as first_name, 
         user.last_name as last_name,
