@@ -75,13 +75,20 @@
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
+      <?php echo renderMap($item['lat'], $item['lon']); ?>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div>
-      <br />
       <br>
 	    <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?> disabled>
       </p>
-			<br /><br />
 			<?php
 			if ($user->is_logged_in())
 			{
@@ -106,8 +113,6 @@
         <input type="submit" value="Delete">
         </form>';
     }
-
-    renderMap($item['lat'], $item['lon']);
 ?>
 
 
