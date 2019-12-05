@@ -3,17 +3,17 @@
 	// Fetch event
     $currentID = $_GET["id"];
     $stmt = $db->prepare("
-    SELECT event.event_name as event_name, 
+    SELECT event.event_name as event_name,
         event.event_desc as event_desc,
-        event.has_food as has_food, 
+        event.has_food as has_food,
         event.event_time as event_time,
-        event.location as location, 
+        event.location as location,
         event.latitude as lat,
         event.longitude as lon,
         user.user_id as user_id,
-        user.first_name as first_name, 
+        user.first_name as first_name,
         user.last_name as last_name,
-        user.email as email, 
+        user.email as email,
         event.duration as duration
     FROM event
     LEFT JOIN user ON user.user_id = event.event_contact
@@ -66,21 +66,19 @@
       <h1 class="name"><?php echo $item['name'] ?></h1>
       <p id="time"><?php echo $time ?></p>
       <p><?php echo $item['duration'] ?></p>
-    </div>
-    <div class="card">
-        <body>
-        <h3 id="description"><?php echo $item['description'] ?></h3>
-    </div>
-    <div class="card">
+
+      <body>
+      <h3 id="description"><?php echo $item['description'] ?></h3>
+
       <!--<h2>Faculty Sponsor: </h2>-->
       <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
-    </div>
-    <div class="card">
+
       <p><?php echo $item['location'] ?></p>
     </div>
     <div>
       <br />
+      <br>
 	<p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?> disabled>
       </p>
 			<br /><br />
@@ -107,7 +105,7 @@
         <input type="hidden" name="id3" value="' . $currentID . '">
         <input type="submit" value="Delete">
         </form>';
-    } 
+    }
 
     renderMap($item['lat'], $item['lon']);
 ?>
