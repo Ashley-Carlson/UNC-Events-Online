@@ -96,7 +96,7 @@
               <p><u>Duration of Event:</u> '.$item['duration'].'</p>
     			    <p><u>Tags:</u>              '.$tagstring.'</p>
             </div>
-          </di>';
+          </div>';
 
 
     }
