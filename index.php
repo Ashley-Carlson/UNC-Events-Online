@@ -96,7 +96,7 @@
       </div></div><br><br>';
 */
       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
-      if ($item['row_start']) {
+      if ($item['row_start'] == 1) {
         echo '<div class="row">';
       }
       echo '<div class = "column">
@@ -109,7 +109,7 @@
     			    <p><u>Tags:</u>              '.$tagstring.'</p>
             </div>
           </div>';
-      if ($item['row_start']) {
+      if ($item['row_start'] == 1) {
         echo '</div>';
       }
       echo '&nbsp';
