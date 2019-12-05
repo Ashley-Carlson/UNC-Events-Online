@@ -89,7 +89,7 @@
 */
       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
       echo '<div class = "card">
-          <img src="'. $filepath .'" alt="UNC" style="width:15%">
+          <style="background-image: url('. $filepath .')"  alt="UNC">
             <div class="container">
               <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
               <p><u>Date and Time:</u>     '.$time.'</p>
