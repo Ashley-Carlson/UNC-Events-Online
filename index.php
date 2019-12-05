@@ -69,7 +69,7 @@
       );
       if ($row_start == 1) {
         $row_start = 0;
-      } 
+      }
       else {
         $row_start = 1;
       }
@@ -87,26 +87,21 @@
 			{
 				$tagstring .= '<a href="search.php?type=event&keyword=' . $tag['tag']. '">' . $tag['tag'] . "</a> ";
 			}
-/* This is the previous code for the events page
-			echo '<div class="row"><div class="col-lg-12 text-left">
-          <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
-          <p>'.$time.'</p>
-        <p>'.$item['duration'].'</p>
-				<p>'.$tagstring.'</p>
-      </div></div><br><br>';
-*/
+
+
       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
       if ($item['row_start'] == True) {
         echo '<div class="row">';
       }
       echo '<div class = "column">
           <div class = "card">
-          <div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>
-            <div class="container">
-              <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
-              <p><u>Date and Time:</u>     '.$time.'</p>
-              <p><u>Duration of Event:</u> '.$item['duration'].'</p>
-    			    <p><u>Tags:</u>              '.$tagstring.'</p>
+            <div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>
+              <div class="container">
+                <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
+                <p><u>Date and Time:</u>     '.$time.'</p>
+                <p><u>Duration of Event:</u> '.$item['duration'].'</p>
+    			       <p><u>Tags:</u>              '.$tagstring.'</p>
+              </div>
             </div>
           </div>';
       if ($item['row_start'] == True) {
