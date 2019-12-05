@@ -63,7 +63,7 @@ LEFT JOIN user ON user.user_id = event.event_contact
     </div>
     <div class="card">
       <!--<h2>Faculty Sponsor: </h2>-->
-      <h2  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></h2>
+      <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
     </div>
     <div class="card">
