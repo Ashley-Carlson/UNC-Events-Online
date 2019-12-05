@@ -14,6 +14,8 @@
     'name' => $row['club_name'],
     'description' => $row['club_desc'],
     'photo' => $row['photo_path']
+    'user_id'     => $row['user_id'],
+
   );
 	$stmt = $db->prepare(
 		"SELECT
