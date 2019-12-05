@@ -215,9 +215,9 @@ $(function() {
 			</h3>
 
 			<b>External URL(s):</b><br>
-			<input id="url_box" type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>">
-			<input id="url_box" type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>">
-			<input id="url_box" type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>">
+			<input id="url_box" type="text" name="external_url1" value="<?php echo $event['external_url1'] ?>"><br>
+			<input id="url_box" type="text" name="external_url2" value="<?php echo $event['external_url2'] ?>"><br>
+			<input id="url_box" type="text" name="external_url3" value="<?php echo $event['external_url3'] ?>"><br>
 
 		<p>Does this event have food? (Check if yes)<input type="checkbox" name="has_food" <?php if ($event['has_food'] == 1) { echo 'checked="checked"'; } ?>>
 		</p><br>
