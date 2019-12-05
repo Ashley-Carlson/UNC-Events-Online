@@ -56,6 +56,7 @@
 -->
 
   <?php
+    $row_start = 1;
     while($row = $event_stmt->fetch(PDO::FETCH_ASSOC))
     {
 			$item = array(
@@ -64,7 +65,14 @@
         'event_time' => $row['event_time'],
         'duration' => $row['duration'],
         'photo_path' => $row['photo_path']
+        'row_start' => ($row_start == 1)
       );
+      if ($row_start == 1) {
+        $column_count = 0;
+      } 
+      else {
+        $column_count = 1;
+      }
 			$stmt = $db->prepare("
 			SELECT eventtag.tag_id as tag_id, tag.tag AS tag
 			  FROM eventtag
@@ -88,7 +96,11 @@
       </div></div><br><br>';
 */
       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
-      echo '<div class = "card">
+      if $item['row_start'] {
+        echo '<div class="row">';
+      }
+      echo '<div class = "column">
+          <div class = "card">
           <div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>
             <div class="container">
               <h3><a href="event.php?id='.$item['event_id'].'">'.$item['event_name'].'</a></h3>
@@ -98,6 +110,9 @@
             </div>
           </div>
           &nbsp';
+      if $item['row_start'] {
+        echo '</div>';
+      }
 
 
     }
