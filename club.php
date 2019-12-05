@@ -29,19 +29,10 @@
 		   AND clubmember.is_contact = 1
 		"
 	);
-  $stmt -> execute(array(':username' => $_SESSION['username']));
-  $row = $stmt -> fetch(PDO::FETCH_ASSOC);
-  $userID = $row['user_id'];
-	$stmt->execute(array(':club_id'=>$currentID));
+  $stmt->execute(array(':club_id'=>$currentID));
 	$contact_info = $stmt->fetch(PDO::FETCH_ASSOC);
-  $stmt = $db -> prepare("
-  SELECT user_id
-    FROM user
-   WHERE username = :username
+  $stmt = $db -> prepare('SELECT user_id FROM user WHERE username = :username)
   ");
-	$stmt -> execute(array(':username' => $_SESSION['username']));
-	$row = $stmt -> fetch(PDO::FETCH_ASSOC);
-	$userID = $row['user_id'];
 	// Get notification status
 	$notif_button_text = "";
 	$stmt = $db->prepare("SELECT * FROM clubfollower WHERE user_id = :user_id AND club_id = :club_id");
@@ -81,7 +72,7 @@
  		  } ?>
      </div>
      <?php
-     if ($edit_stmt->rowCount() > 0)
+     if ($userID == $item['user_id'])
      {
       echo '
      <form action="editclub.php" method="post">
