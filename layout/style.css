@@ -82,6 +82,19 @@
 }
 
 .container {
+  display: block;
   width: 100%;
   padding: 2px 16px;
+}
+
+.container .card:first-child{
+  margin-left: 0;
+}
+
+.container .card:nth-child(2n){
+  margin-right: 0;
+}
+
+.container .card:nth-child(2n+1){
+  margin-left: 0;
 }
