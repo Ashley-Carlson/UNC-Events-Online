@@ -1,4 +1,5 @@
 <?php require("includes/config.php");
+require("maps.php");
 
 $id = $_POST['id2'];
 
@@ -58,34 +59,38 @@ if ($contact_id != $row['user_id'] && $row['acct_type'] != 2)
 if (isset($_POST['id']))
 {
   $stmt = $db -> prepare(
-    "UPDATE event
-        SET
-				  event_name = :name,
-					event_time = :event_time,
-          event_desc = :description,
-					location = :location,
-					duration = :duration,
-          external_url1 = :external_url1,
-					external_url2 = :external_url2
-					external_url3 = :external_url3,
-					has_food = :has_food
+      "UPDATE event SET
+        event_name = :name,
+        event_time = :event_time,
+        event_desc = :description,
+        location = :location,
+        latitude = :latitude,
+        longitude = :longitude,
+        duration = :duration,
+        external_url1 = :external_url1,
+        external_url2 = :external_url2
+        external_url3 = :external_url3,
+        has_food = :has_food
       WHERE event_id = :id"
   );
   $has_food = (isset($_POST['has_food']) && $_POST['has_food'] == 'on') ? 1 : 0;
 
   $time = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
 
-  $stmt -> execute(array(
-    ':name'         => $_POST['name'],
-    ':event_time'   => $time,
-    ':description'  => $_POST['description'],
-    ':location'     => $_POST['location'],
-    ':external_url1' => $_POST['external_url1'],
-		':external_url2' => $_POST['external_url2'],
-		':external_url3' => $_POST['external_url3'],
-    ':has_food'     => $has_food,
-		':id'						=> $_POST['id'],
-		':duration' => $_POST['duration']
+    $latLong = fnGeocode($_POST['location']);
+    $stmt -> execute(array(
+      ':name'          => $_POST['name'],
+      ':event_time'    => $time,
+      ':description'   => $_POST['description'],
+      ':location'      => $_POST['location'],
+      ':latitude'      => $latLong[0],
+      ':longitude'     => $latLong[1],
+      ':external_url1' => $_POST['external_url1'],
+      ':external_url2' => $_POST['external_url2'],
+      ':external_url3' => $_POST['external_url3'],
+      ':has_food'     => $has_food,
+      ':id'						=> $_POST['id'],
+      ':duration' => $_POST['duration']
   ));
 
 	if (isset($_FILES['image']))
