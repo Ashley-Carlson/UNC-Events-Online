@@ -9,14 +9,13 @@ if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
 
+$stmt = $db->prepare('SELECT user_id FROM user where username = :username');
+$stmt->execute(array(':username' => $_SESSION['username']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$userID = $row['user_id'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 {
-
-  $stmt = $db->prepare('SELECT user_id FROM user where username = :username');
-  $stmt->execute(array(':username' => $_SESSION['username']));
-  $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  $userID = $row['user_id'];
-
   $has_food = isset($_POST['has_food']);
   $event_date = date("Y-m-d H:i:s",strtotime($_POST['event_time']));
 
@@ -122,6 +121,25 @@ $(function() {
 			<b>Event Name: </b>
 			<input id="event_name_box" type="text" name="name" placeholder="Event Name" required><br>
 
+			<b>Club: </b>
+			<select name="club_id">
+				<?php
+				$stmt = $db->prepare(
+"SELECT
+	club.club_name,
+	club.club_id
+  FROM club
+  LEFT JOIN clubmember ON club.club_id = clubmember.club_id
+ WHERE clubmember.user_id = :user_id
+   AND clubmember.is_contact = 1;");
+				$stmt->execute();
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
+				{
+					echo '<option value="' . $row['club_id'] . '">' . $row['club_name'] . '</option>';
+				}
+				?>
+			</select><br>
+
 			<b>Date and Time:</b>
 			<input type="datetime-local" name="event_time" required><br>
 
@@ -163,7 +181,7 @@ $(function() {
 
 			<!-- actual file upload for the item itself -->
 			<b>Upload Image:</b><br>
-			<input type="file" name="image" id="image">
+			<input type="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .tiff|image/*" name="image" id="image">
 			<br>
 			<input type="checkbox" required><b> I agree that my event abides by the following the
 				<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
