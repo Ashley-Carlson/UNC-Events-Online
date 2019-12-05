@@ -70,11 +70,8 @@
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
-  width: auto;
-}
-
-#card-image {
-    width: auto;
+  width: 200px;
+  height: 200px;
 }
 
 .card:hover {
