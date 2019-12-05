@@ -25,7 +25,14 @@ $stmt->execute(array(':id' => $id));
 
 if (isset($itemInfo['photo_path']))
 {
-  unlink($itemInfo['photo_path']);
+  $files = glob("media/events/" . $id);
+	foreach($files as $file)
+	{
+		if (is_file($file))
+		{
+			unlink($file);
+		}
+	}
   rmdir("media/events/" . $id);
 }
 
