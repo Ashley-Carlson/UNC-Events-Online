@@ -89,7 +89,7 @@
 }
 
 .container .card:first-child{
-  margin-left: 1px;
+  margin-left: 0px;
 }
 
 .container .card:nth-child(2n){
