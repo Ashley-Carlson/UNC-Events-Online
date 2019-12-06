@@ -16,6 +16,21 @@ if ($userInfo['acct_type'] != 2 && $userInfo['user_id'] != $itemInfo['event_cont
     header("Location: index.php");
 }
 
+$stmt = $db -> prepare (
+"SELECT user.email as email, event.event_name
+ FROM user
+LEFT JOIN eventfollower ON eventfollower.user_id = user.user_id
+WHERE event.event_id = :id"
+);
+$stmt -> execute(array(":id" => $id)); // Assuming that it posts to self with ID as a parameter
+while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
+{
+  $email = $row['email'];
+  $event = $row['event_name'];
+  $message = 'The event you were following has been deleted! Be sure to update your calendar.';
+  emailNotifaction($message, $event, $email, $noreply_email_addr);
+}
+
 $stmt = $db->prepare('DELETE FROM eventfollower where event_id = :id');
 $stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM eventtag where event_id = :id');
