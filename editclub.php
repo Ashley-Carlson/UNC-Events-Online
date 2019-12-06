@@ -1,7 +1,7 @@
 <?php require("includes/config.php");
 
 $id = $_POST['id2'];
-
+echo '<body style="background-color: white;">';
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }

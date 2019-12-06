@@ -6,7 +6,7 @@ $id = $_POST['id2'];
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
-
+echo '<body style="background-color: white;">';
 $stmt = $db->prepare('SELECT user_id FROM user where username = :username');
 $stmt->execute(array(':username' => $_SESSION['username']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
