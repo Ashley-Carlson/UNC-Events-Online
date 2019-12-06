@@ -1,4 +1,4 @@
-<?php require("includes/config.php");
+<?php require_once("includes/config.php");
 
 $stmt = $db->prepare('SELECT user_id, acct_type FROM user where username = :username');
 $stmt->execute(array(':username' => $_SESSION['username']));
