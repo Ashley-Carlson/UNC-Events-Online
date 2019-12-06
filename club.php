@@ -88,7 +88,7 @@
      <input type="hidden" name="id3" value="' . $currentID . '">
      <input type="submit" value="Delete">
      </form>';
-     </div>
    } ?>
+   </div>
 
 <?php require('layout/footer.php') ?>
