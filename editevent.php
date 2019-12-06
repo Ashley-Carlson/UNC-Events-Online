@@ -237,7 +237,7 @@ $(function() {
 			$stmt->execute();
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$selected = $in_array($row['tag_id'], $matchtags) ? " selected" : "";
+				$selected = in_array($row['tag_id'], $matchtags) ? " selected" : "";
 				echo '<option value="' . $row['tag_id'] . '"' . $selected . '>' . $row['tag'] . '</option>';
 			}
 			?>
