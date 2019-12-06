@@ -87,11 +87,10 @@
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
-      <br>
       <p>More info found:</p>
-      <a href="event.php?id="<?php echo row['external_url1'] ?>"></a>
-      <a href="event.php?id="<?php echo row['external_url2'] ?>"></a>
-      <a href="event.php?id="<?php echo row['external_url3'] ?>"></a>
+      <a href="event.php?id="<?php echo row['external_url1'] ?>></a>
+      <a href="event.php?id="<?php echo row['external_url2'] ?>></a>
+      <a href="event.php?id="<?php echo row['external_url3'] ?>></a>
 
       <?php
 			if ($user->is_logged_in())
