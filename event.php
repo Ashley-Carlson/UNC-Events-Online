@@ -64,11 +64,11 @@
 	require('layout/header.php');
 ?>
   <br><br>
-    <div class="card">
       <?php
-      $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
-      echo '<div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>'
+        $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
+        echo '<div class="card-image"><img src='. $filepath .' alt="UNC" id="event-card-image"></div>'
       ?>
+    <div class="card">
       <br>
       <h1 class="name"><?php echo $item['name'] ?></h1>
       <p id="time">When: <?php echo $time ?></p>
@@ -80,7 +80,7 @@
       <p>Description:</p>
       <h3 id="description"><?php echo $item['description'] ?></h3>
 
-      <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
+      <p style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
