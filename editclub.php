@@ -95,11 +95,11 @@ $(function() {
 	<form enctype="multipart/form-data" role="form" action="addclub.php" method="POST">
 		<div class="container">
 			<body class="addclub">
-				<h1 class="title">Add a Club</h1>
+				<h1 class="title">Edit Club Club</h1>
 				<hr>
 				<!-- takes text input for title, description, reserve -->
 				<b>Club Name: </b>
-				<input type="text" name="name"><?php echo $club['club_name'] ?><br>
+				<input type="text" name="name" value="<?php echo $club['club_name'] ?>"><br>
 
 				<b>Description:</b><br>
 				<textarea id="subject" name="description"style="width:30%;height:20%;color:#000000"><?php echo $club['club_desc'] ?></textarea><br>
