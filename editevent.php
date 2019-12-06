@@ -181,7 +181,7 @@ $(function() {
 			<input id="event_name_box" type="text" name="name" value="<?php echo $event['event_name'] ?>">
 
 			<br><b>Club: </b>
-			<select name="club_id">
+			<select name="club_id" class="chosen-select">
 				<option value="none"></option>
 				<?php
 				$stmt = $db->prepare(
