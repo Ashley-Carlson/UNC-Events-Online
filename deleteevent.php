@@ -18,7 +18,7 @@ if ($userInfo['acct_type'] != 2 && $userInfo['user_id'] != $itemInfo['event_cont
 
 $stmt = $db -> prepare (
 "SELECT user.email as email, event.event_name
- FROM eventfollower.event_id
+ FROM eventfollower
 LEFT JOIN user ON eventfollower.user_id = user.user_id
 LEFT JOIN event ON eventfollower.event_id = event.event_id
 WHERE eventfollower.event_id = :id"
