@@ -58,7 +58,7 @@
        echo '<div class="club-card-image"><img src='. $filepath .' alt="UNC" id="club-card-image"></div>'
        ?>
 	   <br>
-	 
+
      <h1 class="name"><?php echo $item['name'] ?></h1>
      <body>
      <h3 id="description"><?php echo $item['description'] ?></h3>
@@ -75,7 +75,7 @@
  				<input id="notif-button" type="submit" value="' . $notif_button_text . '">
  			</form>';
  		  } ?>
-     </div>
+
      <?php
      if ($edit_stmt->rowCount() > 0)
      {
@@ -88,6 +88,7 @@
      <input type="hidden" name="id3" value="' . $currentID . '">
      <input type="submit" value="Delete">
      </form>';
+     </div>
    } ?>
 
 <?php require('layout/footer.php') ?>
