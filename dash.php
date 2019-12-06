@@ -12,6 +12,17 @@ $userInfo = array('user_id'=>$row['user_id'], 'username'=>$row['username'], 'ema
 
 $stmt = $db->prepare('SELECT event_id, event_name FROM event where event_contact = :contact_id and is_inactive = 0');
 $stmt->execute(array(':contact_id' => $userInfo['user_id']));
+$club_stmt = $db->prepare(
+"SELECT
+  club.club_id,
+	club.club_name,
+ FROM club
+ LEFT JOIN clubmember ON club.club_id = clubmember.club_id
+ WHERE clubmember.user_id = :user_id
+   AND clubmember.can_edit = 1
+"
+);
+$club_stmt->execute(array(":user_id" => $userInfo['user_id']));
 
 if ($userInfo['acct_type'] == 2) {
 	$admin = true;
@@ -37,7 +48,10 @@ require("layout/header.php");
     <h2>Your Clubs</h2>
     <br />
     <?php
-
+		while ($row = $club_stmt->fetch(PDO::FETCH_ASSOC)) {
+				$item = array('id'=>$row['club_id'], 'title'=>$row['club_name']);
+				echo '<a href="club.php?id=' . $item['id'] . '">' . $item['title'] . '</a><br />';
+		}
     ?>
 
 		<br>
