@@ -74,8 +74,7 @@
       <p id="time">When: <?php echo $time ?></p>
       <p>Duration: <?php echo $item['duration'] ?></p>
 
-      <?php if ($item['has_food'] == 1) { echo 'This event has food!'; }?>
-      <br><br>
+      <?php if ($item['has_food'] == 1) { echo 'This event has food!<br><br>'; }?>
 
       <body>
       <p>Description:</p>
