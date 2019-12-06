@@ -16,6 +16,8 @@
         user.last_name as last_name,
         user.email as email,
         event.duration as duration
+
+
     FROM event
     LEFT JOIN user ON user.user_id = event.event_contact
     WHERE event_id = :id
@@ -94,55 +96,29 @@
 				<input type="submit" value="' . $notif_button_text . '">
 			</form>';
 		  } ?>
-      <br><br>
+
+      <?php
+          if ($userID == $item['user_id'])
+          {
+              echo '
+              <form action="editevent.php" method="post">
+              <input type="hidden" name="id2" value="' . $currentID . '">
+              <input type="submit" value="Edit">
+              </form>
+              <form action="deleteevent.php" method="post">
+              <input type="hidden" name="id3" value="' . $currentID . '">
+              <input type="submit" value="Delete">
+              </form>';
+          }
+      ?>
+      <br>
 
       <?php echo renderMap($item['lat'], $item['lon']); ?>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <div>
 </div>
 
-<?php
-    if ($userID == $item['user_id'])
-    {
-        echo '
-        <form action="editevent.php" method="post">
-        <input type="hidden" name="id2" value="' . $currentID . '">
-        <input type="submit" value="Edit">
-        </form>
-        <form action="deleteevent.php" method="post">
-        <input type="hidden" name="id3" value="' . $currentID . '">
-        <input type="submit" value="Delete">
-        </form>';
-    }
-?>
+
 
 
 <?php require('layout/footer.php') ?>
