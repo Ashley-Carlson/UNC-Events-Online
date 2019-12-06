@@ -7,6 +7,11 @@ if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
 
+$stmt = $db->prepare('SELECT user_id FROM user where username = :username');
+$stmt->execute(array(':username' => $_SESSION['username']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$userID = $row['user_id'];
+
 $stmt = $db -> prepare("
 SELECT
   event.event_name,
