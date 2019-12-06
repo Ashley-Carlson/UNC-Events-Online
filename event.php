@@ -74,7 +74,7 @@
       <p id="time"><?php echo $time ?></p>
       <p><?php echo $item['duration'] ?></p>
 
-      <?php if ($item['has_food'] == 1) { echo 'This event has food!'}?>
+      <?php if ($item['has_food'] == 1) { echo 'This event has food!'; }?>
 
       <body>
       <h3 id="description"><?php echo $item['description'] ?></h3>
@@ -93,7 +93,7 @@
 				<input type="submit" value="' . $notif_button_text . '">
 			</form>';
 		  } ?>
-      
+
       <?php echo renderMap($item['lat'], $item['lon']); ?>
     </div>
     <br>
