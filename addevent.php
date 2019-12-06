@@ -200,7 +200,7 @@ $(function() {
 			<b>Upload Image:</b><br>
 			<input type="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .tiff|image/*" name="image" id="image">
 			<br>
-			<input type="checkbox" required><b> I agree that my event abides by the following the
+			<input type="checkbox" required><b> I agree that my event abides by the
 				<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
 				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines </a>
 				and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
