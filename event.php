@@ -16,10 +16,6 @@
         user.last_name as last_name,
         user.email as email,
         event.duration as duration
-	
-	event.external_url1 as external_url1
-	event.external_url2 as external_url2
-	event.external_url3 as external_url3
 
 
 
@@ -91,7 +87,6 @@
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
-      <p style="color: #000080;">More Info: <?php echo $item['external_url1'] ?></p>
 
       <?php
 			if ($user->is_logged_in())
