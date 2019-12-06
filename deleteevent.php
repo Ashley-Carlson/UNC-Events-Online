@@ -32,11 +32,11 @@ while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
   emailNotifaction($message, $event, $email, $noreply_email_addr);
 }
 
-$stmt = $db->prepare('DELETE FROM eventfollower where event_id = :id');
+$stmt = $db->prepare('DELETE FROM eventfollower WHERE event_id = :id');
 $stmt->execute(array(':id' => $id));
-$stmt = $db->prepare('DELETE FROM eventtag where event_id = :id');
+$stmt = $db->prepare('DELETE FROM eventtag WHERE event_id = :id');
 $stmt->execute(array(':id' => $id));
-$stmt = $db->prepare('UPDATE event SET is_inactive = 1 WHERE event_id = :id');
+$stmt = $db->prepare('DELETE FROM event WHERE event_id = :id');
 $stmt->execute(array(':id' => $id));
 
 if (isset($itemInfo['photo_path']))
