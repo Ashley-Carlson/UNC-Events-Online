@@ -140,3 +140,31 @@ CREATE INDEX idx_usertag on `tagfollower` (user_id, tag_id);
 CREATE INDEX idx_clubevent on `clubevent` (club_id, event_id);
 CREATE INDEX idx_eventfollower on `eventfollower` (event_id, user_id);
 CREATE INDEX idx_clubfollower on `clubfollower` (club_id, user_id);
+
+insert into tag (tag_id, tag) values
+(1, 'Biology'),
+(2, 'Mathematics'),
+(3, 'Technology'),
+(4, 'Art'),
+(5, 'Science'),
+(6, 'Performance'),
+(7, 'Theater'),
+(8, 'Chemistry'),
+(9, 'Culture'),
+(10, 'Cuisine'),
+(11, 'Animals'),
+(12, '21'),
+(13, 'Official'),
+(14, 'Party'),
+(15, 'Greek'),
+(16, 'Mechanics'),
+(17, 'Engineering'),
+(18, 'AI'),
+(19, 'Business'),
+(20, 'Networking'),
+(21, 'Food'),
+(22, 'Sports'),
+(23, 'Football'),
+(24, 'Volleyball'),
+(25, 'Soccer')
+;
