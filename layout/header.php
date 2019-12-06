@@ -43,9 +43,9 @@ if(isset($_POST['submit'])){
 	<meta charset="UTF-8">
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<meta name="viewport" content="width-device-width, initial-scale=1"/>
-	<link rel="stylesheet" href="layout\style.css">
 	<!-- Bootstrap core CSS -->
 	<link href="layout\bootstrap\css\bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="layout\style.css">
 	<!-- Calendar mess for Firefox support -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
