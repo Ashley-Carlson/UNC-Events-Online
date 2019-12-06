@@ -75,10 +75,10 @@
       <p>Duration: <?php echo $item['duration'] ?></p>
 
       <?php if ($item['has_food'] == 1) { echo 'This event has food!'; }?>
-      <br>
+      <br><br>
 
       <body>
-      <p>Description:</p><br>
+      <p>Description:</p>
       <h3 id="description"><?php echo $item['description'] ?></h3>
 
       <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
