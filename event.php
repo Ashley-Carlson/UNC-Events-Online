@@ -91,9 +91,9 @@
 
       <p>Location: <?php echo $item['location'] ?></p>
       <p>More info found:</p>
-      <?php if (isset($item['external_url1']) { echo '<a href="' . $item['external_url1'] . '">Link</a>'; }?>
-      <?php if (isset($item['external_url2']) { echo '<a href="' . $item['external_url2'] . '">Link</a>'; }?>
-      <?php if (isset($item['external_url3']) { echo '<a href="' . $item['external_url3'] . '">Link</a>'; }?>
+      <?php if (isset($row['external_url1']) { echo '<a href="' . $row['external_url1'] . '">Link</a>'; }?>
+      <?php if (isset($row['external_url2']) { echo '<a href="' . $row['external_url2'] . '">Link</a>'; }?>
+      <?php if (isset($row['external_url3']) { echo '<a href="' . $row['external_url3'] . '">Link</a>'; }?>
       <br>
 
 
