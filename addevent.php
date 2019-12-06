@@ -175,9 +175,9 @@ $(function() {
 			<input id="address_box" type="text" name="location" placeholder="Location" required><br>
 
 			<b>External URL(s):</b><br>
-			<input id="url_box" type="text" name="external_url1" placeholder="Link"><br>
-			<input id="url_box" type="text" name="external_url2" placeholder="Link"><br>
-			<input id="url_box" type="text" name="external_url3" placeholder="Link"><br>
+			<input id="url_box" type="url" name="external_url1" placeholder="Link"><br>
+			<input id="url_box" type="url" name="external_url2" placeholder="Link"><br>
+			<input id="url_box" type="url"" name="external_url3" placeholder="Link"><br>
 
 			<input type="checkbox" name="has_food"><b> Does this event have food?</b><br>
 
