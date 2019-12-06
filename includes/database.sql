@@ -141,7 +141,7 @@ CREATE INDEX idx_clubevent on `clubevent` (club_id, event_id);
 CREATE INDEX idx_eventfollower on `eventfollower` (event_id, user_id);
 CREATE INDEX idx_clubfollower on `clubfollower` (club_id, user_id);
 
-insert into tag (tag_id, tag) values
+INSERT INTO tag (tag_id, tag) VALUES
 (1, 'Biology'),
 (2, 'Mathematics'),
 (3, 'Technology'),
