@@ -55,6 +55,9 @@ if(isset($_POST['submit'])){
 	.nav-link {
 		color: white !important;
 	}
+	.nav-par {
+		color: white !important;
+	}
 	</style>
 	<script>
 
