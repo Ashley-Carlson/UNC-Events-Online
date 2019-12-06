@@ -41,7 +41,7 @@
         'photo_path' => $row['photo_path'],
         'external_url1' => $row['external_url1'],
         'external_url2' => $row['external_url2'],
-        'external_url3' => $event['external_url3']
+        'external_url3' => $row['external_url3']
     );
     $stmt = $db -> prepare("
     SELECT user_id
@@ -91,10 +91,9 @@
 
       <p>Location: <?php echo $item['location'] ?></p>
       <p>More info found:</p>
-      <?php if (isset($event['external_url1'])) { echo '<a href="' . $event['external_url1'] . '">Link</a>'; }?>
-      <?php if (isset($event['external_url2'])) { echo '<a href="' . $event['external_url2'] . '">Link</a>'; }?>
-      <?php if (isset($event['external_url3'])) { echo '<a href="' . $event['external_url3'] . '">Link</a>'; }?>
-
+      <?php if (isset($row['external_url1'])) { echo '<a href="' . $row['external_url1'] . '">Link</a>'; }?>
+      <?php if (isset($row['external_url2'])) { echo '<a href="' . $row['external_url2'] . '">Link</a>'; }?>
+      <?php if (isset($row['external_url3'])) { echo '<a href="' . $row['external_url3'] . '">Link</a>'; }?>
       <br>
 
 
