@@ -63,7 +63,7 @@
 <!-- Page Content -->
 <div class="container">
   <div class="row">
-    <div class="col-lg-12 text-center">
+    <div class="col-lg-12 text-LEFT">
       <h1 class="mt-5">Search Results</h1>
 			<?php echo '<h3>Results for "' . $search . '" in ' . $type . 's</h3>' ?>
       <!-- <p class="lead">Complete with pre-defined file paths and responsive navigation!</p> -->
