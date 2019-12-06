@@ -96,7 +96,6 @@
 				<input type="submit" value="' . $notif_button_text . '">
 			</form>';
 		  } ?>
-      <br><br>
 
       <?php
           if ($userID == $item['user_id'])
