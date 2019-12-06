@@ -74,10 +74,12 @@
   height: 200px;
 }
 
+.event-card-image {
+    
+}
+
 #event-card-image {
-    float: right;
     max-width: 400px;
-    display: inline-block;
 }
 
 .card:hover {
