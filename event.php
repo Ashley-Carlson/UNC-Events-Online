@@ -16,9 +16,9 @@
         user.last_name as last_name,
         user.email as email,
         event.duration as duration
-
-
-
+        event.external_url1 as external_url1
+        event.external_url2 as external_url2
+        event.external_url3 as external_url3
     FROM event
     LEFT JOIN user ON user.user_id = event.event_contact
     WHERE event_id = :id
