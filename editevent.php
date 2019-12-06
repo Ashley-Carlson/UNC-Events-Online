@@ -138,8 +138,8 @@ if (isset($_POST['id']))
 // ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
 		"SELECT user.email as email, event.event_name
-		 FROM user
-		LEFT JOIN eventfollower ON eventfollower.user_id = user.user_id
+		 FROM eventfollower.event_id
+		LEFT JOIN user ON eventfollower.user_id = user.user_id
 		LEFT JOIN event ON eventfollower.event_id = event.event_id
 		WHERE eventfollower.event_id = :id"
 	);
