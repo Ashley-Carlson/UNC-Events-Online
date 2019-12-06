@@ -16,9 +16,9 @@ $userID = $row['user_id'];
 
 
 $edit_stmt = $db->prepare('SELECT can_edit FROM clubmember WHERE user_id = :user_id AND club_id = :club_id');
-$edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $_GET['id']));
+$edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $id));
 $can_edit = $edit_stmt->fetch(PDO::FETCH_ASSOC);
-if ($can_edit['can_edit'] != 1 && $row['acct_type'] != 1)
+if ($can_edit['can_edit'] != 1 && $row['acct_type'] != 2)
 {
   header("Location: index.php");
 }
