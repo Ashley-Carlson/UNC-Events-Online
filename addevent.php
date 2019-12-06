@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	 || !is_uploaded_file($_FILES['image']['tmp_name'])
 	)
 	{
-		echo "<p>No file uploaded, skipping.";
+		echo "<p>No file uploaded, skipping.</p>";
 	}
 	else
 	{
