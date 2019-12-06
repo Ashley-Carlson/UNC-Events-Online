@@ -230,11 +230,11 @@ $(function() {
 		<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
 			<option value=""></option>
 			<?php
-			$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
-			$stmt->execute();
 			$tagfetch = $db->prepare("SELECT tag_id FROM eventtag WHERE event_id = :event_id");
 			$tagfetch->execute(array(':event_id' => $id));
 			$matchtags = $tagfetch->fetchAll(PDO::FETCH_COLUMN, 0);
+			$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
+			$stmt->execute();
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
 				$selected = $in_array($row['tag_id'], $matchtags) ? " selected" : "";

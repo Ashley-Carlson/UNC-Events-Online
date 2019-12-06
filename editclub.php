@@ -116,8 +116,6 @@ require('layout/header.php');
 				<select data-placeholder="Begin typing to filter tags..." multiple class="chosen-select" name="tags[]">
 					<option value=""></option>
 					<?php
-					$stmt = $db->prepare("SELECT tag_id, tag FROM tag ORDER BY tag_id");
-					$stmt->execute();
 					$tagfetch = $db->prepare("SELECT tag_id FROM clubtag WHERE club_id = :club_id");
 					$tagfetch->execute(array(':club_id' => $id));
 					$matchtags = $tagfetch->fetchAll(PDO::FETCH_COLUMN, 0);
