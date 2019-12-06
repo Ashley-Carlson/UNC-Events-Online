@@ -25,12 +25,12 @@ if ($can_edit['can_edit'] != 1 && $row['acct_type'] != 2)
 
 if (isset($_POST['id']))
 {
-  $stmt = $db ->prepare('INSERT INTO club (club_name, club_desc, fac_sponsor_id,) VALUES (:name, :description,
-  :sponsor_id)');
+  $stmt = $db ->prepare('UPDATE club SET club_name = :name, club_desc = :description, fac_sponsor_id = :sponsor_id WHERE club_id = :id');
   $stmt -> execute(array(
   ':name' => $_POST['name'],
 	':description' => $_POST['description'],
-	':sponsor_id' => $sponsor_id
+	':sponsor_id' => $sponsor_id,
+	':id' => $id
   ));
 	if (isset($_FILES['image']))
 	{
