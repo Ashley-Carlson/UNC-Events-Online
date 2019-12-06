@@ -181,7 +181,7 @@ $(function() {
 			<input id="event_name_box" type="text" name="name" value="<?php echo $event['event_name'] ?>">
 
 			<br><b>Club: </b>
-			<select name="club_id">
+			<select name="club_id" class="chosen-select">
 				<option value="none"></option>
 				<?php
 				$stmt = $db->prepare(
@@ -237,7 +237,7 @@ $(function() {
 			$stmt->execute();
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{
-				$selected = $in_array($row['tag_id'], $matchtags) ? " selected" : "";
+				$selected = in_array($row['tag_id'], $matchtags) ? " selected" : "";
 				echo '<option value="' . $row['tag_id'] . '"' . $selected . '>' . $row['tag'] . '</option>';
 			}
 			?>

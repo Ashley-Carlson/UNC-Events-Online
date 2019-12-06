@@ -85,6 +85,13 @@ require('layout/header.php');
 
 ?>
 
+<script type="text/javascript">
+// Chosen filtering
+$(function() {
+	$(".chosen-select").chosen();
+});
+</script>
+
 <body style="background-image:url('media/addeventbkg.jpg');background-color: #333;">
 
 	<form enctype="multipart/form-data" role="form" action="addclub.php" method="POST">
