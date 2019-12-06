@@ -111,7 +111,7 @@
               </form>';
           }
       ?>
-      <br><br>
+      <br>
 
       <?php echo renderMap($item['lat'], $item['lon']); ?>
     </div>
