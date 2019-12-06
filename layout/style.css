@@ -83,8 +83,12 @@
   height: 200px;
 }
 
+.event-card-image, .club-card-image {
+    max-height: 400px;
+}
 #event-card-image, #club-card-image {
     max-width: 390px;
+    max-height: 400px;
 }
 
 .card:hover {
