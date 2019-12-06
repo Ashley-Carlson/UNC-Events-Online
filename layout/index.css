@@ -170,3 +170,7 @@ body form input{
   background-color: #ddd !important;
   color: black !important;
 }
+
+.nav-item {
+	color: white !important;
+}
