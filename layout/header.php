@@ -51,14 +51,11 @@ if(isset($_POST['submit'])){
 	<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 	<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
 	<!-- Custom JS for site -->
-<<<<<<< HEAD
 	<style>
 	.nav-link {
 		color: white !important;
 	}
 	</style>
-=======
->>>>>>> 447f902c1e77243d547f0e5829af068f75d8232d
 	<script>
 
 	// Flat Picker for Datetimes
