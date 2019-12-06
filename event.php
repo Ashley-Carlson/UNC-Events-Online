@@ -78,6 +78,7 @@
       <br>
 
       <body>
+      <p>Description:</p><br>
       <h3 id="description"><?php echo $item['description'] ?></h3>
 
       <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
