@@ -18,6 +18,7 @@
         event.duration as duration
 
 
+
     FROM event
     LEFT JOIN user ON user.user_id = event.event_contact
     WHERE event_id = :id

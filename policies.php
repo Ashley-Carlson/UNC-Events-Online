@@ -4,7 +4,6 @@ require("layout/header.php");
 ?>
 <h1>UNC Office of Student Organizations Policies</h1>
 <br />
-<div class="card">
     <h2>
 			<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">Registered Student Organizations Manual
 		</a>
@@ -16,8 +15,6 @@ require("layout/header.php");
 		 name of the best department to contact for the particular service or function.
 	 </p>
 		<br />
-	</div>
-	<div class="card">
 	    <h2>
 				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">Registered Student Organizations Constitution Guide
 			</a>
@@ -31,8 +28,6 @@ require("layout/header.php");
 				feel free to contact us at clubs@unco.edu. We’re happy to assist!
 			</p>
 			<br />
-		</div>
-		<div class="card">
 				<h2>
 					<a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf"> Student Group Records Transfer Form
 				</a>
@@ -42,7 +37,6 @@ require("layout/header.php");
 					Records transferred to the University Archives are in the Archives' custody and become part of the Archives' collections.
 					Original records in the Archives' collections do not circulate. All use of original records must take place in the Archives
 					 and Special Collections Reading Room. Original documents can be loaned with advance approval. Thank you for transferring
-					 your records to the UNC University Archives! 
+					 your records to the UNC University Archives!
 					</p>
 				<br />
-			</div>

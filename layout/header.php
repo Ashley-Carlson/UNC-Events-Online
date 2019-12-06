@@ -107,6 +107,9 @@ if(isset($_POST['submit'])){
 					</ul>
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
+							<a class="nav-link" href="addclub.php">New Club</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="addevent.php">New Event</a>
 						</li>
 						<li class="nav-item">
