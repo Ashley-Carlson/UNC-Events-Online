@@ -76,7 +76,8 @@
 
 #event-card-image {
     float: right;
-    width: 200px;
+    max-width: 400px;
+    display: inline-block;
 }
 
 .card:hover {
