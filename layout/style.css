@@ -43,9 +43,7 @@
     font-size: 15px;
 }
 
-#notif-button {
-    margin-left: 20px;
-}
+
 
 /* Event form inputs */
 #event_name_box, #description_box, #url_box {
