@@ -34,6 +34,8 @@ while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
 
 $stmt = $db->prepare('DELETE FROM eventfollower WHERE event_id = :id');
 $stmt->execute(array(':id' => $id));
+$stmt = $db->prepare('DELETE FROM clubevent WHERE event_id = :id');
+$stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM eventtag WHERE event_id = :id');
 $stmt->execute(array(':id' => $id));
 $stmt = $db->prepare('DELETE FROM event WHERE event_id = :id');
