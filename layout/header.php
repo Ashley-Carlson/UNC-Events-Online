@@ -43,19 +43,22 @@ if(isset($_POST['submit'])){
 	<meta charset="UTF-8">
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<meta name="viewport" content="width-device-width, initial-scale=1"/>
-	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="layout\style.css">
+	<!-- Bootstrap core CSS -->
 	<link href="layout\bootstrap\css\bootstrap.min.css" rel="stylesheet">
 	<!-- Calendar mess for Firefox support -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
 	<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
 	<!-- Custom JS for site -->
+<<<<<<< HEAD
 	<style>
 	.nav-link {
 		color: white !important;
 	}
 	</style>
+=======
+>>>>>>> 447f902c1e77243d547f0e5829af068f75d8232d
 	<script>
 
 	// Flat Picker for Datetimes
@@ -91,7 +94,7 @@ if(isset($_POST['submit'])){
 							{
 								$first_name = $_SESSION['first_name'];
 								echo '<li class="nav-item"><p class="nav-par">Hello, ' . $first_name . '</p></li>
-								<li class="nav-item"><a class="nav-link" href="dash.php">Profile</a></li>
+								<li class="nav-item" color="white"><a class="nav-link" href="dash.php">Profile</a></li>
 								<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>';
 							}
 							else
