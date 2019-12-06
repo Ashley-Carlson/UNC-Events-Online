@@ -132,7 +132,7 @@ ALTER TABLE `clubfollower` ADD FOREIGN KEY (`club_id`) REFERENCES `club` (`club_
 CREATE INDEX idx_event ON `event`(event_id);
 CREATE INDEX idx_user ON `user`(user_id);
 CREATE INDEX idx_user ON `club`(club_id);
-CREATE INDEX idx_tag ON `tag`(id);
+CREATE INDEX idx_tag ON `tag`(tag_id);
 CREATE INDEX idx_clubmember on `clubmember` (club_id, user_id);
 CREATE INDEX idx_clubtag on `clubtag` (club_id, tag_id);
 CREATE INDEX idx_eventtag on `eventtag` (event_id, tag_id);
