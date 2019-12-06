@@ -176,7 +176,7 @@ $(function() {
 });
 </script>
 
-	<form enctype="multipart/form-data" role="form" id="addevent" action="addevent.php" method="POST" background="white">
+	<form enctype="multipart/form-data" role="form" id="addevent" action="addevent.php" method="POST" background-COLOR="white">
 		<div class="container">
 			<body class="addevent">
 				<h1 class="title">Edit Event</h1>
