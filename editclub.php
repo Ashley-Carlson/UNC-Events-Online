@@ -95,7 +95,7 @@ $(function() {
 	<form enctype="multipart/form-data" role="form" action="addclub.php" method="POST">
 		<div class="container">
 			<body class="addclub">
-				<h1 class="title">Edit Club Club</h1>
+				<h1 class="title">Edit Club</h1>
 				<hr>
 				<!-- takes text input for title, description, reserve -->
 				<b>Club Name: </b>
