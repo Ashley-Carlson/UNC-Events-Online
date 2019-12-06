@@ -17,7 +17,6 @@
         user.email as email,
         event.duration as duration
 	
-	event.external_url1 as external_url1
 	
     FROM event
     LEFT JOIN user ON user.user_id = event.event_contact
@@ -85,8 +84,6 @@
 
       <p style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
-	      	
-      <p style="color: #000080;">More Info: <?php echo $item['external_url1'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
 
