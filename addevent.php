@@ -9,7 +9,7 @@ require("maps.php");
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
-
+echo '<body style="background-color: white;">';
 $stmt = $db->prepare('SELECT user_id FROM user where username = :username');
 $stmt->execute(array(':username' => $_SESSION['username']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	 || !is_uploaded_file($_FILES['image']['tmp_name'])
 	)
 	{
-		echo "<p>No file uploaded, skipping.";
+		echo "<p>No file uploaded, skipping.</p>";
 	}
 	else
 	{
@@ -202,7 +202,7 @@ $(function() {
 			<br>
 			<input type="checkbox" required><b> I agree that my event abides by the
 				<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a> and
-				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines</a>, 
+				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines</a>,
 				and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
 </b><br>
 
