@@ -66,6 +66,15 @@
   width: 400px;
 }
 
+.event-page-card {
+    float: left;
+    margin: 1px;
+    padding: 10px 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 600px;
+}
+
 .card-image {
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -74,12 +83,12 @@
   height: 200px;
 }
 
-.event-card-image {
-    
+.event-card-image, .club-card-image {
+    max-height: 400px;
 }
-
-#event-card-image {
+#event-card-image, #club-card-image {
     max-width: 390px;
+    max-height: 400px;
 }
 
 .card:hover {
