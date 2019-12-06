@@ -52,7 +52,7 @@ if(isset($_POST['submit'])){
 	<script src="https://npmcdn.com/flatpickr/dist/l10n/de.js"></script>
 	<!-- Custom JS for site -->
 	<style>
-	.nav-item {
+	.nav-link {
 		color: white !important;
 	}
 	</style>
