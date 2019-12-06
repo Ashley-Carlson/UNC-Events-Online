@@ -7,6 +7,11 @@ if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
 
+$stmt = $db->prepare('SELECT user_id FROM user where username = :username');
+$stmt->execute(array(':username' => $_SESSION['username']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$userID = $row['user_id'];
+
 $stmt = $db -> prepare("
 SELECT
   event.event_name,
@@ -132,10 +137,11 @@ if (isset($_POST['id']))
 // ADD AUTO-EMAIL HERE
 // ADD AUTO-EMAIL HERE
 	$stmt = $db -> prepare (
-	"SELECT user.email as email, event.event_name
-	 FROM user
-	LEFT JOIN eventfollower ON eventfollower.user_id = user.user_id
-	WHERE event.event_id = :id"
+		"SELECT user.email as email, event.event_name
+		 FROM eventfollower
+		LEFT JOIN user ON eventfollower.user_id = user.user_id
+		LEFT JOIN event ON eventfollower.event_id = event.event_id
+		WHERE eventfollower.event_id = :id"
 	);
 	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
 	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
@@ -143,7 +149,7 @@ if (isset($_POST['id']))
 		$email = $row['email'];
 		$event = $row['event_name'];
 		$message = 'An event has been updated
-		Chech out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
+		Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
 		emailNotifaction($message, $event, $email, $noreply_email_addr);
 	}
 	if ($_POST['tags'])
