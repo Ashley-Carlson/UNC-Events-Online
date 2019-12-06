@@ -67,21 +67,20 @@
     <div class="card">
       <?php
       $filepath = isset($item['photo_path']) ? $item['photo_path'] : "media/logo.png";
-      echo '<div class="card-image"><img src='. $filepath .' alt="UNC" id="card-image"></div>'
+      echo '<div class="event-card-image"><img src='. $filepath .' alt="UNC" id="event-card-image"></div>'
       ?>
       <br>
       <h1 class="name"><?php echo $item['name'] ?></h1>
       <p id="time">When: <?php echo $time ?></p>
       <p>Duration: <?php echo $item['duration'] ?></p>
 
-      <?php if ($item['has_food'] == 1) { echo 'This event has food!'; }?>
-      <br><br>
+      <?php if ($item['has_food'] == 1) { echo 'This event has food!<br><br>'; }?>
 
       <body>
       <p>Description:</p>
       <h3 id="description"><?php echo $item['description'] ?></h3>
 
-      <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
+      <p style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
