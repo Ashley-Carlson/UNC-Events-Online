@@ -39,6 +39,9 @@
         'email'       => $row['email'],
         'user_id'     => $row['user_id'],
         'photo_path' => $row['photo_path'],
+        'external_url1' => $row['external_url1'],
+        'external_url2' => $row['external_url2'],
+        'external_url3' => $row['external_url3']
     );
     $stmt = $db -> prepare("
     SELECT user_id
