@@ -16,7 +16,7 @@ $userID = $row['user_id'];
 
 
 $edit_stmt = $db->prepare('SELECT can_edit FROM clubmember WHERE user_id = :user_id AND club_id = :club_id');
-$edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $id));
+$edit_stmt->execute(array(':user_id' => $userID, ':club_id' => $_POST['id2']));
 $can_edit = $edit_stmt->fetch(PDO::FETCH_ASSOC);
 if ($can_edit['can_edit'] != 1 && $row['acct_type'] != 2)
 {
@@ -25,12 +25,18 @@ if ($can_edit['can_edit'] != 1 && $row['acct_type'] != 2)
 
 if (isset($_POST['id']))
 {
-  $stmt = $db ->prepare('UPDATE club SET club_name = :name, club_desc = :description, fac_sponsor_id = :sponsor_id WHERE club_id = :id');
+  $stmt = $db ->prepare(
+'UPDATE club
+ SET
+   club_name = :name,
+	 club_desc = :description,
+	 fac_sponsor_id = :sponsor_id
+ WHERE club_id = :id');
   $stmt -> execute(array(
   ':name' => $_POST['name'],
 	':description' => $_POST['description'],
 	':sponsor_id' => $sponsor_id,
-	':id' => $id
+	':id' => $_POST['id2']
   ));
 	if (isset($_FILES['image']))
 	{
@@ -50,14 +56,14 @@ if (isset($_POST['id']))
 	 )) {
 			 throw new RuntimeException('Invalid file format.');
 	 }
-		mkdir("media/clubs/" . $id, 0777, true);
-		$directory = "media/clubs/" . $id . "/";
+		mkdir("media/clubs/" . $_POST['id2'], 0777, true);
+		$directory = "media/clubs/" . $_POST['id2'] . "/";
 		$target = $directory . sha1_file($_FILES['image']['tmp_name']) . '.' . $ext;
 		$filename = sha1_file($_FILES['image']['tmp_name']) . '.' . $ext;
 		move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
 		$stmt = $db->prepare("UPDATE club SET photo_path = :photo WHERE club_id = :club_id");
-		$stmt->execute(array(':photo' => $target, ':club_id' => $id));
+		$stmt->execute(array(':photo' => $target, ':club_id' => $_POST['id2']));
 
 		echo '<p class="success">File uploaded.</p>';
 	}
