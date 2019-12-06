@@ -88,7 +88,7 @@
 
       <p>Location: <?php echo $item['location'] ?></p>
       <p>More info found:</p>
-      <a href="event.php?id="><?php echo $row['external_url1'] ?></a>
+      <a href=><?php echo $row['external_url1'] ?></a>
 
 
       <?php
