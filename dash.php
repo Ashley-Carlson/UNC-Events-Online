@@ -15,7 +15,7 @@ $stmt->execute(array(':contact_id' => $userInfo['user_id']));
 $club_stmt = $db->prepare(
 "SELECT
   club.club_id,
-	club.club_name,
+	club.club_name
  FROM club
  LEFT JOIN clubmember ON club.club_id = clubmember.club_id
  WHERE clubmember.user_id = :user_id
