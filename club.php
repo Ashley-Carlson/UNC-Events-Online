@@ -65,7 +65,7 @@
        <!--<h2>Faculty Sponsor: </h2>-->
        <p>Contact Name: <?php echo $contact_info['name'] ?></p>
        <p>Contact email: <?php echo $contact_info['email'] ?></p>
-		 <br /><br />
+		 <br><br>
 			 <?php
  			if ($user->is_logged_in())
  			{
