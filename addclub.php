@@ -134,7 +134,7 @@ $(function() {
 			<input type="checkbox" required><b> I agree that my club abides by the
 				<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a> and
 				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines</a>, 
-				and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this event.
+				and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this club.
 	</b><br>
 			<!-- submits the data entered to the server -->
 			<input type="submit" value="Submit" id="popUpYes" color: white >
