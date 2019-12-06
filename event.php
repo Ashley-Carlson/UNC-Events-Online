@@ -74,14 +74,26 @@
       <p id="time"><?php echo $time ?></p>
       <p><?php echo $item['duration'] ?></p>
 
+      <?php if ($item['has_food'] == 1) { echo 'This event has food!'}?>
+
       <body>
       <h3 id="description"><?php echo $item['description'] ?></h3>
 
-      <!--<h2>Faculty Sponsor: </h2>-->
       <p  style="color: #000080;">Contact Name: <?php echo $item['first_name'].' '.$item['last_name'] ?></p>
       <p style="color: #000080;">Contact email: <?php echo $item['email'] ?></p>
 
       <p>Location: <?php echo $item['location'] ?></p>
+
+      <?php
+			if ($user->is_logged_in())
+			{
+				echo '
+			<form action="follow.php" method="post">
+				<input type="hidden" name="event_id" value="' . $currentID . '">
+				<input type="submit" value="' . $notif_button_text . '">
+			</form>';
+		  } ?>
+      
       <?php echo renderMap($item['lat'], $item['lon']); ?>
     </div>
     <br>
@@ -113,18 +125,6 @@
     <br>
     <br>
     <div>
-      <br>
-	    <p>There is food <input type="checkbox" name="has_food" <?php if ($item['has_food'] == 1) { echo 'checked="checked"'; } ?> disabled>
-      </p>
-			<?php
-			if ($user->is_logged_in())
-			{
-				echo '
-			<form action="follow.php" method="post">
-				<input type="hidden" name="event_id" value="' . $currentID . '">
-				<input type="submit" value="' . $notif_button_text . '">
-			</form>';
-		  } ?>
 </div>
 
 <?php
