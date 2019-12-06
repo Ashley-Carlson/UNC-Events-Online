@@ -149,7 +149,7 @@ if (isset($_POST['id']))
 		$email = $row['email'];
 		$event = $row['event_name'];
 		$message = 'An event has been updated
-		Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
+Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
 		emailNotifaction($message, $event, $email, $noreply_email_addr);
 	}
 	if ($_POST['tags'])
