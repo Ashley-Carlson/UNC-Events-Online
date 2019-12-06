@@ -89,6 +89,7 @@
       <p>Location: <?php echo $item['location'] ?></p>
       <p>More info found:</p>
       <?php echo "<a href=" . $row['external_url1'] . ">Link</a>";?>
+      <br>
 
 
       <?php
