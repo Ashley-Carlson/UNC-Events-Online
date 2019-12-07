@@ -65,7 +65,7 @@ if (isset($_POST['id']))
         longitude = :longitude,
         duration = :duration,
         external_url1 = :external_url1,
-        external_url2 = :external_url2
+        external_url2 = :external_url2,
         external_url3 = :external_url3,
         has_food = :has_food
       WHERE event_id = :id"
