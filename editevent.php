@@ -61,7 +61,7 @@ if ($contact_id != $row['user_id'] && $row['acct_type'] != 2)
   header("Location: index.php");
 }
 
-if (isset($_POST['id']))
+if (isset($_POST['id2']))
 {
   $stmt = $db -> prepare(
       "UPDATE event SET
@@ -143,13 +143,13 @@ if (isset($_POST['id']))
 		LEFT JOIN event ON eventfollower.event_id = event.event_id
 		WHERE eventfollower.event_id = :id"
 	);
-	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
+	$stmt -> execute(array(":id" => $id)); // Assuming that it posts to self with ID as a parameter
 	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
 	{
 		$email = $row['email'];
 		$event = $row['event_name'];
 		$message = 'An event has been updated
-Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
+Check out the changes at https://uncevents.online/event.php?id='.$id;
 		emailNotifaction($message, $event, $email, $noreply_email_addr);
 	}
 	if ($_POST['tags'])
@@ -162,7 +162,7 @@ Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
 			$insertstmt->execute(array(':event_id' => $row['m'], ':tag_id' => $tag_id));
 		}
 	}
-  header("Location: event.php?id=".$_POST['id']);
+  header("Location: event.php?id=" . $id);
 }
 
 require('layout/header.php');
@@ -262,7 +262,7 @@ $(function() {
 		<div>
 		<!-- submits the data entered to the server -->
 		 <input type="submit" value="Submit" id="popUpYes">
-	   <input type="hidden" value="<?php echo $id ?>" name="id">
+	   <input type="hidden" value="<?php echo $id ?>" name="id2">
 </form>
 
 <!-- For tag filtering -->
