@@ -43,7 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	}
 	echo '<p class="success">Tags attached.</p>';
 
-	if (isset($_FILES['image']))
+	if (empty($_FILES['image'])
+	 || !file_exists($_FILES['image']['tmp_name'])
+	 || !is_uploaded_file($_FILES['image']['tmp_name'])
+	)
 	{
 		if ($_FILES['image']['size'] > 1000000)
 		{
@@ -133,7 +136,7 @@ $(function() {
 
 			<input type="checkbox" required><b> I agree that my club abides by the
 				<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a> and
-				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines</a>, 
+				<a href="https://www.unco.edu/clubs-organizations/pdf/2018-2019-rso-constitution-guide.pdf">constitutional guidelines</a>,
 				and will submit an <a href="https://www.unco.edu/clubs-organizations/pdf/archiving-rso-records.pdf">archives request</a> (if necessary) for this club.
 	</b><br>
 			<!-- submits the data entered to the server -->

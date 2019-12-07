@@ -83,7 +83,10 @@ if (isset($_POST['id']))
       ':id'			   => $id,
       ':duration' => $_POST['duration']
   ));
-	if (isset($_FILES['image']))
+	if (empty($_FILES['image'])
+	 || !file_exists($_FILES['image']['tmp_name'])
+	 || !is_uploaded_file($_FILES['image']['tmp_name'])
+	)
 	{
 		if ($_FILES['image']['size'] > 1000000)
 		{
