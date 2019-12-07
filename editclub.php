@@ -38,9 +38,9 @@ if (isset($_POST['id']))
 	':sponsor_id' => $sponsor_id,
 	':id' => $_POST['id2']
   ));
-	if (empty($_FILES['image'])
-	 || !file_exists($_FILES['image']['tmp_name'])
-	 || !is_uploaded_file($_FILES['image']['tmp_name'])
+	if (!empty($_FILES['image'])
+	 && file_exists($_FILES['image']['tmp_name'])
+	 && is_uploaded_file($_FILES['image']['tmp_name'])
 	)
 	{
 		if ($_FILES['image']['size'] > 1000000)

@@ -43,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 	}
 	echo '<p class="success">Tags attached.</p>';
 
-	if (empty($_FILES['image'])
-	 || !file_exists($_FILES['image']['tmp_name'])
-	 || !is_uploaded_file($_FILES['image']['tmp_name'])
+	if (!empty($_FILES['image'])
+	 && file_exists($_FILES['image']['tmp_name'])
+	 && is_uploaded_file($_FILES['image']['tmp_name'])
 	)
 	{
 		if ($_FILES['image']['size'] > 1000000)

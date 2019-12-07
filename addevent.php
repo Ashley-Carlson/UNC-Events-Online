@@ -54,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST))
 			$stmt->execute(array(':event_id' => $eventID, ':tag_id' => $tag_id));
 		}
 	}
-	if (empty($_FILES['image'])
-	 || !file_exists($_FILES['image']['tmp_name'])
-	 || !is_uploaded_file($_FILES['image']['tmp_name'])
+	if (!empty($_FILES['image'])
+	 && file_exists($_FILES['image']['tmp_name'])
+	 && is_uploaded_file($_FILES['image']['tmp_name'])
 	)
 	{
 		echo "<p>No file uploaded, skipping.</p>";
