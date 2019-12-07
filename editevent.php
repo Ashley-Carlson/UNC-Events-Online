@@ -1,9 +1,13 @@
 <?php require("includes/config.php");
 require("maps.php");
-$id = $_POST['id2'];
+
+$id = array_key_exists('id2', $_POST) ? $_POST['id2'] : $_POST['id'];
+
+
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
 }
+
 $stmt = $db->prepare('SELECT user_id FROM user where username = :username');
 $stmt->execute(array(':username' => $_SESSION['username']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -80,8 +84,8 @@ if (isset($_POST['id']))
       ':external_url2' => $_POST['external_url2'],
       ':external_url3' => $_POST['external_url3'],
       ':has_food'      => $has_food,
-      ':id'			   => $id,
-      ':duration' => $_POST['duration']
+      ':id'	    		   => $id,
+      ':duration'      => $_POST['duration']
   ));
 	if (!empty($_FILES['image'])
 	 && file_exists($_FILES['image']['tmp_name'])
@@ -129,13 +133,13 @@ if (isset($_POST['id']))
 		LEFT JOIN event ON eventfollower.event_id = event.event_id
 		WHERE eventfollower.event_id = :id"
 	);
-	$stmt -> execute(array(":id" => $_POST["id"])); // Assuming that it posts to self with ID as a parameter
+	$stmt -> execute(array(":id" => $id)); // Assuming that it posts to self with ID as a parameter
 	while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) // Get associative array
 	{
 		$email = $row['email'];
 		$event = $row['event_name'];
 		$message = 'An event has been updated
-Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
+Check out the changes at https://uncevents.online/event.php?id='.$id;
 		emailNotifaction($message, $event, $email, $noreply_email_addr);
 	}
 	if ($_POST['tags'])
@@ -148,7 +152,7 @@ Check out the changes at https://uncevents.online/event.php?id='.$_POST['id'];
 			$insertstmt->execute(array(':event_id' => $row['m'], ':tag_id' => $tag_id));
 		}
 	}
-  header("Location: event.php?id=".$_POST['id']);
+  header("Location: event.php?id=".$id);
 }
 require('layout/header.php');
 ?>
@@ -234,7 +238,7 @@ $(function() {
 		</select>
 	  <br><br>
 	  <b>Upload Image:</b><br>
-		<input type="file" accept=".jpg, .png, .jpeg, .bmp, .tif, .tiff|image/*" name="image" id="image">
+		<input type="file" accept=".jpg, .png, .gif|image/*" name="image" id="image">
 		<br>
 		<input type="checkbox" required><b> I agree that my event abides by the following the
 			<a href="https://www.unco.edu/clubs-organizations/pdf/RSO-Manual.pdf">policy manual</a>,
