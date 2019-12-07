@@ -157,6 +157,7 @@ $(function() {
 		</b><br>
 				<!-- submits the data entered to the server -->
 				<input type="submit" value="Submit" id="popUpYes" color: white >
+	 	   <input type="hidden" value="<?php echo $id ?>" name="id">
 			</body>
 		</div>
 	</form>
