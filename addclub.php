@@ -105,7 +105,7 @@ $(function() {
 			<b>Faculty Sponsor:</b><br>
 				<select name="sponsor_id">
 					<?php
-					$stmt = $db->prepare("SELECT CONCAT(first_name, ' ', last_name) as name, user_id FROM user WHERE acct_type = 2 ORDER BY user_id");
+					$stmt = $db->prepare("SELECT CONCAT(first_name, ' ', last_name) as name, user_id FROM user WHERE acct_type = 0 ORDER BY user_id");
 					$stmt->execute();
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
 					{
