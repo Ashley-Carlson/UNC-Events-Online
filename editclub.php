@@ -1,6 +1,6 @@
 <?php require("includes/config.php");
 
-$id = array_key_exists('id2', $_POST) ? $id : $id;
+$id = array_key_exists('id2', $_POST) ? $_POST['id2'] : $_POST['id'];
 echo '<body style="background-color: white;">';
 if (!$user->is_logged_in()) {
 	header("Location: index.php");
