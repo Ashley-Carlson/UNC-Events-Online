@@ -262,7 +262,7 @@ $(function() {
 		<div>
 		<!-- submits the data entered to the server -->
 		 <input type="submit" value="Submit" id="popUpYes">
-	   <input type="hidden" value=<?php echo $id ?> name="id">
+	   <input type="hidden" value="<?php echo $id ?>" name="id">
 </form>
 
 <!-- For tag filtering -->
