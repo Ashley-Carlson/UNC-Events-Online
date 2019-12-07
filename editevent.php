@@ -93,8 +93,8 @@ if (isset($_POST['id']))
       ':external_url1' => $_POST['external_url1'],
       ':external_url2' => $_POST['external_url2'],
       ':external_url3' => $_POST['external_url3'],
-      ':has_food'     => $has_food,
-      ':id'						=> $_POST['id'],
+      ':has_food'      => $has_food,
+      ':id'			   => $id,
       ':duration' => $_POST['duration']
   ));
 
